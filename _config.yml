@@ -1,0 +1,6 @@
+title: WCPW
+description: >-
+  The hub for the best workshop in ancient philosophy.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "westcoastplatoworkshop.com" # your domain name, e.g. https://example.com
+theme: minima
