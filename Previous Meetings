@@ -85,5 +85,26 @@
             <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
         </ul>
     </div>
+<div id="details-2019" class="details">
+        <h2>2019</h2>
+        <p><strong>Host:</strong> San Diego State University </p>
+        <p><strong>Topic:</strong> Protagoras </p>
+        <h3>Keynote Speakers</h3>
+        <ul>
+            <li>Name: Deborah Modrak, Institution: University of Rochester, Title: "Protagoras and Socrates—More Alike Than Different?", Commentator: Eric Morelli (Point Loma Nazarene College)</li>
+        </ul>
+        <h3>Speakers</h3>
+        <ul>
+            <li>Name: Adam Beresford, Institution: University of Massachusetts, Boston, Title: "Piety in the Protagoras: Plato's Thoughts on the Great Speech", Commentator: Jan Szaif (University of California, Davis)</li>
+            <li>Name: Clerk Shaw, Institution: University of Tennessee, Knoxville, Title: "Socratic Intellectualism in the Protagoras", Commentator: David Hoinski (West Virginia University)</li>>
+            <li>Name: Oksana Maksymchuk, Institution: University of Arkansas, Title: "An Anthropological Defense of the Measure Doctrine in the Protagoras", Commentator: Grant Dowling (Stanford University)</li>
+            <li>Name: Aliza Ashraf, Institution: Queens College, City University of New York, Title: "Protagoras and Socrates on Courage and Knowledge", Commentator: Ryan Drake (Fairfield University)</li>
+            <li>Name: Marta Jimenez, Institution: Emory University, Title: "Equality in Love: The Education of Lover and Beloved in Plato's Protagoras", Commentator: Keitel Del Rosario (San Diego State University)</li>
+            <li>Name: Carissa Phillips-Garrett, Institution: Loyola Marymount University, Title: "Motivational Conflict and the Moral Paradox in Plato's Protagoras", Commentator: Blythe Greene (University of California, San Diego)</li>
+            <li>Name: Eric Brown, Institution: Washington University in St. Louis, Title: "Protagoreanism in the Protagoras", Commentator: Brooks Sommerville (University of British Columbia)</li>
+            <li>Name: Suzanne Obdrzalek, Institution: Claremont McKenna College, Title: "Evaluative Illusion in the Protagoras", Commentator: Thomas Slabon (Stanford University)</li>
+            <li>Name: Reid Comstock, Institution: University of Notre Dame, Title: "What Kind of Ignorance Makes One Akratic? (Protagoras 356c-357e)", Commentator: Roy Lee (Stanford University)</li>
+        </ul>
+    </div>
 </body>
 </html>
