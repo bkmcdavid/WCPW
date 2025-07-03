@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>West Coast Plato Workshop Info</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        .year-section { margin-bottom: 2em; }
+        .details { display: none; margin-top: 1em; border: 1px solid #ccc; padding: 1em; border-radius: 5px; }
+        label { font-weight: bold; }
+        select { margin-bottom: 1em; }
+    </style>
+    <script>
+        function showDetails() {
+            var years = document.getElementsByClassName('details');
+            for (var i = 0; i < years.length; i++) {
+                years[i].style.display = 'none';
+            }
+            var selected = document.getElementById('yearSelect').value;
+            if (selected) {
+                document.getElementById('details-' + selected).style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>West Coast Plato Workshop Info</h1>
+    <label for="yearSelect">Select Year:</label>
+    <select id="yearSelect" onchange="showDetails()">
+        <option value="">--Choose a year--</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+        <!-- Add more years as needed -->
+    </select>
+
+    <div id="details-2024" class="details">
+        <h2>2024</h2>
+        <p><strong>Host:</strong> [University Name]</p>
+        <p><strong>Topic:</strong> [Plato Dialogue Title]</p>
+        <h3>Keynote Speakers</h3>
+        <ul>
+            <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
+            <!-- Add more keynote speakers as needed -->
+        </ul>
+        <h3>Speakers</h3>
+        <ul>
+            <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
+            <!-- Add more speakers as needed -->
+        </ul>
+    </div>
+
+    <div id="details-2023" class="details">
+        <h2>2023</h2>
+        <p><strong>Host:</strong> [University Name]</p>
+        <p><strong>Topic:</strong> [Plato Dialogue Title]</p>
+        <h3>Keynote Speakers</h3>
+        <ul>
+            <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
+        </ul>
+        <h3>Speakers</h3>
+        <ul>
+            <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
+        </ul>
+    </div>
+</body>
+</html>
