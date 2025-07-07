@@ -19,6 +19,7 @@
       font-size: 1em;
       margin-left: 1em;
       text-decoration: underline;
+      padding: 0;
     }
     .meeting-details {
       display: none;
@@ -27,6 +28,7 @@
       border-radius: 6px;
       padding: 0.6em 1.2em;
       font-size: 1rem;
+      text-align: left;
     }
   </style>
   <script>
@@ -52,10 +54,10 @@
   </header>
   <div class="container">
     <h2>Previous Meetings</h2>
-    
-    <!-- 2025 -->
+
+    <!-- Example Entry (copy and fill in for each year) -->
     <div class="meeting-summary">
-      <strong>2025:</strong> <em>First Alcibiades</em> — UC San Diego
+      <strong>2025 – <em>First Alcibiades</em>, hosted by UC San Diego</strong>
       <button class="toggle-more" onclick="toggleDetails('details-2025')">More</button>
       <div class="meeting-details" id="details-2025">
         <h3>Keynote Speakers</h3>
@@ -66,53 +68,59 @@
         <h3>Speakers</h3>
         <ul>
           <li>Jack Condie (The New School for Social Research), "Underneath the Beginning: On Alcibiades 104a-104c" — Commentator: Brennan McDavid</li>
-          <li>Emily Kress (Brown University), "Alcibiades’ Ambition and Socrates’ Business" — Commentator: Evan Rodriguez</li>
-          <li>Wenjin Liu (Duke University), "The Anatomy of Self-Care in Alcibiades I" — Commentator: Rachel Singpurwala</li>
-          <li>Sarale Ben-Asher (University of New Mexico), "Properties as Valuable Possessions in Alcibiades I" — Commentator: Jozef Müller</li>
-          <li>Frank Li (Harvard University), "Self-knowledge and Teleological Agency in Alcibiades I" — Commentator: Zack Brants</li>
-          <li>Ryan Christensen (Brigham Young University), "Reciprocity and Role Reversal" — Commentator: John Proios</li>
-          <li>Jake Haagenson (Columbia University), "Knowledge in Alcibiades I" — Commentator: David Jennings</li>
-          <li>Zara Amdur (Texas Tech University), "Privilege and Avoiding the Risk of Self-Satisfaction in Alcibiades I" — Commentator: Subin Park</li>
-          <li>Peter Larsen (Dublin City University), "Sense Perception in Plato’s Alcibiades I" — Commentator: Marc Gasser-Wingate</li>
+          <!-- Add more speakers as needed -->
         </ul>
       </div>
     </div>
-    
-    <!-- 2024 (sample placeholders) -->
+
+    <!-- 2024 -->
     <div class="meeting-summary">
-      <strong>2024:</strong> <em>[Plato Dialogue Title]</em> — [University Name]
+      <strong>2024 – <em>Apology</em>, hosted by Seattle University</strong>
       <button class="toggle-more" onclick="toggleDetails('details-2024')">More</button>
       <div class="meeting-details" id="details-2024">
-        <h3>Keynote Speakers</h3>
-        <ul>
-          <li>[Name] ([Institution]), "[Title]" — Commentator: [Commentator]</li>
-        </ul>
-        <h3>Speakers</h3>
-        <ul>
-          <li>[Name] ([Institution]), "[Title]" — Commentator: [Commentator]</li>
-        </ul>
+        <!-- Speaker info here -->
+      </div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="meeting-summary">
+      <strong>2023 – <em>Statesman</em>, hosted by Northern Arizona University</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2023')">More</button>
+      <div class="meeting-details" id="details-2023">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="meeting-summary">
+      <strong>2022 – <em>Republic I-IV</em>, hosted by Stanford University</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2022')">More</button>
+      <div class="meeting-details" id="details-2022">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+
+    <!-- 2021 -->
+    <div class="meeting-summary">
+      <strong>2021 – <em>Sophist</em>, hosted by Northern Arizona University</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2021')">More</button>
+      <div class="meeting-details" id="details-2021">
+        <!-- Speaker info here -->
       </div>
     </div>
     
-    <!-- 2023 (sample placeholders) -->
+    <!-- 2020 -->
     <div class="meeting-summary">
-      <strong>2023:</strong> <em>[Plato Dialogue Title]</em> — [University Name]
-      <button class="toggle-more" onclick="toggleDetails('details-2023')">More</button>
-      <div class="meeting-details" id="details-2023">
-        <h3>Keynote Speakers</h3>
-        <ul>
-          <li>[Name] ([Institution]), "[Title]" — Commentator: [Commentator]</li>
-        </ul>
-        <h3>Speakers</h3>
-        <ul>
-          <li>[Name] ([Institution]), "[Title]" — Commentator: [Commentator]</li>
-        </ul>
+      <strong>2020 – <em>Lysis</em>, hosted by Lewis & Clark College</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2020')">More</button>
+      <div class="meeting-details" id="details-2020">
+        <!-- Speaker info here -->
       </div>
     </div>
     
     <!-- 2019 -->
     <div class="meeting-summary">
-      <strong>2019:</strong> <em>Protagoras</em> — San Diego State University
+      <strong>2019 – <em>Protagoras</em>, hosted by San Diego State University</strong>
       <button class="toggle-more" onclick="toggleDetails('details-2019')">More</button>
       <div class="meeting-details" id="details-2019">
         <h3>Keynote Speakers</h3>
@@ -122,18 +130,90 @@
         <h3>Speakers</h3>
         <ul>
           <li>Adam Beresford (UMass Boston), "Piety in the Protagoras: Plato's Thoughts on the Great Speech" — Commentator: Jan Szaif (UC Davis)</li>
-          <li>Clerk Shaw (University of Tennessee, Knoxville), "Socratic Intellectualism in the Protagoras" — Commentator: David Hoinski (West Virginia University)</li>
-          <li>Oksana Maksymchuk (University of Arkansas), "An Anthropological Defense of the Measure Doctrine in the Protagoras" — Commentator: Grant Dowling (Stanford University)</li>
-          <li>Aliza Ashraf (Queens College, CUNY), "Protagoras and Socrates on Courage and Knowledge" — Commentator: Ryan Drake (Fairfield University)</li>
-          <li>Marta Jimenez (Emory University), "Equality in Love: The Education of Lover and Beloved in Plato's Protagoras" — Commentator: Keitel Del Rosario (San Diego State University)</li>
-          <li>Carissa Phillips-Garrett (Loyola Marymount University), "Motivational Conflict and the Moral Paradox in Plato's Protagoras" — Commentator: Blythe Greene (UC Riverside)</li>
-          <li>Eric Brown (Washington University in St. Louis), "Protagoreanism in the Protagoras" — Commentator: Brooks Sommerville (University of British Columbia)</li>
-          <li>Suzanne Obdrzalek (Claremont McKenna College), "Evaluative Illusion in the Protagoras" — Commentator: Thomas Slabon (Stanford University)</li>
-          <li>Reid Comstock (University of Notre Dame), "What Kind of Ignorance Makes One Akratic? (Protagoras 356c-357e)" — Commentator: Roy Lee (Stanford University)</li>
+          <!-- Add more speakers as needed -->
         </ul>
       </div>
     </div>
-    <!-- Add more years as needed -->
+
+    <!-- Repeat for each previous year down to 2008 -->
+    <div class="meeting-summary">
+      <strong>2018 – <em>Republic V-VII</em>, hosted by Lewis & Clark College</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2018')">More</button>
+      <div class="meeting-details" id="details-2018">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2017 – <em>Gorgias</em>, hosted by University of California, Davis</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2017')">More</button>
+      <div class="meeting-details" id="details-2017">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2016 – <em>Philebus</em>, hosted by Northern Arizona University</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2016')">More</button>
+      <div class="meeting-details" id="details-2016">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2015 – <em>Laws X</em>, hosted by University of Arizona</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2015')">More</button>
+      <div class="meeting-details" id="details-2015">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2014 – <em>Hippias I & II</em>, hosted by University of California, Berkeley</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2014')">More</button>
+      <div class="meeting-details" id="details-2014">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2013 – <em>Cratylus</em>, hosted by Stanford University</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2013')">More</button>
+      <div class="meeting-details" id="details-2013">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2012 – <em>Meno</em>, hosted by University of Denver</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2012')">More</button>
+      <div class="meeting-details" id="details-2012">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2011 – <em>Phaedo</em>, hosted by Lewis & Clark College</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2011')">More</button>
+      <div class="meeting-details" id="details-2011">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2010 – <em>Phaedrus</em>, hosted by University of California, San Diego</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2010')">More</button>
+      <div class="meeting-details" id="details-2010">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2009 – <em>Euthydemus</em>, hosted by University of California, Berkeley</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2009')">More</button>
+      <div class="meeting-details" id="details-2009">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+    <div class="meeting-summary">
+      <strong>2008 – <em>Theaetetus</em>, hosted by University of California, Davis</strong>
+      <button class="toggle-more" onclick="toggleDetails('details-2008')">More</button>
+      <div class="meeting-details" id="details-2008">
+        <!-- Speaker info here -->
+      </div>
+    </div>
+
   </div>
 </body>
 </html>
