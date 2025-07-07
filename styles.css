@@ -1,16 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
 body {
-  background: #ffe5b4;
+  position: relative;
   margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   font-size: 2rem;
   font-family: 'Quicksand', Arial, sans-serif;
-  background: #ffe5b4 url('images/platosunglasses.jpg') no-repeat left center;
+}
+
+/* Background image as a pseudo-element for transparency */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: url('images/platosunglasses.jpg') no-repeat left center;
   background-size: cover;
   background-position: -20% center;
+  opacity: 0.15; /* Adjust for more/less transparency */
+  z-index: -1;
+  pointer-events: none;
 }
 header {
   text-align: center;
