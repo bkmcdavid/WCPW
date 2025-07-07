@@ -10,21 +10,15 @@ body {
   font-family: 'Quicksand', Arial, sans-serif;
 }
 
-header {
-  text-align: center;
-  padding: 2rem 0 1rem 0;
-  background: rgba(255,255,255,0.6);
-  box-shadow: 0 2px 8px #f0ce9b66;
-}
-
 .header-with-bg {
   position: relative;
   text-align: center;
-  height: 200px; /* or use padding if you want flexible height */
-  overflow: hidden;
+  height: 200px;           /* Set a fixed height for the header */
+  overflow: hidden;        /* Ensures ::before is clipped to header */
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Do NOT set a background image here */
 }
 
 .header-with-bg::before {
@@ -32,21 +26,20 @@ header {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: url('images/platosunglasses.png') center center/contain no-repeat;
-  opacity: 0.15; /* Adjust for transparency */
+  opacity: 0.15;
   z-index: 0;
   pointer-events: none;
+  /* No width/height set here; fills header only */
 }
 
 .header-with-bg h1 {
   position: relative;
   z-index: 1;
   color: #1a1200;
-  font-size: 2.5em;
-  font-weight: bold;
+  background: rgba(255,255,255,0.6);
   padding: 0.2em 0.7em;
-  background: rgba(255,255,255,0.6); /* Optional: for contrast */
   border-radius: 8px;
-  display: inline-block;
+  font-size: 2.5em;
 }
 
 header h1 {
