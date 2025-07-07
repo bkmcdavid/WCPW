@@ -35,12 +35,14 @@
     }
   </style>
   <script>
-    function toggleDetails(id) {
+    function toggleDetails(id, btn) {
       var el = document.getElementById(id);
       if (el.style.display === "block") {
         el.style.display = "none";
+        btn.textContent = "More";
       } else {
         el.style.display = "block";
+          btn.textContent = "Less";
       }
     }
   </script>
