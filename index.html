@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>The West Coast Plato Workshop</title>
-  <!-- Google Fonts: Cinzel (classical), Quicksand (modern California) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
@@ -11,53 +12,100 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
       min-height: 100vh;
-      justify-content: center;
       font-size: 2rem;
       font-family: 'Quicksand', Arial, sans-serif;
     }
+    header {
+      text-align: center;
+      padding: 2rem 0 1rem 0;
+      background: rgba(255,255,255,0.6);
+      box-shadow: 0 2px 8px #f0ce9b66;
+    }
+    nav {
+      margin: 1rem 0;
+    }
+    nav a {
+      color: #7b5b24;
+      text-decoration: none;
+      margin: 0 1.5rem;
+      font-weight: 500;
+      font-size: 1.2rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-bottom 0.2s;
+      padding-bottom: 0.2em;
+    }
+    nav a:hover, nav a.active {
+      color: #a47d2b;
+      border-bottom: 2px solid #a47d2b;
+    }
     .container {
       max-width: 650px;
-      width: 100%;
-      margin: 0 auto 0 auto;
+      width: 95%;
+      margin: 2rem auto;
+      background: #fffbe9cc;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #e2c6a0aa;
+      padding: 2rem 1.5rem;
       text-align: center;
+    }
+    section {
+      margin-bottom: 2.5rem;
     }
     img {
       max-width: 90vw;
       height: auto;
       border-radius: 12px;
       box-shadow: 0 4px 16px #aaa;
-      margin-top: 10px;
+      margin-top: 18px;
     }
-    h1 {
-      margin-top: 20px;
-      font-size: 3rem;
-      font-family: 'Cinzel', serif;
-      letter-spacing: 2px;
+    footer {
       text-align: center;
+      font-size: 1rem;
+      color: #7b5b24;
+      padding: 1rem 0;
+      margin-top: auto;
+      background: rgba(255,255,255,0.4);
     }
-    p {
-      margin-top: 10px;
-      font-size: 2rem;
-      font-family: 'Quicksand', Arial, sans-serif;
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      nav a { margin: 0 0.5rem; font-size: 1rem; }
+      .container { padding: 1rem 0.5rem; }
+      img { margin-top: 12px; }
     }
   </style>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2YKG97DVW0');
-  </script>
 </head>
 <body>
-  <h1>The West Coast Plato Workshop</h1>
+  <header>
+    <h1>The West Coast Plato Workshop</h1>
+    <nav>
+      <a href="#history" id="history-link">History of the Workshop</a>
+      <a href="#previous" id="previous-link">Previous Meetings</a>
+      <a href="#meeting2026" id="meeting2026-link">2026 Meeting</a>
+      <a href="#contact" id="contact-link">Contact</a>
+    </nav>
+  </header>
   <div class="container">
-    <p>The 2026 workshop will be on the text of <i>Republic</i> Books 8 and 9 and will be hosted by Chapman University in Orange, CA.</p>
-    <p>Look out for dates and a call for papers in September!</p>
+    <section id="history">
+      <h2>History of the Workshop</h2>
+      <p>Brief history or introduction goes here.</p>
+    </section>
+    <section id="previous">
+      <h2>Previous Meetings</h2>
+      <p>Summary or link to previous meetings goes here.</p>
+    </section>
+    <section id="meeting2026">
+      <h2>2026 Meeting</h2>
+      <p>The 2026 workshop will be on the text of <i>Republic</i> Books 8 and 9, hosted by Chapman University in Orange, CA. Look out for dates and a call for papers in September!</p>
+      <img src="images/plato-hammock.jpg" alt="Plato relaxing in a hammock">
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>For inquiries, email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    </section>
   </div>
-  <img src="images/plato-hammock.jpg" alt="Plato relaxing in a hammock">
+  <footer>
+    &copy; 2025 West Coast Plato Workshop
+  </footer>
 </body>
 </html>
