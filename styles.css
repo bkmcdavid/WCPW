@@ -17,15 +17,6 @@ header {
   box-shadow: 0 2px 8px #f0ce9b66;
 }
 
-.header-with-bg {
-  position: relative;
-  text-align: center;
-  padding: 2em 1em;
-  background: url('images/platosunglasses.png') center center/contain no-repeat;
-  background-blend-mode: lighten;
-  background-size: 200px auto; /* adjust as needed */
-}
-
 .header-with-bg h1 {
   position: relative;
   z-index: 1;
