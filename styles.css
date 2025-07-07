@@ -17,16 +17,14 @@ header {
   box-shadow: 0 2px 8px #f0ce9b66;
 }
 
-.header-with-bg h1 {
+.header-with-bg {
   position: relative;
-  z-index: 1;
-  color: #1a1200;
-  font-size: 2.5em;
-  font-weight: bold;
-  background: rgba(255,255,255,0.65); /* optional, for contrast */
-  display: inline-block;
-  padding: 0.2em 0.7em;
-  border-radius: 8px;
+  text-align: center;
+  height: 200px; /* or use padding if you want flexible height */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-with-bg::before {
@@ -34,10 +32,23 @@ header {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: url('images/platosunglasses.png') center center/contain no-repeat;
-  opacity: 0.14;          /* adjust for more/less transparency */
+  opacity: 0.15; /* Adjust for transparency */
   z-index: 0;
   pointer-events: none;
 }
+
+.header-with-bg h1 {
+  position: relative;
+  z-index: 1;
+  color: #1a1200;
+  font-size: 2.5em;
+  font-weight: bold;
+  padding: 0.2em 0.7em;
+  background: rgba(255,255,255,0.6); /* Optional: for contrast */
+  border-radius: 8px;
+  display: inline-block;
+}
+
 header h1 {
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 700;
