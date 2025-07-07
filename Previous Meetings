@@ -1,110 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>West Coast Plato Workshop Info</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 2em; }
-        .year-section { margin-bottom: 2em; }
-        .details { display: none; margin-top: 1em; border: 1px solid #ccc; padding: 1em; border-radius: 5px; }
-        label { font-weight: bold; }
-        select { margin-bottom: 1em; }
-    </style>
-    <script>
-        function showDetails() {
-            var years = document.getElementsByClassName('details');
-            for (var i = 0; i < years.length; i++) {
-                years[i].style.display = 'none';
-            }
-            var selected = document.getElementById('yearSelect').value;
-            if (selected) {
-                document.getElementById('details-' + selected).style.display = 'block';
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <title>Previous Meetings - West Coast Plato Workshop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .meeting-summary {
+      margin-bottom: 1.5em;
+      border-bottom: 1px solid #e0c080;
+      padding-bottom: 1em;
+    }
+    .toggle-more {
+      background: none;
+      border: none;
+      color: #a47d2b;
+      cursor: pointer;
+      font-size: 1em;
+      margin-left: 1em;
+      text-decoration: underline;
+    }
+    .meeting-details {
+      display: none;
+      margin-top: 0.6em;
+      background: #fffbe9cc;
+      border-radius: 6px;
+      padding: 0.6em 1.2em;
+      font-size: 1rem;
+    }
+  </style>
+  <script>
+    function toggleDetails(id) {
+      var el = document.getElementById(id);
+      if (el.style.display === "block") {
+        el.style.display = "none";
+      } else {
+        el.style.display = "block";
+      }
+    }
+  </script>
 </head>
 <body>
-    <h1>West Coast Plato Workshop Info</h1>
-    <label for="yearSelect">Select Year:</label>
-    <select id="yearSelect" onchange="showDetails()">
-        <option value="">--Choose a year--</option>
-        <option value="2024">2024</option>
-        <option value="2023">2023</option>
-        <!-- Add more years as needed -->
-    </select>
-
+  <header>
+    <h1>The West Coast Plato Workshop</h1>
+    <nav>
+      <a href="history.html">History of the Workshop</a>
+      <a href="previous-meetings.html">Previous Meetings</a>
+      <a href="meeting2026.html">2026 Meeting</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Previous Meetings</h2>
     
-    <div id="details-2025" class="details">
-        <h2>2025</h2>
-        <p><strong>Host:</strong> UC San Diego </p>
-        <p><strong>Topic:</strong> First Alcibiades </p>
+    <!-- 2025 -->
+    <div class="meeting-summary">
+      <strong>2025:</strong> <em>First Alcibiades</em> — UC San Diego
+      <button class="toggle-more" onclick="toggleDetails('details-2025')">More</button>
+      <div class="meeting-details" id="details-2025">
         <h3>Keynote Speakers</h3>
         <ul>
-            <li>Name: Cinzia Arruzza, Institution: Boston University, Title: "Alcibiades’ Thumotic Problem and the Shadow of Tyranny", Commentator: (none)</li>
-            <li>Name: Fiona Leigh, Institution: University College, London, Title: "Soul-turning: Moral Development, Self-knowledge, and Plato’s Alcibiades", Commentator: (none)</li>
+          <li>Cinzia Arruzza (Boston University), "Alcibiades’ Thumotic Problem and the Shadow of Tyranny"</li>
+          <li>Fiona Leigh (University College, London), "Soul-turning: Moral Development, Self-knowledge, and Plato’s Alcibiades"</li>
         </ul>
         <h3>Speakers</h3>
         <ul>
-            <li>Name: Jack Condie, Institution: The New School for Social Research, Title: "Underneath the Beginning: On Alcibiades 104a-104c", Commentator: Brennan McDavid</li>
-            <li>Name: Emily Kress, Institution: Brown University, Title: "Alcibiades’ Ambition and Socrates’ Business", Commentator: Evan Rodriguez</li>
-            <li>Name: Wenjin Liu, Institution: Duke University, Title: "The Anatomy of Self-Care in Alcibiades I", Commentator: Rachel Singpurwala</li>
-            <li>Name: Sarale Ben-Asher, Institution: University of New Mexico, Title: "Properties as Valuable Possessions in Alcibiades I", Commentator: Jozef Müller</li>
-            <li>Name: Frank Li, Institution: Harvard University, Title: "Self-knowledge and Teleological Agency in Alcibiades I", Commentator: Zack Brants</li>
-            <li>Name: Ryan Christensen, Institution: Brigham Young University, Title: "Reciprocity and Role Reversal", Commentator: John Proios</li>
-            <li>Name: Jake Haagenson, Institution: Columbia University, Title: "Knowledge in Alcibiades I", Commentator: David Jennings</li>
-            <li>Name: Zara Amdur, Institution: Texas Tech University, Title: "Privilege and Avoiding the Risk of Self-Satisfaction in Alcibiades I", Commentator: Subin Park</li>
-            <li>Name: Peter Larsen, Institution: Dublin City University, Title: "Sense Perception in Plato’s Alcibiades I", Commentator: Marc Gasser-Wingate</li>
+          <li>Jack Condie (The New School for Social Research), "Underneath the Beginning: On Alcibiades 104a-104c" — Commentator: Brennan McDavid</li>
+          <li>Emily Kress (Brown University), "Alcibiades’ Ambition and Socrates’ Business" — Commentator: Evan Rodriguez</li>
+          <li>Wenjin Liu (Duke University), "The Anatomy of Self-Care in Alcibiades I" — Commentator: Rachel Singpurwala</li>
+          <li>Sarale Ben-Asher (University of New Mexico), "Properties as Valuable Possessions in Alcibiades I" — Commentator: Jozef Müller</li>
+          <li>Frank Li (Harvard University), "Self-knowledge and Teleological Agency in Alcibiades I" — Commentator: Zack Brants</li>
+          <li>Ryan Christensen (Brigham Young University), "Reciprocity and Role Reversal" — Commentator: John Proios</li>
+          <li>Jake Haagenson (Columbia University), "Knowledge in Alcibiades I" — Commentator: David Jennings</li>
+          <li>Zara Amdur (Texas Tech University), "Privilege and Avoiding the Risk of Self-Satisfaction in Alcibiades I" — Commentator: Subin Park</li>
+          <li>Peter Larsen (Dublin City University), "Sense Perception in Plato’s Alcibiades I" — Commentator: Marc Gasser-Wingate</li>
         </ul>
+      </div>
     </div>
-
-    <div id="details-2024" class="details">
-        <h2>2024</h2>
-        <p><strong>Host:</strong> [University Name]</p>
-        <p><strong>Topic:</strong> [Plato Dialogue Title]</p>
+    
+    <!-- 2024 (sample placeholders) -->
+    <div class="meeting-summary">
+      <strong>2024:</strong> <em>[Plato Dialogue Title]</em> — [University Name]
+      <button class="toggle-more" onclick="toggleDetails('details-2024')">More</button>
+      <div class="meeting-details" id="details-2024">
         <h3>Keynote Speakers</h3>
         <ul>
-            <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
-            <!-- Add more keynote speakers as needed -->
+          <li>[Name] ([Institution]), "[Title]" — Commentator: [Commentator]</li>
         </ul>
         <h3>Speakers</h3>
         <ul>
-            <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
-            <!-- Add more speakers as needed -->
+          <li>[Name] ([Institution]), "[Title]" — Commentator: [Commentator]</li>
         </ul>
+      </div>
     </div>
-
-    <div id="details-2023" class="details">
-        <h2>2023</h2>
-        <p><strong>Host:</strong> [University Name]</p>
-        <p><strong>Topic:</strong> [Plato Dialogue Title]</p>
+    
+    <!-- 2023 (sample placeholders) -->
+    <div class="meeting-summary">
+      <strong>2023:</strong> <em>[Plato Dialogue Title]</em> — [University Name]
+      <button class="toggle-more" onclick="toggleDetails('details-2023')">More</button>
+      <div class="meeting-details" id="details-2023">
         <h3>Keynote Speakers</h3>
         <ul>
-            <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
+          <li>[Name] ([Institution]), "[Title]" — Commentator: [Commentator]</li>
         </ul>
         <h3>Speakers</h3>
         <ul>
-            <li>Name: [Name], Institution: [Institution], Title: [Title], Commentator: [Commentator]</li>
+          <li>[Name] ([Institution]), "[Title]" — Commentator: [Commentator]</li>
         </ul>
+      </div>
     </div>
-<div id="details-2019" class="details">
-        <h2>2019</h2>
-        <p><strong>Host:</strong> San Diego State University </p>
-        <p><strong>Topic:</strong> Protagoras </p>
+    
+    <!-- 2019 -->
+    <div class="meeting-summary">
+      <strong>2019:</strong> <em>Protagoras</em> — San Diego State University
+      <button class="toggle-more" onclick="toggleDetails('details-2019')">More</button>
+      <div class="meeting-details" id="details-2019">
         <h3>Keynote Speakers</h3>
         <ul>
-            <li>Name: Deborah Modrak, Institution: University of Rochester, Title: "Protagoras and Socrates—More Alike Than Different?", Commentator: Eric Morelli (Point Loma Nazarene College)</li>
+          <li>Deborah Modrak (University of Rochester), "Protagoras and Socrates—More Alike Than Different?" — Commentator: Eric Morelli (Point Loma Nazarene College)</li>
         </ul>
         <h3>Speakers</h3>
         <ul>
-            <li>Name: Adam Beresford, Institution: University of Massachusetts, Boston, Title: "Piety in the Protagoras: Plato's Thoughts on the Great Speech", Commentator: Jan Szaif (University of California, Davis)</li>
-            <li>Name: Clerk Shaw, Institution: University of Tennessee, Knoxville, Title: "Socratic Intellectualism in the Protagoras", Commentator: David Hoinski (West Virginia University)</li>>
-            <li>Name: Oksana Maksymchuk, Institution: University of Arkansas, Title: "An Anthropological Defense of the Measure Doctrine in the Protagoras", Commentator: Grant Dowling (Stanford University)</li>
-            <li>Name: Aliza Ashraf, Institution: Queens College, City University of New York, Title: "Protagoras and Socrates on Courage and Knowledge", Commentator: Ryan Drake (Fairfield University)</li>
-            <li>Name: Marta Jimenez, Institution: Emory University, Title: "Equality in Love: The Education of Lover and Beloved in Plato's Protagoras", Commentator: Keitel Del Rosario (San Diego State University)</li>
-            <li>Name: Carissa Phillips-Garrett, Institution: Loyola Marymount University, Title: "Motivational Conflict and the Moral Paradox in Plato's Protagoras", Commentator: Blythe Greene (University of California, San Diego)</li>
-            <li>Name: Eric Brown, Institution: Washington University in St. Louis, Title: "Protagoreanism in the Protagoras", Commentator: Brooks Sommerville (University of British Columbia)</li>
-            <li>Name: Suzanne Obdrzalek, Institution: Claremont McKenna College, Title: "Evaluative Illusion in the Protagoras", Commentator: Thomas Slabon (Stanford University)</li>
-            <li>Name: Reid Comstock, Institution: University of Notre Dame, Title: "What Kind of Ignorance Makes One Akratic? (Protagoras 356c-357e)", Commentator: Roy Lee (Stanford University)</li>
+          <li>Adam Beresford (UMass Boston), "Piety in the Protagoras: Plato's Thoughts on the Great Speech" — Commentator: Jan Szaif (UC Davis)</li>
+          <li>Clerk Shaw (University of Tennessee, Knoxville), "Socratic Intellectualism in the Protagoras" — Commentator: David Hoinski (West Virginia University)</li>
+          <li>Oksana Maksymchuk (University of Arkansas), "An Anthropological Defense of the Measure Doctrine in the Protagoras" — Commentator: Grant Dowling (Stanford University)</li>
+          <li>Aliza Ashraf (Queens College, CUNY), "Protagoras and Socrates on Courage and Knowledge" — Commentator: Ryan Drake (Fairfield University)</li>
+          <li>Marta Jimenez (Emory University), "Equality in Love: The Education of Lover and Beloved in Plato's Protagoras" — Commentator: Keitel Del Rosario (San Diego State University)</li>
+          <li>Carissa Phillips-Garrett (Loyola Marymount University), "Motivational Conflict and the Moral Paradox in Plato's Protagoras" — Commentator: Blythe Greene (UC Riverside)</li>
+          <li>Eric Brown (Washington University in St. Louis), "Protagoreanism in the Protagoras" — Commentator: Brooks Sommerville (University of British Columbia)</li>
+          <li>Suzanne Obdrzalek (Claremont McKenna College), "Evaluative Illusion in the Protagoras" — Commentator: Thomas Slabon (Stanford University)</li>
+          <li>Reid Comstock (University of Notre Dame), "What Kind of Ignorance Makes One Akratic? (Protagoras 356c-357e)" — Commentator: Roy Lee (Stanford University)</li>
         </ul>
+      </div>
     </div>
+    <!-- Add more years as needed -->
+  </div>
+  <footer>
+    &copy; 2025 West Coast Plato Workshop
+  </footer>
 </body>
 </html>
