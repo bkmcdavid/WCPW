@@ -59,7 +59,7 @@ nav a:hover, nav a.active {
   border-radius: 14px;
   box-shadow: 0 4px 24px #e2c6a0aa;
   padding: 2rem 1.5rem;
-  text-align: center;
+  text-align: left;
 }
 section {
   margin-bottom: 2.5rem;
