@@ -13,33 +13,56 @@ body {
 .header-with-bg {
   position: relative;
   text-align: center;
-  height: 200px;           /* Set a fixed height for the header */
-  overflow: hidden;        /* Ensures ::before is clipped to header */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Do NOT set a background image here */
+  padding: 2em 1em 1em 1em; /* Top, right, bottom, left */
+  overflow: hidden;
 }
 
 .header-with-bg::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: 0;
   background: url('images/platosunglasses.png') center center/contain no-repeat;
-  opacity: 0.15;
+  opacity: 0.15; /* Adjust to taste */
   z-index: 0;
   pointer-events: none;
-  /* No width/height set here; fills header only */
 }
 
 .header-with-bg h1 {
   position: relative;
   z-index: 1;
   color: #1a1200;
-  background: rgba(255,255,255,0.6);
+  font-size: 2.5em;
+  font-weight: bold;
+  background: rgba(255,255,255,0.6); /* Optional: improves contrast */
   padding: 0.2em 0.7em;
   border-radius: 8px;
-  font-size: 2.5em;
+  display: inline-block;
+  margin: 0 auto 0.5em auto;
+}
+
+.header-with-bg nav {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5em;
+}
+
+.header-with-bg nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.header-with-bg nav ul li {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+.header-with-bg nav ul li a {
+  text-decoration: none;
+  color: #1a1200;
+  font-weight: 600;
+  font-size: 1.1em;
 }
 
 header h1 {
