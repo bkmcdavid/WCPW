@@ -10,23 +10,42 @@ body {
   font-family: 'Quicksand', Arial, sans-serif;
 }
 
-/* Background image as a pseudo-element for transparency */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: url('images/platosunglasses.jpg') no-repeat left center;
-  background-size: cover;
-  background-position: -20% center;
-  opacity: 0.15; /* Adjust for more/less transparency */
-  z-index: -1;
-  pointer-events: none;
-}
 header {
   text-align: center;
   padding: 2rem 0 1rem 0;
   background: rgba(255,255,255,0.6);
   box-shadow: 0 2px 8px #f0ce9b66;
+}
+
+.header-with-bg {
+  position: relative;
+  text-align: center;
+  padding: 2em 1em;
+  background: url('images/platosunglasses.png') center center/contain no-repeat;
+  background-blend-mode: lighten;
+  background-size: 400px auto; /* adjust as needed */
+}
+
+.header-with-bg h1 {
+  position: relative;
+  z-index: 1;
+  color: #1a1200;
+  font-size: 2.5em;
+  font-weight: bold;
+  background: rgba(255,255,255,0.65); /* optional, for contrast */
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  border-radius: 8px;
+}
+
+.header-with-bg::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('images/platosunglasses.png') center center/contain no-repeat;
+  opacity: 0.14;          /* adjust for more/less transparency */
+  z-index: 0;
+  pointer-events: none;
 }
 header h1 {
   font-family: 'Roboto', Arial, sans-serif;
