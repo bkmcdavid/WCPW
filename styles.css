@@ -8,6 +8,9 @@ body {
   min-height: 100vh;
   font-size: 2rem;
   font-family: 'Quicksand', Arial, sans-serif;
+  background: #ffe5b4 url('images/platosunglasses.jpg') no-repeat left center;
+  background-size: cover;
+  background-position: -20% center;
 }
 header {
   text-align: center;
