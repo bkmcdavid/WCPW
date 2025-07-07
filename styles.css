@@ -23,7 +23,7 @@ header {
   padding: 2em 1em;
   background: url('images/platosunglasses.png') center center/contain no-repeat;
   background-blend-mode: lighten;
-  background-size: 400px auto; /* adjust as needed */
+  background-size: 200px auto; /* adjust as needed */
 }
 
 .header-with-bg h1 {
