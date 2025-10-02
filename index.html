@@ -5,21 +5,33 @@
   <title>West Coast Plato Workshop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <style>
-    html { scroll-behavior: smooth; }
-  </style>
+  <style>html { scroll-behavior: smooth; }</style>
 </head>
 <body>
   <header>
-    <h1>West Coast Plato Workshop</h1>
-    <nav class="top-nav">
-      <a href="#history" id="history-link">History of the Workshop</a>
-      <a href="#previous" id="previous-link">Previous Meetings</a>
-      <a href="#meeting2026" id="meeting2026-link">2026 Meeting</a>
-      <a href="#contact" id="contact-link">Contact</a>
+    <div class="logo-bar">
+      <a href="#top" aria-label="West Coast Plato Workshop Home">
+        <svg width="180" height="66" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="West Coast Plato Workshop logo">
+          <g transform="translate(110,130)">
+            <text x="0" y="0" font-family="Georgia, serif" font-weight="700" font-size="120" fill="#000000">W</text>
+            <text x="115" y="0" font-family="Georgia, serif" font-weight="400" font-size="120" fill="#7a7fff">C</text>
+            <text x="200" y="0" font-family="Georgia, serif" font-weight="700" font-size="120" fill="#000000">P</text>
+            <text x="280" y="0" font-family="Georgia, serif" font-weight="400" font-size="120" fill="#7a7fff">W</text>
+          </g>
+          <text x="300" y="190" font-family="Arial, sans-serif" font-size="24" fill="#000000" letter-spacing="6" text-anchor="middle">
+            WEST COAST PLATO WORKSHOP
+          </text>
+        </svg>
+      </a>
+    </div>
+    <nav class="top-menu">
+      <a href="#history">History</a>
+      <a href="#previous">Previous Meetings</a>
+      <a href="#meeting2026">2026 Meeting</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
-  <div class="container">
+  <main class="container">
     <section id="history">
       <h2>History of the Workshop</h2>
       <p>Brief history or introduction goes here.</p>
@@ -37,6 +49,6 @@
       <h2>Contact</h2>
       <p>For inquiries, email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
     </section>
-  </div>
+  </main>
 </body>
 </html>
