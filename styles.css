@@ -1,130 +1,134 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
+html {
+  scroll-behavior: smooth;
+}
 body {
-  position: relative;
   margin: 0;
+  font-family: 'Lato', Arial, sans-serif;
+  background: #fff;
+  color: #181818;
+}
+
+/* LOGO BAR */
+.logo-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 2000;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-size: 2rem;
-  font-family: 'Quicksand', Arial, sans-serif;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.logo-bar a {
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+.logo-bar svg {
+  height: 66px;
+  width: auto;
+  display: block;
 }
 
-.header-with-bg {
-  position: relative;
-  text-align: center;
-  padding: 2em 1em 1em 1em; /* Top, right, bottom, left */
-  overflow: hidden;
+/* HORIZONTAL MENU */
+.top-menu {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background: #f8f8ff;
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  height: 54px;
+  align-items: center;
+  border-bottom: 1px solid #e0e0ef;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
-
-.header-with-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('images/platosunglasses.png') center center/contain no-repeat;
-  opacity: 0.15; /* Adjust to taste */
-  z-index: 0;
-  pointer-events: none;
-}
-
-.header-with-bg h1 {
-  position: relative;
-  z-index: 1;
-  color: #1a1200;
-  font-size: 2.5em;
-  font-weight: bold;
-  background: rgba(255,255,255,0.6); /* Optional: improves contrast */
-  padding: 0.2em 0.7em;
-  border-radius: 8px;
-  display: inline-block;
-  margin: 0 auto 0.5em auto;
-}
-
-.header-with-bg nav {
-  position: relative;
-  z-index: 1;
-  margin-top: 0.5em;
-}
-
-.header-with-bg nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  display: inline-block;
-}
-
-.header-with-bg nav ul li {
-  display: inline-block;
-  margin: 0 1em;
-}
-
-.header-with-bg nav ul li a {
+.top-menu a {
+  color: #181818;
   text-decoration: none;
-  color: #1a1200;
-  font-weight: 600;
-  font-size: 1.1em;
-}
-
-header h1 {
-  font-family: 'Roboto', Arial, sans-serif;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.smaller-heading {
-  font-size: 1.8rem; /* or whatever size you want */
-  font-weight: normal;
-}
-
-nav {
-  margin: 1rem 0;
-}
-nav a {
-  color: #7b5b24;
-  text-decoration: none;
-  margin: 0 1.5rem;
+  font-family: 'Lato', Arial, sans-serif;
+  font-size: 1.08rem;
   font-weight: 500;
-  font-size: 1.2rem;
+  letter-spacing: 1px;
+  padding: 8px 0;
   border-bottom: 2px solid transparent;
-  transition: color 0.2s, border-bottom 0.2s;
-  padding-bottom: 0.2em;
-  font-family: 'Segoe UI', Arial, sans-serif; /* Segoe UI for nav */
+  transition: border-color 0.2s, color 0.2s;
 }
-nav a:hover, nav a.active {
-  color: #a47d2b;
-  border-bottom: 2px solid #a47d2b;
+.top-menu a:hover,
+.top-menu a:focus {
+  color: #2740ff;
+  border-bottom: 2px solid #2740ff;
 }
+
+/* Main content padding so not hidden behind fixed bars */
 .container {
-  max-width: 950px;
-  width: 95%;
-  margin: 2rem auto;
-  background: #fffbe9cc;
-  border-radius: 14px;
-  box-shadow: 0 4px 24px #e2c6a0aa;
-  padding: 2rem 1.5rem;
-  text-align: left;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 150px 16px 2em 16px; /* 80 (logo) + 54 (menu) + extra */
 }
+
+/* Section styles */
 section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3em;
 }
-img {
-  max-width: 90vw;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px #aaa;
-  margin-top: 18px;
+section h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 2em;
+  margin-top: 0;
+  color: #181818;
+  margin-bottom: 0.6em;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 0.2em;
 }
-footer {
-  text-align: center;
-  font-size: 1rem;
-  color: #7b5b24;
-  padding: 1rem 0;
-  margin-top: auto;
-  background: rgba(255,255,255,0.4);
+section p {
+  line-height: 1.7;
+  font-size: 1.07em;
 }
-@media (max-width: 600px) {
-  h1 { font-size: 2rem; }
-  nav a { margin: 0 0.5rem; font-size: 1rem; }
-  .container { padding: 1rem 0.5rem; }
-  img { margin-top: 12px; }
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .logo-bar {
+    height: 60px;
+  }
+  .logo-bar svg {
+    height: 42px;
+  }
+  .top-menu {
+    top: 60px;
+    height: 44px;
+    gap: 20px;
+    font-size: 1rem;
+  }
+  .container {
+    padding-top: 120px;
+  }
+}
+@media (max-width: 500px) {
+  .logo-bar {
+    height: 48px;
+  }
+  .logo-bar svg {
+    height: 28px;
+  }
+  .top-menu {
+    top: 48px;
+    height: 38px;
+    gap: 8px;
+    font-size: 0.97rem;
+  }
+  .container {
+    padding-top: 92px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .top-menu {
+    flex-wrap: wrap;
+    padding-bottom: 4px;
+  }
 }
