@@ -12,18 +12,25 @@
 
   <header>
     <div class="logo-bar">
-      <a href="#top" aria-label="West Coast Plato Workshop Home" class="logo-link">
-        <!-- Smaller viewBox and centered letter positions so WC P W centers over the subtitle -->
-        <svg viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="West Coast Plato Workshop logo" preserveAspectRatio="xMidYMid meet">
-          <!-- Large letters, each centered on its x coordinate -->
-          <!-- x positions chosen symmetrically around center x=500 -->
-          <text x="260" y="88" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="96" fill="#174A7C">W</text>
-          <text x="420" y="88" text-anchor="middle" font-family="Georgia, serif" font-weight="400" font-size="96" fill="#21B6A8">C</text>
-          <text x="580" y="88" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="96" fill="#174A7C">P</text>
-          <text x="740" y="88" text-anchor="middle" font-family="Georgia, serif" font-weight="400" font-size="96" fill="#21B6A8">W</text>
+      <a href="#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
+        <!-- viewBox kept tight; letter groups use translate + scale to vertically stretch slightly -->
+        <svg viewBox="0 0 1000 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="West Coast Plato Workshop logo" preserveAspectRatio="xMidYMid meet">
+          <!-- Letters positioned symmetrically around center x=500 with closer spacing -->
+          <g transform="translate(320,100) scale(1,1.08)">
+            <text x="0" y="0" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="96" fill="#174A7C">W</text>
+          </g>
+          <g transform="translate(440,100) scale(1,1.08)">
+            <text x="0" y="0" text-anchor="middle" font-family="Georgia, serif" font-weight="400" font-size="96" fill="#21B6A8">C</text>
+          </g>
+          <g transform="translate(560,100) scale(1,1.08)">
+            <text x="0" y="0" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="96" fill="#174A7C">P</text>
+          </g>
+          <g transform="translate(680,100) scale(1,1.08)">
+            <text x="0" y="0" text-anchor="middle" font-family="Georgia, serif" font-weight="400" font-size="96" fill="#21B6A8">W</text>
+          </g>
 
           <!-- Subtitle centered under the initials -->
-          <text x="500" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#000000" letter-spacing="8">
+          <text x="500" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#000000" letter-spacing="8">
             WEST COAST PLATO WORKSHOP
           </text>
         </svg>
