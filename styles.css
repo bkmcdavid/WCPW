@@ -1,5 +1,6 @@
 :root{
-  --logo-height: 160px;   /* increased slightly to add more whitespace above the letters */
+  --ui-font: "Helvetica Neue", Arial, sans-serif;
+  --logo-height: 160px;   /* header/logo height (adjust if you want more or less top spacing) */
   --menu-height: 56px;
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
@@ -8,7 +9,7 @@
 
 /* Reset & base */
 * { box-sizing: border-box; }
-html,body { height:100%; margin:0; font-family: "Helvetica Neue", Arial, sans-serif; color:#111; }
+html,body { height:100%; margin:0; font-family: var(--ui-font); color:#111; }
 a { color: inherit; }
 
 /* Accessibility skip link */
@@ -46,6 +47,7 @@ a { color: inherit; }
   z-index: 1100;
   overflow: visible;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding-top: 6px; /* a bit more vertical space above the logo */
 }
 
 /* SVG sizing — constrained so it doesn't grow too large */
@@ -55,7 +57,7 @@ a { color: inherit; }
   display: block;
 }
 
-/* Logo link styling (optional hover) */
+/* Logo link styling */
 .logo-link { display: inline-block; text-decoration: none; }
 
 /* Fixed top menu directly below the logo */
@@ -81,6 +83,7 @@ a { color: inherit; }
   font-size: 18px;
   font-weight: 500;
   padding: 8px 6px;
+  font-family: var(--ui-font);
 }
 
 /* Give main content enough top padding to clear the fixed header/menu */
