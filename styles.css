@@ -10,21 +10,21 @@ body {
 
 /* LOGO BAR */
 .logo-bar {
-  height: 320px;            /* Tall enough for the big SVG */
+  width: 100%;
+  max-width: 100vw; /* or a specific px value if you want a cap */
+  overflow-x: auto;  /* allows horizontal scrolling if needed */
+  text-align: center;
+  background: #fff;
+  min-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-  z-index: 2000;
 }
-
 .logo-bar svg {
   width: 100%;
-  max-width: 1000px;        /* Match SVG width */
   height: auto;
+  max-width: 1000px; /* matches viewBox aspect */
   display: block;
-  margin: 0 auto;
 }
 
 .top-menu {
