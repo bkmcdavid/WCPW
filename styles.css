@@ -76,6 +76,7 @@ body {
 /* Section styles */
 section {
   margin-bottom: 3em;
+  scroll-margin-top: 174px;
 }
 section h2 {
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -90,6 +91,17 @@ section p {
   line-height: 1.7;
   font-size: 1.07em;
 }
+@media (max-width: 800px) {
+  section {
+    scroll-margin-top: 124px;
+  }
+}
+@media (max-width: 500px) {
+  section {
+    scroll-margin-top: 94px;
+  }
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 800px) {
