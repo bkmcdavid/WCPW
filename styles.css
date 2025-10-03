@@ -10,27 +10,37 @@ body {
 
 /* LOGO BAR */
 .logo-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  z-index: 2000;
+  height: 320px;            /* Tall enough for the big SVG */
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px; /* Height for large logo */
+  background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  z-index: 2000;
 }
-.logo-bar a {
-  display: flex;
-  align-items: center;
-  height: 120px;
-}
+
 .logo-bar svg {
-  height: 100px;
-  width: auto;
+  width: 100%;
+  max-width: 1000px;        /* Match SVG width */
+  height: auto;
   display: block;
+  margin: 0 auto;
+}
+
+.top-menu {
+  position: fixed;
+  top: 320px;               /* Directly below the large logo bar */
+  left: 0;
+  width: 100%;
+  background: #f8f8ff;
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  height: 54px;
+  align-items: center;
+  border-bottom: 1px solid #e0e0ef;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
 
 /* HORIZONTAL MENU */
@@ -70,7 +80,7 @@ body {
 .container {
   max-width: 900px;
   margin: 0 auto;
-  padding: 190px 16px 2em 16px; /* 120 (logo) + 54 (menu) + extra */
+  padding: 390px 16px 2em 16px; /* 320 (logo) + 54 (menu) + extra */
 }
 
 /* Section styles */
