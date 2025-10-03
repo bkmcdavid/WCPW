@@ -1,6 +1,6 @@
 :root{
-  --logo-height: 140px;   /* reduced header/logo height to match smaller svg */
-  --menu-height: 56px;    /* height of the fixed menu below it */
+  --logo-height: 160px;   /* increased slightly to add more whitespace above the letters */
+  --menu-height: 56px;
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
   --menu-bg: #f8f8ff;
@@ -44,13 +44,13 @@ a { color: inherit; }
   align-items: center;
   justify-content: center;
   z-index: 1100;
-  overflow: visible; /* ensure svg content isn't clipped */
+  overflow: visible;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 /* SVG sizing — constrained so it doesn't grow too large */
 .logo-bar svg {
-  width: min(70vw, 700px); /* slightly smaller than before */
+  width: min(70vw, 700px);
   height: auto;
   display: block;
 }
@@ -61,7 +61,7 @@ a { color: inherit; }
 /* Fixed top menu directly below the logo */
 .top-menu {
   position: fixed;
-  top: var(--logo-height); /* sits directly under the fixed logo bar */
+  top: var(--logo-height);
   left: 0;
   width: 100%;
   height: var(--menu-height);
@@ -97,7 +97,7 @@ a { color: inherit; }
 
 /* Responsive tweaks */
 @media (max-width: 900px) {
-  :root { --logo-height: 120px; --menu-height: 52px; }
+  :root { --logo-height: 130px; --menu-height: 52px; }
   .logo-bar svg { width: min(86vw, 600px); }
   .top-menu a { font-size: 16px; gap: 12px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + 16px); }
