@@ -17,12 +17,6 @@
   <header>
     <div class="logo-bar">
       <a href="#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
-        <!-- SVG updated:
-             - increased horizontal spacing so glyph outlines no longer overlap
-             - letter center x positions: 384, 468, 540, 636 (uniform spacing 84)
-             - horizontal scale 1.25, vertical scale 1.22, translate y = 120
-             - subtitle placed close to menu (y = 168)
-        -->
         <svg viewBox="0 0 1000 240"
              xmlns="http://www.w3.org/2000/svg"
              role="img"
@@ -30,35 +24,35 @@
              preserveAspectRatio="xMidYMid meet"
              focusable="false">
 
-          <!-- First W: Proxima Nova (sans), thicker horizontally -->
+          <!-- First W -->
           <g transform="translate(384,120) scale(1.25,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
                   font-weight="600" font-size="96" fill="#174A7C">W</text>
           </g>
 
-          <!-- C: Proxima Sera (serif) -->
+          <!-- C -->
           <g transform="translate(468,120) scale(1.25,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Proxima Sera, Georgia, serif"
                   font-weight="400" font-size="96" fill="#21B6A8">C</text>
           </g>
 
-          <!-- P: Proxima Nova (sans) -->
-          <g transform="translate(552,120) scale(1.25,1.22)">
+          <!-- P (moved slightly left to tighten spacing vs C) -->
+          <g transform="translate(544,120) scale(1.25,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
                   font-weight="600" font-size="96" fill="#174A7C">P</text>
           </g>
 
-          <!-- Last W: Proxima Sera (serif) -->
+          <!-- Last W -->
           <g transform="translate(636,120) scale(1.25,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Proxima Sera, Georgia, serif"
                   font-weight="400" font-size="96" fill="#21B6A8">W</text>
           </g>
 
-          <!-- Subtitle centered under the initials — placed close to menu -->
+          <!-- Subtitle -->
           <text x="500" y="168" text-anchor="middle"
                 font-family="'Josefin Sans', 'Helvetica Neue', Arial, sans-serif"
                 font-size="28" fill="#000000" letter-spacing="8">
@@ -69,10 +63,36 @@
     </div>
 
     <nav class="top-menu" aria-label="Main navigation">
-      <a href="#history">About</a>
-      <a href="#previous">Previous Meetings</a>
-      <a href="#meeting2026">Upcoming Meeting/Submit</a>
-      <a href="#contact">Contact</a>
+      <ul class="nav-list">
+        <!-- About with dropdown -->
+        <li class="nav-item has-dropdown">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">
+            About
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <ul id="about-menu" class="dropdown" role="menu" aria-label="About submenu">
+            <li role="none"><a role="menuitem" href="#history">What is the WCPW?</a></li>
+            <li role="none"><a role="menuitem" href="#previous">Previous Meetings</a></li>
+          </ul>
+        </li>
+
+        <!-- Upcoming Meeting with dropdown -->
+        <li class="nav-item has-dropdown">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
+            Upcoming Meeting
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <ul id="upcoming-menu" class="dropdown" role="menu" aria-label="Upcoming Meeting submenu">
+            <li role="none"><a role="menuitem" href="#meeting2026">2026 WCPW at Chapman University</a></li>
+            <li role="none"><a role="menuitem" href="#meeting2026">Submit</a></li>
+          </ul>
+        </li>
+
+        <!-- Contact -->
+        <li class="nav-item"><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -99,5 +119,108 @@
       <p>For inquiries, email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
     </section>
   </main>
+
+  <script>
+    // Small, accessible dropdown toggles
+    (function () {
+      const triggers = Array.from(document.querySelectorAll('.nav-trigger'));
+
+      // Toggle one dropdown and close others
+      function toggle(trigger) {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        // close all first
+        triggers.forEach(t => {
+          t.setAttribute('aria-expanded', 'false');
+          const id = t.getAttribute('aria-controls');
+          const menu = document.getElementById(id);
+          if (menu) menu.classList.remove('open');
+        });
+
+        if (!expanded) {
+          trigger.setAttribute('aria-expanded', 'true');
+          const id = trigger.getAttribute('aria-controls');
+          const menu = document.getElementById(id);
+          if (menu) menu.classList.add('open');
+        }
+      }
+
+      triggers.forEach(trigger => {
+        // click toggles
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggle(trigger);
+        });
+
+        // keyboard handling: Enter/Space opens, Escape closes
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle(trigger);
+          } else if (e.key === 'Escape') {
+            trigger.setAttribute('aria-expanded', 'false');
+            const menu = document.getElementById(trigger.getAttribute('aria-controls'));
+            if (menu) menu.classList.remove('open');
+            trigger.focus();
+          } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const menu = document.getElementById(trigger.getAttribute('aria-controls'));
+            if (menu) {
+              const first = menu.querySelector('[role="menuitem"]');
+              if (first) first.focus();
+            }
+          }
+        });
+      });
+
+      // close on outside click
+      document.addEventListener('click', () => {
+        triggers.forEach(t => {
+          t.setAttribute('aria-expanded', 'false');
+          const menu = document.getElementById(t.getAttribute('aria-controls'));
+          if (menu) menu.classList.remove('open');
+        });
+      });
+
+      // close on Escape globally
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          triggers.forEach(t => {
+            t.setAttribute('aria-expanded', 'false');
+            const menu = document.getElementById(t.getAttribute('aria-controls'));
+            if (menu) menu.classList.remove('open');
+          });
+        }
+      });
+
+      // Basic focus handling inside menus for Arrow navigation
+      const menus = Array.from(document.querySelectorAll('.dropdown'));
+      menus.forEach(menu => {
+        menu.addEventListener('keydown', (e) => {
+          const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+          const idx = items.indexOf(document.activeElement);
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const next = items[(idx + 1) % items.length];
+            if (next) next.focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prev = items[(idx - 1 + items.length) % items.length];
+            if (prev) prev.focus();
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            if (items[0]) items[0].focus();
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            if (items[items.length - 1]) items[items.length - 1].focus();
+          }
+        });
+
+        // Stop clicks in the menu from closing the dropdown (link click will navigate)
+        menu.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
