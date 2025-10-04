@@ -1,11 +1,55 @@
 :root{
   --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; /* menu + subtitle */
-  --initials-sans: 'Montserrat', "Helvetica Neue", Arial, sans-serif; /* first W and P */
-  --logo-height: 200px;   /* increased to give more vertical space above initials */
+  --initials-font: 'Proxima Nova', "Helvetica Neue", Arial, sans-serif;
+  --serif-initials-font: 'Proxima Sera', Georgia, serif;
+  --logo-height: 180px;   /* header/logo height */
   --menu-height: 56px;
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
   --menu-bg: #f8f8ff;
+}
+
+/* === PROXIMA NOVA @font-face (self-host example) ===
+   If you host Proxima Nova, place your files in /fonts/ and update paths.
+*/
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/ProximaNova-Regular.woff2") format("woff2"),
+       url("/fonts/ProximaNova-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/fonts/ProximaNova-SemiBold.woff2") format("woff2"),
+       url("/fonts/ProximaNova-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === PROXIMA SERA @font-face (self-host example) ===
+   Place your licensed Proxima Sera webfonts in /fonts/ and update filenames/paths as needed.
+   Example filenames used below:
+     - /fonts/ProximaSera-Regular.woff2
+     - /fonts/ProximaSera-SemiBold.woff2
+*/
+@font-face {
+  font-family: "Proxima Sera";
+  src: url("/fonts/ProximaSera-Regular.woff2") format("woff2"),
+       url("/fonts/ProximaSera-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Proxima Sera";
+  src: url("/fonts/ProximaSera-SemiBold.woff2") format("woff2"),
+       url("/fonts/ProximaSera-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Reset & base */
@@ -43,17 +87,17 @@ a { color: inherit; }
   min-height: var(--logo-height);
   background: #fff;
   display: flex;
-  align-items: flex-start;       /* allow extra space above the letters */
+  align-items: center;
   justify-content: center;
   z-index: 1100;
   overflow: visible;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding-top: 18px; /* more vertical space ABOVE the initials (per your request) */
+  padding-top: 12px;
 }
 
 /* SVG sizing — constrained so it doesn't grow too large */
 .logo-bar svg {
-  width: min(62vw, 700px);
+  width: min(70vw, 700px);
   height: auto;
   display: block;
 }
@@ -101,17 +145,14 @@ a { color: inherit; }
 
 /* Responsive tweaks */
 @media (max-width: 900px) {
-  :root { --logo-height: 160px; --menu-height: 52px; }
+  :root { --logo-height: 150px; --menu-height: 52px; }
   .logo-bar svg { width: min(86vw, 600px); }
   .top-menu a { font-size: 16px; gap: 12px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + 16px); }
-
-  /* slightly reduce vertical scale for small screens to avoid clipping */
-  .logo-bar svg g { transform-origin: center; } /* keep group transform behavior stable */
 }
 
 @media (max-width: 520px) {
-  :root { --logo-height: 130px; --menu-height: 50px; }
+  :root { --logo-height: 120px; --menu-height: 50px; }
   .logo-bar svg { width: 94vw; }
   .top-menu { gap: 12px; }
   .top-menu a { font-size: 15px; padding: 6px; }
