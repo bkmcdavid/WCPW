@@ -2,15 +2,16 @@
   --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; /* menu + subtitle */
   --initials-font: 'Proxima Nova', "Helvetica Neue", Arial, sans-serif;
   --serif-initials-font: 'Proxima Sera', Georgia, serif;
-  --logo-height: 180px;   /* header/logo height */
+  --logo-height: 160px;   /* reduced to shorten the gap between subtitle and menu */
   --menu-height: 56px;
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
   --menu-bg: #f8f8ff;
 }
 
-/* === PROXIMA NOVA @font-face (self-host example) ===
-   If you host Proxima Nova, place your files in /fonts/ and update paths.
+/* === PROXIMA NOVA & PROXIMA SERA @font-face (self-host examples) ===
+   If you host these licensed fonts, place your files in /fonts/ and update paths.
+   Remove or adjust if you load fonts via Adobe Fonts or other services.
 */
 @font-face {
   font-family: "Proxima Nova";
@@ -29,12 +30,6 @@
   font-display: swap;
 }
 
-/* === PROXIMA SERA @font-face (self-host example) ===
-   Place your licensed Proxima Sera webfonts in /fonts/ and update filenames/paths as needed.
-   Example filenames used below:
-     - /fonts/ProximaSera-Regular.woff2
-     - /fonts/ProximaSera-SemiBold.woff2
-*/
 @font-face {
   font-family: "Proxima Sera";
   src: url("/fonts/ProximaSera-Regular.woff2") format("woff2"),
@@ -87,17 +82,17 @@ a { color: inherit; }
   min-height: var(--logo-height);
   background: #fff;
   display: flex;
-  align-items: center;
+  align-items: center;       /* center letters vertically within the bar */
   justify-content: center;
   z-index: 1100;
   overflow: visible;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding-top: 12px;
+  padding-top: 12px; /* keeps some space above letters */
 }
 
 /* SVG sizing — constrained so it doesn't grow too large */
 .logo-bar svg {
-  width: min(70vw, 700px);
+  width: min(66vw, 700px); /* slightly wider use of viewport while still capped */
   height: auto;
   display: block;
 }
@@ -145,7 +140,7 @@ a { color: inherit; }
 
 /* Responsive tweaks */
 @media (max-width: 900px) {
-  :root { --logo-height: 150px; --menu-height: 52px; }
+  :root { --logo-height: 140px; --menu-height: 52px; }
   .logo-bar svg { width: min(86vw, 600px); }
   .top-menu a { font-size: 16px; gap: 12px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + 16px); }
