@@ -2,7 +2,7 @@
   --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; /* menu + subtitle */
   --initials-font: 'Proxima Nova', "Helvetica Neue", Arial, sans-serif;
   --serif-initials-font: 'Proxima Sera', Georgia, serif;
-  --logo-height: 170px;    /* slight increase to add more space above the letters */
+  --logo-height: 170px;    /* keeps a bit more space above the letters */
   --menu-height: 56px;
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
@@ -148,7 +148,9 @@ a { color: inherit; }
 @media (max-width: 520px) {
   :root { --logo-height: 120px; --menu-height: 50px; }
   .logo-bar svg { width: 94vw; }
+  /* On very small screens, reduce the gap and nudge "Previous Meetings" to the right */
   .top-menu { gap: 12px; }
   .top-menu a { font-size: 15px; padding: 6px; }
+  .top-menu a:nth-child(2) { margin-left: 12px; } /* push "Previous Meetings" further right on iPhone */
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + 12px); }
 }
