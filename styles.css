@@ -2,7 +2,7 @@
   --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; /* menu + subtitle */
   --initials-font: 'Proxima Nova', "Helvetica Neue", Arial, sans-serif;
   --serif-initials-font: 'Proxima Sera', Georgia, serif;
-  --logo-height: 160px;   /* reduced to shorten the gap between subtitle and menu */
+  --logo-height: 170px;    /* slight increase to add more space above the letters */
   --menu-height: 56px;
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
@@ -11,7 +11,6 @@
 
 /* === PROXIMA NOVA & PROXIMA SERA @font-face (self-host examples) ===
    If you host these licensed fonts, place your files in /fonts/ and update paths.
-   Remove or adjust if you load fonts via Adobe Fonts or other services.
 */
 @font-face {
   font-family: "Proxima Nova";
@@ -82,17 +81,17 @@ a { color: inherit; }
   min-height: var(--logo-height);
   background: #fff;
   display: flex;
-  align-items: center;       /* center letters vertically within the bar */
+  align-items: center;       /* keep letters vertically centered within the bar */
   justify-content: center;
   z-index: 1100;
   overflow: visible;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding-top: 12px; /* keeps some space above letters */
+  padding-top: 18px; /* a bit more space above the letters per your request */
 }
 
 /* SVG sizing — constrained so it doesn't grow too large */
 .logo-bar svg {
-  width: min(66vw, 700px); /* slightly wider use of viewport while still capped */
+  width: min(66vw, 700px);
   height: auto;
   display: block;
 }
@@ -130,7 +129,7 @@ a { color: inherit; }
 .container {
   max-width: 920px;
   margin: 0 auto;
-  padding: calc(var(--logo-height) + var(--menu-height) + 20px) 16px 3rem 16px;
+  padding: calc(var(--logo-height) + var(--menu-height) + 12px) 16px 3rem 16px; /* reduced bottom offset slightly */
 }
 
 /* Adjust anchor target scrolling so headings are visible below fixed menu */
