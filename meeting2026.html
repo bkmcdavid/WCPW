@@ -2,44 +2,288 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>2026 Meeting - West Coast Plato Workshop</title>
+  <title>2026 WCPW at Chapman University - West Coast Plato Workshop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Menu / subtitle font -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Site stylesheet (contains the header/logo/menu styles we designed) -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Page-specific styles to harmonize this meeting page with the header/logo design -->
   <style>
-    .announcement {
-      background: #fffbe9cc;
-      border-left: 5px solid #e0c080;
-      padding: 1.2em 2em;
-      margin: 2em 0;
-      font-size: 1.15rem;
-      border-radius: 6px;
+    body { font-family: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; color: #111; }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: calc(var(--logo-height,170px) + var(--menu-height,56px) + 12px) 20px 3rem;
     }
-    .meeting-image {
-      display: block;
-      margin: 2em auto;
-      max-width: 400px;
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px #e0c08080;
-      background: #fffffc;
+
+    h1.page-title {
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 6px;
+      margin: 0 0 0.75rem 0;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
+
+    .lead {
+      max-width: 76ch;
+      margin: 0.6rem auto 1.25rem auto;
+      text-align: center;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 1.25rem;
+      color: #174A7C;
+      font-weight: 600;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+      border-left: 4px solid rgba(23,74,124,0.08);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      color: #174A7C;
+      font-size: 1.05rem;
+    }
+
+    .card p a {
+      color: #174A7C;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 520px) {
+      .container { padding-left: 14px; padding-right: 14px; }
+      .meta { flex-direction: column; gap: 8px; }
     }
   </style>
 </head>
 <body>
-  <header class="header-with-bg">
-    <h1>West Coast Plato Workshop</h1>
-    <nav>
-      <a href="about.html">About the WCPW</a>
-      <a href="previous-meetings.html">Previous Meetings</a>
-      <a href="meeting2026.html">2026 Meeting</a>
-      <a href="steering.html">Steering Committee</a>
+  <!-- Header with logo and dropdown nav (same markup used on homepage) -->
+  <header>
+    <div class="logo-bar">
+      <a href="index.html#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
+        <svg viewBox="0 0 1000 240"
+             xmlns="http://www.w3.org/2000/svg"
+             role="img"
+             aria-label="West Coast Plato Workshop logo"
+             preserveAspectRatio="xMidYMid meet"
+             focusable="false">
+
+          <!-- First W -->
+          <g transform="translate(384,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
+                  font-weight="600" font-size="96" fill="#174A7C">W</text>
+          </g>
+
+          <!-- C -->
+          <g transform="translate(468,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Sera, Georgia, serif"
+                  font-weight="400" font-size="96" fill="#21B6A8">C</text>
+          </g>
+
+          <!-- P -->
+          <g transform="translate(544,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
+                  font-weight="600" font-size="96" fill="#174A7C">P</text>
+          </g>
+
+          <!-- Last W -->
+          <g transform="translate(636,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Sera, Georgia, serif"
+                  font-weight="400" font-size="96" fill="#21B6A8">W</text>
+          </g>
+
+          <!-- Subtitle -->
+          <text x="500" y="168" text-anchor="middle"
+                font-family="'Josefin Sans', 'Helvetica Neue', Arial, sans-serif"
+                font-size="28" fill="#000000" letter-spacing="8">
+            WEST COAST PLATO WORKSHOP
+          </text>
+        </svg>
+      </a>
+    </div>
+
+    <nav class="top-menu" aria-label="Main navigation">
+      <ul class="nav-list">
+        <!-- About with dropdown -->
+        <li class="nav-item has-dropdown">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">
+            About
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <ul id="about-menu" class="dropdown" role="menu" aria-label="About submenu">
+            <li role="none"><a role="menuitem" href="index.html#history">What is the WCPW?</a></li>
+            <li role="none"><a role="menuitem" href="previous-meetings.html">Previous Meetings</a></li>
+          </ul>
+        </li>
+
+        <!-- Upcoming Meeting with dropdown -->
+        <li class="nav-item has-dropdown">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
+            Upcoming Meeting
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <ul id="upcoming-menu" class="dropdown" role="menu" aria-label="Upcoming Meeting submenu">
+            <li role="none"><a role="menuitem" href="meeting2026.html">2026 WCPW at Chapman University</a></li>
+            <li role="none"><a role="menuitem" href="submit.html">Submit</a></li>
+          </ul>
+        </li>
+
+        <!-- Contact -->
+        <li class="nav-item"><a href="contact.html">Contact</a></li>
+      </ul>
     </nav>
   </header>
-  <div class="container">
-    <div class="announcement">
-      The 2026 workshop will be on the text of <i>Republic</i> Books 8 and 9, hosted by Chapman University in Orange, CA. Look out for dates and a call for papers in September!
+
+  <main class="container" id="content">
+    <h1 class="page-title">2026 WCPW at Chapman University</h1>
+
+    <p class="lead">
+      The 2026 meeting of the West Coast Plato Workshop (WCPW) will be held at Chapman University in Orange, California. Below are the meeting focus, dates, and keynote information.
+    </p>
+
+    <div class="meta">
+      <span>Dates: Fri, May 29 – Sun, May 31, 2026</span>
+      <span>Location: Chapman University, Orange, CA</span>
     </div>
-    <img src="images/plato-hammock.jpg" alt="Plato in a hammock" class="meeting-image">
-  </div>
+
+    <div class="card">
+      <h2>Meeting focus</h2>
+      <p>The workshop will focus on Books VIII and IX of Plato's Republic.</p>
+
+      <h2>Keynote</h2>
+      <p>
+        The keynote speaker will be Mark Johnstone (McMaster University), author of
+        <a href="https://philpapers.org/rec/JOHTSP-5" target="_blank" rel="noopener noreferrer">"Tyrannized Souls: Plato's Depiction of the ‘Tyrannical Man’"</a>
+        and
+        <a href="https://philpapers.org/rec/JOHASP-4" target="_blank" rel="noopener noreferrer">"Anarchic Souls: Plato’s Depiction of the ‘Democratic Man’"</a>,
+        among other recent work on Books VIII and IX.
+      </p>
+
+      <h2>Submission / Contact</h2>
+      <p>
+        For submission instructions and deadlines, please visit the <a href="submit.html">Submit</a> page or contact the organizers at <a href="mailto:organizer@example.com">organizer@example.com</a>.
+      </p>
+    </div>
+  </main>
+
+  <!-- Dropdown script so dropdowns behave the same on this page -->
+  <script>
+    (function () {
+      const triggers = Array.from(document.querySelectorAll('.nav-trigger'));
+
+      function toggle(trigger) {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        triggers.forEach(t => {
+          t.setAttribute('aria-expanded', 'false');
+          const id = t.getAttribute('aria-controls');
+          const menu = document.getElementById(id);
+          if (menu) menu.classList.remove('open');
+        });
+
+        if (!expanded) {
+          trigger.setAttribute('aria-expanded', 'true');
+          const id = trigger.getAttribute('aria-controls');
+          const menu = document.getElementById(id);
+          if (menu) menu.classList.add('open');
+        }
+      }
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggle(trigger);
+        });
+
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle(trigger);
+          } else if (e.key === 'Escape') {
+            trigger.setAttribute('aria-expanded', 'false');
+            const menu = document.getElementById(trigger.getAttribute('aria-controls'));
+            if (menu) menu.classList.remove('open');
+            trigger.focus();
+          } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const menu = document.getElementById(trigger.getAttribute('aria-controls'));
+            if (menu) {
+              const first = menu.querySelector('[role="menuitem"]');
+              if (first) first.focus();
+            }
+          }
+        });
+      });
+
+      document.addEventListener('click', () => {
+        triggers.forEach(t => {
+          t.setAttribute('aria-expanded', 'false');
+          const menu = document.getElementById(t.getAttribute('aria-controls'));
+          if (menu) menu.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          triggers.forEach(t => {
+            t.setAttribute('aria-expanded', 'false');
+            const menu = document.getElementById(t.getAttribute('aria-controls'));
+            if (menu) menu.classList.remove('open');
+          });
+        }
+      });
+
+      const menus = Array.from(document.querySelectorAll('.dropdown'));
+      menus.forEach(menu => {
+        menu.addEventListener('keydown', (e) => {
+          const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+          const idx = items.indexOf(document.activeElement);
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const next = items[(idx + 1) % items.length];
+            if (next) next.focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prev = items[(idx - 1 + items.length) % items.length];
+            if (prev) prev.focus();
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            if (items[0]) items[0].focus();
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            if (items[items.length - 1]) items[items.length - 1].focus();
+          }
+        });
+
+        menu.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
