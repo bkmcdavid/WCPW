@@ -5,8 +5,8 @@
   <title>West Coast Plato Workshop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts: Josefin Sans for the menu/subtitle (thin, elegant geometric) and Montserrat for sans initials -->
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <!-- Subtitle/menu font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
   <style>html { scroll-behavior: smooth; }</style>
@@ -17,47 +17,46 @@
   <header>
     <div class="logo-bar">
       <a href="#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
-        <!--
-          SVG updated:
-          - letters are vertically elongated (scale 1,1.22)
-          - first W and P use Montserrat (sans) while C and last W keep serif (Georgia)
-          - letters positioned closer together and centered above the subtitle
-          - subtitle uses Josefin Sans to match the menu typography in the sample
-        -->
-        <svg viewBox="0 0 1000 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="West Coast Plato Workshop logo" preserveAspectRatio="xMidYMid meet" focusable="false">
-          <!-- First W: Montserrat (sans), taller -->
-          <g transform="translate(330,106) scale(1,1.22)">
+        <!-- SVG: first W and P use Proxima Nova; C and last W use a serif (Georgia) -->
+        <svg viewBox="0 0 1000 240"
+             xmlns="http://www.w3.org/2000/svg"
+             role="img"
+             aria-label="West Coast Plato Workshop logo"
+             preserveAspectRatio="xMidYMid meet"
+             focusable="false">
+
+          <!-- First W: Proxima Nova (sans), vertically elongated -->
+          <g transform="translate(320,100) scale(1,1.22)">
             <text x="0" y="0" text-anchor="middle"
-                  font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif"
+                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
                   font-weight="600" font-size="96" fill="#174A7C">W</text>
           </g>
 
-          <!-- C: serif (Georgia), taller -->
-          <g transform="translate(430,106) scale(1,1.22)">
+          <!-- C: serif (Georgia), vertically elongated -->
+          <g transform="translate(440,100) scale(1,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Georgia, serif"
                   font-weight="400" font-size="96" fill="#21B6A8">C</text>
           </g>
 
-          <!-- P: Montserrat (sans), taller -->
-          <g transform="translate(540,106) scale(1,1.22)">
+          <!-- P: Proxima Nova (sans), vertically elongated -->
+          <g transform="translate(560,100) scale(1,1.22)">
             <text x="0" y="0" text-anchor="middle"
-                  font-family="Montserrat, 'Helvetica Neue', Arial, sans-serif"
+                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
                   font-weight="600" font-size="96" fill="#174A7C">P</text>
           </g>
 
-          <!-- Last W: serif (Georgia), taller -->
-          <g transform="translate(640,106) scale(1,1.22)">
+          <!-- Last W: serif (Georgia), vertically elongated -->
+          <g transform="translate(680,100) scale(1,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Georgia, serif"
                   font-weight="400" font-size="96" fill="#21B6A8">W</text>
           </g>
 
-          <!-- Subtitle centered under the initials — Josefin Sans (matches menu) -->
-          <!-- moved up slightly to reduce gap between initials and subtitle while header keeps extra top space -->
-          <text x="500" y="175" text-anchor="middle"
+          <!-- Subtitle matched to the menu font (Josefin Sans) -->
+          <text x="500" y="165" text-anchor="middle"
                 font-family="'Josefin Sans', 'Helvetica Neue', Arial, sans-serif"
-                font-size="28" fill="#000000" letter-spacing="8">
+                font-size="30" fill="#000000" letter-spacing="8">
             WEST COAST PLATO WORKSHOP
           </text>
         </svg>
