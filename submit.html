@@ -1,0 +1,47 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8" /> 
+  <title>Submit</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  
+  <style> body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; } form { max-width: 560px; } .field { margin-bottom: 14px; } label { display: block; font-weight: 600; margin-bottom: 6px; } input[type="text"], input[type="email"], input[type="file"] { width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; } .error { color: #b00020; margin-top: 8px; } .success { color: #0a7a2f; margin-top: 8px; } .actions { margin-top: 16px; } button { padding: 8px 14px; font-size: 14px; } .hidden { display: none; } </style> 
+</head> 
+  
+  <body> 
+    <h1>Submit</h1> 
+    <form id="submit-form" novalidate> 
+      <div class="field"> 
+        <label for="name">Your name</label> 
+        <input id="name" name="name" type="text" autocomplete="name" required /> 
+      </div>
+      <div class="field">
+        <label for="email">Your email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+      
+      <div class="field">
+        <label for="file">Upload file (PDF or Word)</label>
+        <input id="file" name="file" type="file"
+               accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+               required />
+        <small>Max 10 MB.</small>
+      </div>
+      
+      <!-- Honeypot anti-spam -->
+      <div class="hidden" aria-hidden="true">
+        <label for="website">Website</label>
+        <input id="website" name="website" type="text" tabindex="-1" />
+      </div>
+      
+      <div id="msg" class="" role="status" aria-live="polite"></div>
+      
+      <div class="actions">
+        <button id="submit-btn" type="submit">Submit</button>
+      </div>
+
+    </form> 
+    
+    <script> const form = document.getElementById('submit-form'); const nameEl = document.getElementById('name'); const emailEl = document.getElementById('email'); const fileEl = document.getElementById('file'); const hpEl = document.getElementById('website'); const btn = document.getElementById('submit-btn'); const msg = document.getElementById('msg'); const MAX_SIZE = 10 * 1024 * 1024; // 10 MB const allowedTypes = new Set([ 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ]); function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); } function validate(showMessages = false) { msg.textContent = ''; msg.className = ''; const name = nameEl.value.trim(); const email = emailEl.value.trim(); const file = fileEl.files[0]; if (!name) { if (showMessages) { msg.textContent = 'Please enter your name.'; msg.className = 'error'; } return false; } if (!isValidEmail(email)) { if (showMessages) { msg.textContent = 'Please enter a valid email address.'; msg.className = 'error'; } return false; } if (!file) { if (showMessages) { msg.textContent = 'Please choose a file to upload.'; msg.className = 'error'; } return false; } if (!allowedTypes.has(file.type)) { // Some browsers may not set type; fallback to extension check const fn = file.name.toLowerCase(); const okExt = fn.endsWith('.pdf') || fn.endsWith('.doc') || fn.endsWith('.docx'); if (!okExt) { if (showMessages) { msg.textContent = 'File must be a PDF or Word document.'; msg.className = 'error'; } return false; } } if (file.size > MAX_SIZE) { if (showMessages) { msg.textContent = 'File is too large (max 10 MB).'; msg.className = 'error'; } return false; } return true; } form.addEventListener('submit', async (e) => { e.preventDefault(); if (hpEl.value.trim()) { // Bot: pretend success msg.textContent = 'Submitted.'; msg.className = 'success'; form.reset(); return; } if (!validate(true)) return; const fd = new FormData(); fd.append('name', nameEl.value.trim()); fd.append('email', emailEl.value.trim()); fd.append('file', fileEl.files[0]); btn.disabled = true; btn.textContent = 'Submitting…'; msg.textContent = ''; msg.className = ''; try { const res = await fetch('/api/submit', { method: 'POST', body: fd }); const data = await res.json().catch(() => ({})); if (!res.ok) { throw new Error(data.message || `Submit failed (${res.status})`); } msg.textContent = 'Thank you! Your submission has been received. A confirmation email was sent.'; msg.className = 'success'; form.reset(); } catch (ex) { msg.textContent = ex.message || 'Something went wrong. Please try again.'; msg.className = 'error'; } finally { btn.disabled = false; btn.textContent = 'Submit'; } }); </script> 
+  </body> 
+</html>
