@@ -1,58 +1,55 @@
 :root{
+  /* Fonts */
   --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; /* menu + subtitle */
   --initials-font: 'Proxima Nova', "Helvetica Neue", Arial, sans-serif;
   --serif-initials-font: 'Proxima Sera', Georgia, serif;
-  --logo-height: 170px;    /* keeps a bit more space above the letters */
-  --menu-height: 56px;
-  --heading-gap: 48px;     /* NEW: extra vertical space between menu and page heading; tweak this to match subtitle→menu gap */
+
+  /* Layout sizes (tweak these to change overall rhythm) */
+  --logo-height: 170px;    /* fixed top logo bar height */
+  --menu-height: 56px;     /* fixed horizontal menu height (immediately below logo) */
+  --heading-gap: 48px;     /* extra vertical gap between menu and page headings/content */
+
+  /* Spacing / visual tokens */
+  --menu-item-gap: 36px;
+  --svg-max-width: 700px;
+
+  /* Colors */
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
   --menu-bg: #f8f8ff;
+  --muted: #666;
+  --accent: rgba(160,120,48,0.12);
 }
 
-/* === PROXIMA NOVA & PROXIMA SERA @font-face (self-host examples) ===
-   If you host these licensed fonts, place your files in /fonts/ and update paths.
+/* ---------------------
+   Font-face placeholders
+   ---------------------
+   If you self-host Proxima Nova / Proxima Sera, add @font-face rules here.
+   Otherwise the system/Google fonts will be used for body/menu/subtitle.
 */
 @font-face {
   font-family: "Proxima Nova";
-  src: url("/fonts/ProximaNova-Regular.woff2") format("woff2"),
-       url("/fonts/ProximaNova-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Proxima Nova";
-  src: url("/fonts/ProximaNova-SemiBold.woff2") format("woff2"),
-       url("/fonts/ProximaNova-SemiBold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Proxima Sera";
-  src: url("/fonts/ProximaSera-Regular.woff2") format("woff2"),
-       url("/fonts/ProximaSera-Regular.woff") format("woff");
+  /* src: url('/fonts/ProximaNova-Regular.woff2') format('woff2'); */
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Proxima Sera";
-  src: url("/fonts/ProximaSera-SemiBold.woff2") format("woff2"),
-       url("/fonts/ProximaSera-SemiBold.woff") format("woff");
-  font-weight: 600;
+  /* src: url('/fonts/ProximaSera-Regular.woff2') format('woff2'); */
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-/* Reset & base */
+/* ---------------------
+   Reset & Base
+   --------------------- */
 * { box-sizing: border-box; }
-html,body { height:100%; margin:0; font-family: var(--ui-font); color:#111; }
-a { color: inherit; }
+html,body { height:100%; margin:0; font-family: var(--ui-font); color:#111; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+a { color: inherit; text-decoration: none; }
 
-/* Accessibility skip link */
+/* Accessibility: visible skip link */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -72,7 +69,9 @@ a { color: inherit; }
   z-index: 9999;
 }
 
-/* Fixed logo bar at top */
+/* ---------------------
+   Header / Logo Bar
+   --------------------- */
 .logo-bar {
   position: fixed;
   top: 0;
@@ -82,25 +81,27 @@ a { color: inherit; }
   min-height: var(--logo-height);
   background: #fff;
   display: flex;
-  align-items: center;       /* keep letters vertically centered within the bar */
+  align-items: center;
   justify-content: center;
   z-index: 1100;
   overflow: visible;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding-top: 18px; /* a bit more space above the letters per your request */
+  padding-top: 18px; /* extra breathing room above initials */
 }
 
-/* SVG sizing — constrained so it doesn't grow too large */
+/* SVG sizing */
 .logo-bar svg {
-  width: min(66vw, 700px);
+  width: min(66vw, var(--svg-max-width));
   height: auto;
   display: block;
 }
 
-/* Logo link styling */
+/* clickable logo link */
 .logo-link { display: inline-block; text-decoration: none; }
 
-/* Fixed top menu directly below the logo */
+/* ---------------------
+   Top horizontal menu (fixed below logo)
+   --------------------- */
 .top-menu {
   position: fixed;
   top: var(--logo-height);
@@ -110,54 +111,297 @@ a { color: inherit; }
   background: var(--menu-bg);
   display: flex;
   justify-content: center;
-  gap: 36px;
   align-items: center;
   z-index: 1090;
   border-bottom: 1px solid rgba(0,0,0,0.06);
   box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
 
-.top-menu a {
-  text-decoration: none;
+/* nav list container (horizontal list) */
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--menu-item-gap);
+  align-items: center;
+}
+
+/* top-level nav item */
+.nav-item {
+  position: relative; /* used for absolute-positioned dropdowns */
+  display: inline-flex;
+  align-items: center;
+}
+
+/* trigger/button and plain top-level links */
+.top-menu a,
+.nav-trigger {
   color: #222;
+  text-decoration: none;
   font-size: 18px;
   font-weight: 500;
   padding: 8px 6px;
   font-family: var(--ui-font);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
 }
 
-/* Give main content enough top padding to clear the fixed header/menu
-   Now using --heading-gap so you can match the subtitle→menu spacing exactly.
-*/
+/* small chevron next to dropdown triggers */
+.chev { font-size: 0.85em; color: rgba(0,0,0,0.6); }
+
+/* ---------------------
+   Dropdown menu styling
+   --------------------- */
+.dropdown {
+  position: absolute;
+  top: calc(var(--menu-height) + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 200px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  padding: 8px 0;
+  border-radius: 6px;
+  list-style: none;
+  margin: 0;
+  display: none;
+  z-index: 1200;
+}
+
+/* open state (toggled by .open on the dropdown) */
+.dropdown.open {
+  display: block;
+}
+
+/* dropdown items */
+.dropdown a {
+  display: block;
+  padding: 8px 18px;
+  color: #111;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.dropdown a:hover,
+.dropdown a:focus {
+  background: rgba(0,0,0,0.04);
+  outline: none;
+}
+
+/* position-left variant (if you prefer dropdown aligned left under item) */
+.dropdown.align-left {
+  left: 0;
+  transform: translateX(0);
+}
+
+/* ---------------------
+   Page content container
+   --------------------- */
 .container {
   max-width: 920px;
   margin: 0 auto;
   padding: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)) 16px 3rem 16px;
 }
 
-/* Adjust anchor target scrolling so headings are visible below fixed menu
-   Use the same calculation so fragment links land correctly.
-*/
+/* targeted fragment scrolling offset (same as container top calc) */
 :target {
   scroll-margin-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap) + 8px);
 }
 
-/* Responsive tweaks */
+/* ---------------------
+   Reusable page components
+   --------------------- */
+.page-title {
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 6px;
+  margin: 0 0 0.75rem 0;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 76ch;
+  margin: 0.6rem auto 1.25rem auto;
+  text-align: center;
+  color: #333;
+  line-height: 1.6;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  border-left: 4px solid rgba(23,74,124,0.08);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* ---------------------
+   Previous meetings list / summary
+   --------------------- */
+.meeting-summary {
+  margin-bottom: 1.5em;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  padding: 1.05rem 1.2rem;
+  border-left: 4px solid var(--accent);
+}
+
+.meeting-summary > .summary-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+  color: #111;
+}
+
+.meeting-date {
+  font-weight: 600;
+  color: var(--deep-blue);
+  margin-right: .5rem;
+}
+
+.toggle-more {
+  background: none;
+  border: none;
+  color: #a47d2b;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  padding: 0.15rem 0.35rem;
+  margin-left: auto;
+}
+
+/* details panel hidden by default */
+.meeting-details {
+  display: none;
+  margin-top: 0.8em;
+  background: #fffbe9cc;
+  border-radius: 6px;
+  padding: 0.8em 1.1em;
+  font-size: 0.98rem;
+  color: #121212;
+  line-height: 1.45;
+  border: 1px solid rgba(225,200,150,0.6);
+}
+.meeting-details h3 {
+  margin: 0.35rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--deep-blue);
+}
+.meeting-details ul { margin: 0.25rem 0 0.6rem 1.1rem; padding: 0; }
+
+/* ---------------------
+   Form styles (submit page)
+   --------------------- */
+form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+form .row .full { grid-column: 1 / -1; }
+
+label { display: block; font-weight: 600; color: var(--deep-blue); margin-bottom: 0.25rem; font-size: 0.95rem; }
+input[type="text"],
+input[type="email"],
+input[type="file"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+textarea { min-height: 140px; resize: vertical; }
+
+.hint { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+.form-actions { display:flex; gap:12px; align-items:center; margin-top: 0.75rem; }
+button.cta { background: var(--deep-blue); color: #fff; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+button.cta[disabled] { opacity: 0.6; cursor: not-allowed; }
+.alt { color: var(--deep-blue); text-decoration: underline; }
+
+/* ---------------------
+   Small tweaks & accessibility
+   --------------------- */
+.top-menu a:focus,
+.nav-trigger:focus,
+.dropdown a:focus {
+  outline: 3px solid rgba(23,74,124,0.15);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------------------
+   Responsive overrides
+   --------------------- */
 @media (max-width: 900px) {
-  :root { --logo-height: 150px; --menu-height: 52px; }
-  /* scale down the added gap slightly on medium screens */
-  :root { --heading-gap: 40px; }
+  :root { --logo-height: 150px; --menu-height: 52px; --heading-gap: 40px; }
   .logo-bar svg { width: min(86vw, 600px); }
-  .top-menu a { font-size: 16px; gap: 12px; }
+  .nav-list { gap: 24px; }
+  .top-menu a { font-size: 16px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
 }
 
+@media (max-width: 700px) {
+  form .row { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 520px) {
-  :root { --logo-height: 120px; --menu-height: 50px; }
-  /* smaller screens get less extra gap so content isn't forced too far down */
-  :root { --heading-gap: 24px; }
+  :root { --logo-height: 120px; --menu-height: 50px; --heading-gap: 24px; }
   .logo-bar svg { width: 94vw; }
-  .top-menu { gap: 12px; }
+  .nav-list { gap: 12px; }
   .top-menu a { font-size: 15px; padding: 6px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
+
+  /* On very small screens align dropdowns left to aid tapping */
+  .dropdown { left: 0; transform: translateX(0); min-width: 60vw; }
 }
+
+/* ---------------------
+   Compatibility / override block (use only if other CSS unexpectedly overrides nav)
+   --------------------- */
+/* Place at the end of styles.css so it takes precedence.
+   These rules are intentionally specific and use !important where necessary
+   to recover a horizontal nav if another stylesheet resets list/flow behavior.
+*/
+.top-menu,
+.top-menu .nav-list,
+.top-menu .nav-list > li {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.top-menu .nav-list {
+  list-style: none !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--menu-item-gap) !important;
+  width: 100% !important;
+}
+
+.top-menu .nav-list > li {
+  list-style: none !important;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* Ensure dropdowns don't push content when they are hidden */
+.top-menu .dropdown {
+  position: absolute !important;
+  display: none !important;
+}
+
+/* end of file */
