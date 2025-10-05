@@ -1,19 +1,15 @@
 :root{
-  /* Fonts */
-  --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; /* menu + subtitle */
+  --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif;
   --initials-font: 'Proxima Nova', "Helvetica Neue", Arial, sans-serif;
   --serif-initials-font: 'Proxima Sera', Georgia, serif;
 
-  /* Layout sizes (tweak these to change overall rhythm) */
-  --logo-height: 170px;    /* fixed top logo bar height */
-  --menu-height: 56px;     /* fixed horizontal menu height (immediately below logo) */
-  --heading-gap: 48px;     /* extra vertical gap between menu and page headings/content */
+  --logo-height: 170px;
+  --menu-height: 56px;
+  --heading-gap: 48px;
 
-  /* Spacing / visual tokens */
   --menu-item-gap: 36px;
   --svg-max-width: 700px;
 
-  /* Colors */
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
   --menu-bg: #f8f8ff;
@@ -21,35 +17,12 @@
   --accent: rgba(160,120,48,0.12);
 }
 
-/* ---------------------
-   Font-face placeholders
-   ---------------------
-   If you self-host Proxima Nova / Proxima Sera, add @font-face rules here.
-   Otherwise the system/Google fonts will be used for body/menu/subtitle.
-*/
-@font-face {
-  font-family: "Proxima Nova";
-  /* src: url('/fonts/ProximaNova-Regular.woff2') format('woff2'); */
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Proxima Sera";
-  /* src: url('/fonts/ProximaSera-Regular.woff2') format('woff2'); */
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ---------------------
-   Reset & Base
-   --------------------- */
+/* Basic resets */
 * { box-sizing: border-box; }
 html,body { height:100%; margin:0; font-family: var(--ui-font); color:#111; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 a { color: inherit; text-decoration: none; }
 
-/* Accessibility: visible skip link */
+/* Skip link for accessibility */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -69,9 +42,7 @@ a { color: inherit; text-decoration: none; }
   z-index: 9999;
 }
 
-/* ---------------------
-   Header / Logo Bar
-   --------------------- */
+/* Header / logo bar */
 .logo-bar {
   position: fixed;
   top: 0;
@@ -84,29 +55,18 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: center;
   z-index: 1100;
-  overflow: visible;
+  padding-top: 18px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding-top: 18px; /* extra breathing room above initials */
 }
+.logo-bar svg { width: min(66vw, var(--svg-max-width)); height: auto; display:block; }
+.logo-link { display:inline-block; }
 
-/* SVG sizing */
-.logo-bar svg {
-  width: min(66vw, var(--svg-max-width));
-  height: auto;
-  display: block;
-}
-
-/* clickable logo link */
-.logo-link { display: inline-block; text-decoration: none; }
-
-/* ---------------------
-   Top horizontal menu (fixed below logo)
-   --------------------- */
+/* Top fixed horizontal menu */
 .top-menu {
   position: fixed;
   top: var(--logo-height);
   left: 0;
-  width: 100%;
+  right: 0;
   height: var(--menu-height);
   background: var(--menu-bg);
   display: flex;
@@ -117,7 +77,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
 
-/* nav list container (horizontal list) */
+/* Horizontal nav list */
 .nav-list {
   list-style: none;
   margin: 0;
@@ -127,43 +87,40 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
 }
 
-/* top-level nav item */
+/* top-level item */
 .nav-item {
-  position: relative; /* used for absolute-positioned dropdowns */
+  position: relative; /* anchor for dropdown */
   display: inline-flex;
   align-items: center;
 }
 
-/* trigger/button and plain top-level links */
-.top-menu a,
-.nav-trigger {
-  color: #222;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 8px 6px;
-  font-family: var(--ui-font);
-  background: none;
-  border: none;
-  cursor: pointer;
+/* triggers and links */
+.nav-trigger,
+.top-menu a {
   display: inline-flex;
   align-items: center;
   gap: .35rem;
+  background: none;
+  border: none;
+  padding: 8px 6px;
+  font-family: var(--ui-font);
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+  cursor: pointer;
 }
 
-/* small chevron next to dropdown triggers */
-.chev { font-size: 0.85em; color: rgba(0,0,0,0.6); }
+/* chevron */
+.chev { font-size: .85em; color: rgba(0,0,0,0.6); }
 
-/* ---------------------
-   Dropdown menu styling
-   --------------------- */
+/* Dropdown container: absolutely positioned, hidden by default */
 .dropdown {
   position: absolute;
   top: calc(var(--menu-height) + 8px);
   left: 50%;
   transform: translateX(-50%);
   min-width: 200px;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid rgba(0,0,0,0.06);
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   padding: 8px 0;
@@ -172,51 +129,38 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
   display: none;
   z-index: 1200;
+  pointer-events: auto;
 }
 
-/* open state (toggled by .open on the dropdown) */
-.dropdown.open {
-  display: block;
-}
+/* visible state */
+.dropdown.open { display: block; }
 
 /* dropdown items */
+.dropdown li { list-style: none; }
 .dropdown a {
-  display: block;
+  display:block;
   padding: 8px 18px;
   color: #111;
   font-size: 16px;
-  text-decoration: none;
   white-space: nowrap;
 }
 .dropdown a:hover,
-.dropdown a:focus {
-  background: rgba(0,0,0,0.04);
-  outline: none;
-}
+.dropdown a:focus { background: rgba(0,0,0,0.04); outline: none; }
 
-/* position-left variant (if you prefer dropdown aligned left under item) */
-.dropdown.align-left {
-  left: 0;
-  transform: translateX(0);
-}
+/* safety alignment variant for small screens */
+.dropdown.align-left { left: 0; transform: translateX(0); min-width: 60vw; }
 
-/* ---------------------
-   Page content container
-   --------------------- */
+/* main content spacing: use variable so we can match subtitle→menu gap */
 .container {
   max-width: 920px;
   margin: 0 auto;
   padding: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)) 16px 3rem 16px;
 }
 
-/* targeted fragment scrolling offset (same as container top calc) */
-:target {
-  scroll-margin-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap) + 8px);
-}
+/* anchor target offset */
+:target { scroll-margin-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap) + 8px); }
 
-/* ---------------------
-   Reusable page components
-   --------------------- */
+/* Page utilities */
 .page-title {
   text-align: center;
   font-weight: 400;
@@ -225,183 +169,102 @@ a { color: inherit; text-decoration: none; }
   font-size: 22px;
   text-transform: uppercase;
 }
-
-.lead {
-  max-width: 76ch;
-  margin: 0.6rem auto 1.25rem auto;
-  text-align: center;
-  color: #333;
-  line-height: 1.6;
-}
+.lead { max-width: 76ch; margin: .6rem auto 1.25rem; text-align:center; color:#333; line-height:1.6; }
 
 .card {
-  background: #fff;
-  border-radius: 8px;
-  padding: 1.1rem 1.25rem;
+  background:#fff;
+  border-radius:8px;
+  padding:1.1rem 1.25rem;
+  border-left:4px solid rgba(23,74,124,0.08);
   box-shadow: 0 1px 0 rgba(0,0,0,0.03);
-  border-left: 4px solid rgba(23,74,124,0.08);
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin-bottom:1rem;
 }
 
-/* ---------------------
-   Previous meetings list / summary
-   --------------------- */
+/* previous meetings */
 .meeting-summary {
-  margin-bottom: 1.5em;
-  border-radius: 8px;
-  background: #ffffff;
+  margin-bottom:1.5em;
+  padding:1.05rem 1.2rem;
+  border-left:4px solid var(--accent);
+  border-radius:8px;
+  background:#fff;
   box-shadow: 0 1px 0 rgba(0,0,0,0.03);
-  padding: 1.05rem 1.2rem;
-  border-left: 4px solid var(--accent);
 }
+.meeting-summary > .summary-line { display:flex; flex-wrap:wrap; align-items:center; gap:12px; font-size:1.05rem; }
+.meeting-date { font-weight:600; color:var(--deep-blue); margin-right:.5rem; }
+.toggle-more { margin-left:auto; background:none; border:none; color:#a47d2b; text-decoration:underline; cursor:pointer; }
 
-.meeting-summary > .summary-line {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-  font-size: 1.05rem;
-  color: #111;
-}
-
-.meeting-date {
-  font-weight: 600;
-  color: var(--deep-blue);
-  margin-right: .5rem;
-}
-
-.toggle-more {
-  background: none;
-  border: none;
-  color: #a47d2b;
-  cursor: pointer;
-  font-size: 0.95rem;
-  text-decoration: underline;
-  padding: 0.15rem 0.35rem;
-  margin-left: auto;
-}
-
-/* details panel hidden by default */
+/* details */
 .meeting-details {
-  display: none;
-  margin-top: 0.8em;
-  background: #fffbe9cc;
-  border-radius: 6px;
-  padding: 0.8em 1.1em;
-  font-size: 0.98rem;
-  color: #121212;
-  line-height: 1.45;
-  border: 1px solid rgba(225,200,150,0.6);
+  display:none;
+  margin-top:.8em;
+  background:#fffbe9cc;
+  padding:.8em 1.1em;
+  border-radius:6px;
+  border:1px solid rgba(225,200,150,0.6);
+  font-size:.98rem;
+  line-height:1.45;
 }
-.meeting-details h3 {
-  margin: 0.35rem 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--deep-blue);
-}
-.meeting-details ul { margin: 0.25rem 0 0.6rem 1.1rem; padding: 0; }
+.meeting-details h3 { margin:.35rem 0; font-size:1rem; font-weight:600; color:var(--deep-blue); }
+.meeting-details ul { margin: .25rem 0 .6rem 1.1rem; padding:0; }
 
-/* ---------------------
-   Form styles (submit page)
-   --------------------- */
-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+/* form */
+/* Keep form styles scoped and simple */
+form .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 form .row .full { grid-column: 1 / -1; }
-
-label { display: block; font-weight: 600; color: var(--deep-blue); margin-bottom: 0.25rem; font-size: 0.95rem; }
-input[type="text"],
-input[type="email"],
-input[type="file"],
-textarea,
-select {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #e6e6e6;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  background: #fff;
+label { display:block; font-weight:600; color:var(--deep-blue); margin-bottom:.25rem; font-size:.95rem; }
+input, textarea, select {
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #e6e6e6;
+  border-radius:6px;
+  font-size:.95rem;
+  background:#fff;
 }
-textarea { min-height: 140px; resize: vertical; }
+textarea { min-height:140px; resize:vertical; }
 
-.hint { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
-.form-actions { display:flex; gap:12px; align-items:center; margin-top: 0.75rem; }
-button.cta { background: var(--deep-blue); color: #fff; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-button.cta[disabled] { opacity: 0.6; cursor: not-allowed; }
-.alt { color: var(--deep-blue); text-decoration: underline; }
+.hint { color:var(--muted); font-size:.9rem; margin-top:.25rem; }
+.form-actions { display:flex; gap:12px; align-items:center; margin-top:.75rem; }
+button.cta { background:var(--deep-blue); color:#fff; border:none; padding:10px 16px; border-radius:6px; font-weight:600; cursor:pointer; }
+button.cta[disabled] { opacity:.6; cursor:not-allowed; }
 
-/* ---------------------
-   Small tweaks & accessibility
-   --------------------- */
-.top-menu a:focus,
+/* accessibility focus */
 .nav-trigger:focus,
+.top-menu a:focus,
 .dropdown a:focus {
-  outline: 3px solid rgba(23,74,124,0.15);
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline:3px solid rgba(23,74,124,0.15);
+  outline-offset:2px;
+  border-radius:4px;
 }
 
-/* ---------------------
-   Responsive overrides
-   --------------------- */
-@media (max-width: 900px) {
-  :root { --logo-height: 150px; --menu-height: 52px; --heading-gap: 40px; }
+/* responsive */
+@media (max-width:900px) {
+  :root { --logo-height:150px; --menu-height:52px; --heading-gap:40px; }
   .logo-bar svg { width: min(86vw, 600px); }
-  .nav-list { gap: 24px; }
+  .nav-list { gap:24px; }
   .top-menu a { font-size: 16px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
 }
 
-@media (max-width: 700px) {
-  form .row { grid-template-columns: 1fr; }
-}
+@media (max-width:700px) { form .row { grid-template-columns: 1fr; } }
 
-@media (max-width: 520px) {
-  :root { --logo-height: 120px; --menu-height: 50px; --heading-gap: 24px; }
-  .logo-bar svg { width: 94vw; }
-  .nav-list { gap: 12px; }
-  .top-menu a { font-size: 15px; padding: 6px; }
+@media (max-width:520px) {
+  :root { --logo-height:120px; --menu-height:50px; --heading-gap:24px; }
+  .logo-bar svg { width:94vw; }
+  .nav-list { gap:12px; }
+  .top-menu a { font-size:15px; padding:6px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
-
-  /* On very small screens align dropdowns left to aid tapping */
   .dropdown { left: 0; transform: translateX(0); min-width: 60vw; }
 }
 
-/* ---------------------
-   Compatibility / override block (use only if other CSS unexpectedly overrides nav)
-   --------------------- */
-/* Place at the end of styles.css so it takes precedence.
-   These rules are intentionally specific and use !important where necessary
-   to recover a horizontal nav if another stylesheet is overriding the nav layout.
-*/
+/* Compatibility / last-resort safe overrides
+   These are intentionally specific and minimal. Keep them as the final block.
+   If you still see problems, it's usually because styles.css isn't loading, or
+   another stylesheet is loaded after this file. */
 .top-menu,
 .top-menu .nav-list,
 .top-menu .nav-list > li {
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
+  margin:0; padding:0; box-sizing:border-box;
 }
-
-.top-menu .nav-list {
-  list-style: none !important;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: var(--menu-item-gap) !important;
-  width: 100% !important;
-}
-
-.top-menu .nav-list > li {
-  list-style: none !important;
-  position: relative !important;
-  display: inline-flex !important;
-  align-items: center !important;
-}
-
-/* Ensure dropdowns don't push content when they are hidden */
-.top-menu .dropdown {
-  position: absolute !important;
-  display: none !important;
-}
-
-/* end of file */
+.top-menu .nav-list { list-style:none; display:flex; flex-direction:row; align-items:center; gap:var(--menu-item-gap); width:100%; }
+.top-menu .nav-list > li { list-style:none; position:relative; display:inline-flex; align-items:center; }
+.top-menu .dropdown { position:absolute; display:none; } /* ensure it's removed from flow */
