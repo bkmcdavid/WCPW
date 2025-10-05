@@ -256,15 +256,17 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
   .dropdown { left: 0; transform: translateX(0); min-width: 60vw; }
 }
 
-/* Compatibility / last-resort safe overrides
-   These are intentionally specific and minimal. Keep them as the final block.
-   If you still see problems, it's usually because styles.css isn't loading, or
-   another stylesheet is loaded after this file. */
-.top-menu,
-.top-menu .nav-list,
-.top-menu .nav-list > li {
-  margin:0; padding:0; box-sizing:border-box;
+.top-menu .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--menu-item-gap);
+  align-items: center;
+
+  /* CENTERING: don't stretch the list to full width; center items */
+  width: auto;               /* don't force full width */
+  justify-content: center;   /* center items inside the list */
+  margin: 0 auto;            /* center the list itself */
+  max-width: 920px;          /* optional: align nav width with main content */
 }
-.top-menu .nav-list { list-style:none; display:flex; flex-direction:row; align-items:center; gap:var(--menu-item-gap); width:100%; }
-.top-menu .nav-list > li { list-style:none; position:relative; display:inline-flex; align-items:center; }
-.top-menu .dropdown { position:absolute; display:none; } /* ensure it's removed from flow */
