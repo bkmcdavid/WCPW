@@ -2,14 +2,12 @@
   --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; /* menu + subtitle */
   --initials-font: 'Proxima Nova', "Helvetica Neue", Arial, sans-serif;
   --serif-initials-font: 'Proxima Sera', Georgia, serif;
-  --logo-height: 170px;
+  --logo-height: 170px;    /* keeps a bit more space above the letters */
   --menu-height: 56px;
+  --heading-gap: 48px;     /* NEW: extra vertical space between menu and page heading; tweak this to match subtitle→menu gap */
   --deep-blue: #174A7C;
   --teal-blue: #21B6A8;
   --menu-bg: #f8f8ff;
-  --menu-item-gap: 36px;
-  --dropdown-bg: #ffffff;
-  --dropdown-border: rgba(0,0,0,0.06);
 }
 
 /* === PROXIMA NOVA & PROXIMA SERA @font-face (self-host examples) ===
@@ -84,22 +82,25 @@ a { color: inherit; }
   min-height: var(--logo-height);
   background: #fff;
   display: flex;
-  align-items: center;
+  align-items: center;       /* keep letters vertically centered within the bar */
   justify-content: center;
   z-index: 1100;
   overflow: visible;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding-top: 18px;
+  padding-top: 18px; /* a bit more space above the letters per your request */
 }
 
-/* SVG sizing */
+/* SVG sizing — constrained so it doesn't grow too large */
 .logo-bar svg {
   width: min(66vw, 700px);
   height: auto;
   display: block;
 }
 
-/* Top menu */
+/* Logo link styling */
+.logo-link { display: inline-block; text-decoration: none; }
+
+/* Fixed top menu directly below the logo */
 .top-menu {
   position: fixed;
   top: var(--logo-height);
@@ -109,107 +110,54 @@ a { color: inherit; }
   background: var(--menu-bg);
   display: flex;
   justify-content: center;
+  gap: 36px;
   align-items: center;
   z-index: 1090;
   border-bottom: 1px solid rgba(0,0,0,0.06);
   box-shadow: 0 1px 4px rgba(0,0,0,0.03);
 }
 
-/* use a horizontal list for nav items */
-.nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: var(--menu-item-gap);
-  align-items: center;
-}
-
-/* base nav items */
-.nav-item {
-  position: relative; /* for dropdown positioning */
-}
-
-/* simple link styling */
-.top-menu a,
-.nav-trigger {
-  color: #222;
+.top-menu a {
   text-decoration: none;
+  color: #222;
   font-size: 18px;
   font-weight: 500;
   padding: 8px 6px;
   font-family: var(--ui-font);
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: .35rem;
 }
 
-/* chevron small style */
-.chev { font-size: 0.85em; color: rgba(0,0,0,0.6); }
-
-/* Dropdown container */
-.dropdown {
-  position: absolute;
-  top: calc(var(--menu-height) + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 200px;
-  background: var(--dropdown-bg);
-  border: 1px solid var(--dropdown-border);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  padding: 8px 0;
-  border-radius: 6px;
-  list-style: none;
-  margin: 0;
-  display: none;
-  z-index: 1200;
-}
-
-/* open state */
-.dropdown.open {
-  display: block;
-}
-
-/* dropdown links */
-.dropdown a {
-  display: block;
-  padding: 8px 18px;
-  color: #111;
-  font-size: 16px;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.dropdown a:hover,
-.dropdown a:focus {
-  background: rgba(0,0,0,0.04);
-  outline: none;
-}
-
-/* align dropdown left on very narrow viewports for easier tapping */
-@media (max-width: 520px) {
-  .nav-list {
-    gap: 12px;
-  }
-  .dropdown {
-    left: 0;
-    transform: translateX(0);
-    min-width: 60vw;
-  }
-  .top-menu a,
-  .nav-trigger { font-size: 15px; padding: 6px; }
-}
-
-/* Give main content enough top padding to clear the fixed header/menu */
+/* Give main content enough top padding to clear the fixed header/menu
+   Now using --heading-gap so you can match the subtitle→menu spacing exactly.
+*/
 .container {
   max-width: 920px;
   margin: 0 auto;
-  padding: calc(var(--logo-height) + var(--menu-height) + 12px) 16px 3rem 16px;
+  padding: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)) 16px 3rem 16px;
 }
 
-/* Adjust anchor target scrolling so headings are visible below fixed menu */
+/* Adjust anchor target scrolling so headings are visible below fixed menu
+   Use the same calculation so fragment links land correctly.
+*/
 :target {
-  scroll-margin-top: calc(var(--logo-height) + var(--menu-height) + 8px);
+  scroll-margin-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap) + 8px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  :root { --logo-height: 150px; --menu-height: 52px; }
+  /* scale down the added gap slightly on medium screens */
+  :root { --heading-gap: 40px; }
+  .logo-bar svg { width: min(86vw, 600px); }
+  .top-menu a { font-size: 16px; gap: 12px; }
+  .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
+}
+
+@media (max-width: 520px) {
+  :root { --logo-height: 120px; --menu-height: 50px; }
+  /* smaller screens get less extra gap so content isn't forced too far down */
+  :root { --heading-gap: 24px; }
+  .logo-bar svg { width: 94vw; }
+  .top-menu { gap: 12px; }
+  .top-menu a { font-size: 15px; padding: 6px; }
+  .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
 }
