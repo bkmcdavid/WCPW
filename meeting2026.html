@@ -11,6 +11,9 @@
   <!-- Site stylesheet (contains the header/logo/menu styles we designed) -->
   <link rel="stylesheet" href="styles.css">
 
+  <!-- Load the dropdown handler once, deferred so it runs after parsing -->
+  <script src="/js/dropdowns.js" defer></script>
+
   <!-- Page-specific styles to harmonize this meeting page with the header/logo design -->
   <style>
     body { font-family: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; color: #111; }
@@ -129,7 +132,7 @@
       <ul class="nav-list">
         <!-- About with dropdown -->
         <li class="nav-item has-dropdown">
-          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">
+          <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">
             About
             <span class="chev" aria-hidden="true">▾</span>
           </button>
@@ -142,7 +145,7 @@
 
         <!-- Upcoming Meeting with dropdown -->
         <li class="nav-item has-dropdown">
-          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
+          <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
             Upcoming Meeting
             <span class="chev" aria-hidden="true">▾</span>
           </button>
@@ -191,99 +194,24 @@
     </div>
   </main>
 
-  <!-- Dropdown script so dropdowns behave the same on this page -->
+  <!-- keep page-level toggle script for meeting details -->
   <script>
-    (function () {
-      const triggers = Array.from(document.querySelectorAll('.nav-trigger'));
-
-      function toggle(trigger) {
-        const expanded = trigger.getAttribute('aria-expanded') === 'true';
-        triggers.forEach(t => {
-          t.setAttribute('aria-expanded', 'false');
-          const id = t.getAttribute('aria-controls');
-          const menu = document.getElementById(id);
-          if (menu) menu.classList.remove('open');
-        });
-
-        if (!expanded) {
-          trigger.setAttribute('aria-expanded', 'true');
-          const id = trigger.getAttribute('aria-controls');
-          const menu = document.getElementById(id);
-          if (menu) menu.classList.add('open');
-        }
+    function toggleDetails(id, btn) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (el.style.display === "block") {
+        el.style.display = "none";
+        btn.textContent = "more...";
+        btn.setAttribute('aria-expanded', 'false');
+        el.setAttribute('aria-hidden', 'true');
+      } else {
+        el.style.display = "block";
+        btn.textContent = "less...";
+        btn.setAttribute('aria-expanded', 'true');
+        el.setAttribute('aria-hidden', 'false');
       }
-
-      triggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggle(trigger);
-        });
-
-        trigger.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggle(trigger);
-          } else if (e.key === 'Escape') {
-            trigger.setAttribute('aria-expanded', 'false');
-            const menu = document.getElementById(trigger.getAttribute('aria-controls'));
-            if (menu) menu.classList.remove('open');
-            trigger.focus();
-          } else if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            const menu = document.getElementById(trigger.getAttribute('aria-controls'));
-            if (menu) {
-              const first = menu.querySelector('[role="menuitem"]');
-              if (first) first.focus();
-            }
-          }
-        });
-      });
-
-      document.addEventListener('click', () => {
-        triggers.forEach(t => {
-          t.setAttribute('aria-expanded', 'false');
-          const menu = document.getElementById(t.getAttribute('aria-controls'));
-          if (menu) menu.classList.remove('open');
-        });
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          triggers.forEach(t => {
-            t.setAttribute('aria-expanded', 'false');
-            const menu = document.getElementById(t.getAttribute('aria-controls'));
-            if (menu) menu.classList.remove('open');
-          });
-        }
-      });
-
-      const menus = Array.from(document.querySelectorAll('.dropdown'));
-      menus.forEach(menu => {
-        menu.addEventListener('keydown', (e) => {
-          const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
-          const idx = items.indexOf(document.activeElement);
-          if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            const next = items[(idx + 1) % items.length];
-            if (next) next.focus();
-          } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            const prev = items[(idx - 1 + items.length) % items.length];
-            if (prev) prev.focus();
-          } else if (e.key === 'Home') {
-            e.preventDefault();
-            if (items[0]) items[0].focus();
-          } else if (e.key === 'End') {
-            e.preventDefault();
-            if (items[items.length - 1]) items[items.length - 1].focus();
-          }
-        });
-
-        menu.addEventListener('click', (e) => {
-          e.stopPropagation();
-        });
-      });
-    })();
+    }
   </script>
+
 </body>
 </html>
