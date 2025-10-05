@@ -371,7 +371,7 @@ button.cta[disabled] { opacity: 0.6; cursor: not-allowed; }
    --------------------- */
 /* Place at the end of styles.css so it takes precedence.
    These rules are intentionally specific and use !important where necessary
-   to recover a horizontal nav if another stylesheet resets list/flow behavior.
+   to recover a horizontal nav if another stylesheet is overriding the nav layout.
 */
 .top-menu,
 .top-menu .nav-list,
