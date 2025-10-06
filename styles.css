@@ -275,7 +275,7 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
   border-radius: 4px;
 }
 
-/* --- Page-specific spacing & paragraph first-line indent --- */
+/* --- Page-specific spacing & paragraph block offset --- */
 
 /* Add extra vertical space above the Submit section heading */
 #submit {
@@ -288,13 +288,13 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
   #submit { padding-top: 36px; }
 }
 
-/* Indent first line of body paragraphs (but not .lead which is centered on meeting page) */
-/* Apply to normal section paragraphs, card paragraphs, and meeting-details paragraphs */
+/* Shift whole paragraphs to the right (instead of first-line indent).
+   Exclude .lead and centered paragraphs which should remain centered. */
 main.container section p:not(.lead),
 main.container .card p,
 main.container .meeting-details p {
-  text-indent: 1.25rem; /* indent first line */
-  margin-left: 0;       /* ensure paragraphs remain left-aligned inside container */
+  margin-left: 1.25rem; /* move entire paragraph to the right */
+  margin-right: 0;
   text-align: left;
 }
 
