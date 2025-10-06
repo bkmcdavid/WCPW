@@ -5,7 +5,8 @@
 
   --logo-height: 170px;
   --menu-height: 56px;
-  --heading-gap: 48px;
+  /* increased gap so there is more vertical space between the fixed menu and page text */
+  --heading-gap: 72px;
 
   --menu-item-gap: 36px;
   --svg-max-width: 700px;
@@ -238,7 +239,7 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
 
 /* responsive */
 @media (max-width:900px) {
-  :root { --logo-height:150px; --menu-height:52px; --heading-gap:40px; }
+  :root { --logo-height:150px; --menu-height:52px; /* a bit larger gap for tablet */ --heading-gap:56px; }
   .logo-bar svg { width: min(86vw, 600px); }
   .nav-list { gap:24px; }
   .top-menu a { font-size: 16px; }
@@ -248,7 +249,7 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
 @media (max-width:700px) { form .row { grid-template-columns: 1fr; } }
 
 @media (max-width:520px) {
-  :root { --logo-height:120px; --menu-height:50px; --heading-gap:24px; }
+  :root { --logo-height:120px; --menu-height:50px; /* preserve comfortable spacing on small screens */ --heading-gap:32px; }
   .logo-bar svg { width:94vw; }
   .nav-list { gap:12px; }
   .top-menu a { font-size:15px; padding:6px; }
