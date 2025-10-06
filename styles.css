@@ -136,17 +136,28 @@ a { color: inherit; text-decoration: none; }
 /* visible state */
 .dropdown.open { display: block; }
 
-/* dropdown items */
-.dropdown li { list-style: none; }
+/* dropdown items: no hover styling; keep keyboard-visible focus only */
 .dropdown a {
-  display:block;
+  display: block;
   padding: 8px 18px;
   color: #111;
   font-size: 16px;
   white-space: nowrap;
 }
-.dropdown a:hover,
-.dropdown a:focus { background: rgba(0,0,0,0.04); outline: none; }
+
+/* Remove visual styling on plain focus (so mouse-open doesn't show a selected state) */
+.dropdown a:focus {
+  outline: none;
+  background: none;
+}
+
+/* Only show visible focus ring/background for keyboard users */
+.dropdown a:focus-visible {
+  background: rgba(0,0,0,0.04);
+  outline: 3px solid rgba(23,74,124,0.15);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 
 /* safety alignment variant for small screens */
 .dropdown.align-left { left: 0; transform: translateX(0); min-width: 60vw; }
@@ -170,9 +181,18 @@ a { color: inherit; text-decoration: none; }
   font-size: 22px;
   text-transform: uppercase;
 }
-/* Body/lead text left-aligned now so headings stay centered but paragraph content is flush-left */
-.lead { max-width: 76ch; margin: .6rem 0 1.25rem 0; text-align:left; color:#333; line-height:1.6; }
 
+/* Lead / intro paragraphs: left-aligned body text while headings remain centered */
+.lead,
+.intro {
+  max-width: 76ch;
+  margin: .6rem 0 1.25rem 0;
+  text-align: left;
+  color:#333;
+  line-height:1.6;
+}
+
+/* Card utility */
 .card {
   background:#fff;
   border-radius:8px;
@@ -229,14 +249,21 @@ textarea { min-height:140px; resize:vertical; }
 button.cta { background:var(--deep-blue); color:#fff; border:none; padding:10px 16px; border-radius:6px; font-weight:600; cursor:pointer; }
 button.cta[disabled] { opacity:.6; cursor:not-allowed; }
 
-/* accessibility focus */
-.nav-trigger:focus,
-.top-menu a:focus,
-.dropdown a:focus {
-  outline:3px solid rgba(23,74,124,0.15);
-  outline-offset:2px;
-  border-radius:4px;
+/* NAV TRIGGERS / TOP-MENU LINKS: same keyboard-only focus behavior */
+.nav-trigger,
+.top-menu a {
+  /* remove default focus styling so mouse won't show a focus ring */
+  outline: none;
 }
+
+.nav-trigger:focus-visible,
+.top-menu a:focus-visible {
+  outline: 3px solid rgba(23,74,124,0.15);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* accessibility focus for dropdown anchors already handled above with :focus-visible */
 
 /* responsive */
 @media (max-width:900px) {
@@ -258,6 +285,7 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
   .dropdown { left: 0; transform: translateX(0); min-width: 60vw; }
 }
 
+/* keep nav list centered within the top menu; aligns with main content width */
 .top-menu .nav-list {
   list-style: none;
   margin: 0;
@@ -266,7 +294,6 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
   gap: var(--menu-item-gap);
   align-items: center;
 
-  /* CENTERING: don't stretch the list to full width; center items */
   width: auto;               /* don't force full width */
   justify-content: center;   /* center items inside the list */
   margin: 0 auto;            /* center the list itself */
