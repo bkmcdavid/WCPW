@@ -8,19 +8,15 @@
   <!-- Subtitle/menu font from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="styles.css" />
   <style>html { scroll-behavior: smooth; }</style>
 </head>
 <body>
-  <!-- top anchor for logo link -->
-  <a id="top"></a>
-
-  <!-- Skip link (visible when focused) -->
-  <a class="skip-link" href="#history">Skip to content</a>
+  <a id="top" class="skip-link" href="#history">Skip to content</a>
 
   <header>
     <div class="logo-bar">
-      <a href="index.html#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
+      <a href="#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
         <svg viewBox="0 0 1000 240"
              xmlns="http://www.w3.org/2000/svg"
              role="img"
@@ -74,48 +70,58 @@
             About
             <span class="chev" aria-hidden="true">▾</span>
           </button>
-
+    
           <ul id="about-menu" class="dropdown" role="menu" aria-label="About submenu">
-            <!-- link to the History section on the landing page (id preserved so other pages still work) -->
-            <li role="none"><a role="menuitem" href="index.html#history">What is the WCPW?</a></li>
-            <li role="none"><a role="menuitem" href="previous-meetings.html">Previous Meetings</a></li>
+            <!-- point to your existing files -->
+            <li role="none"><a role="menuitem" href="/index.html#history">What is the WCPW?</a></li>
+            <li role="none"><a role="menuitem" href="/previous-meetings.html">Previous Meetings</a></li>
           </ul>
         </li>
-
+    
         <!-- Upcoming Meeting with dropdown -->
         <li class="nav-item has-dropdown">
           <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
             Upcoming Meeting
             <span class="chev" aria-hidden="true">▾</span>
           </button>
-
+    
           <ul id="upcoming-menu" class="dropdown" role="menu" aria-label="Upcoming Meeting submenu">
-            <li role="none"><a role="menuitem" href="meeting2026.html">2026 WCPW at Chapman University</a></li>
-            <li role="none"><a role="menuitem" href="submit.html">Submit</a></li>
+            <li role="none"><a role="menuitem" href="/meeting2026.html">2026 WCPW at Chapman University</a></li>
+            <li role="none"><a role="menuitem" href="/meeting2026.html#submit">Submit</a></li>
           </ul>
         </li>
-
+    
         <!-- Contact -->
-        <li class="nav-item"><a href="contact.html">Contact</a></li>
+        <li class="nav-item"><a href="/contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="container" id="content">
+  <main class="container">
     <section id="history">
-      <!-- styled to match Previous Meetings page -->
       <h1 class="page-title">What is the WCPW?</h1>
+
+      <!-- Small Plato image inserted directly below the heading.
+           Upload images/platosunglasses.png to this path on the server. -->
+      <figure aria-hidden="false" style="margin: .6rem 0 1rem 0; text-align:center;">
+        <img src="images/platosunglasses.png"
+             alt="Cartoon of Plato wearing sunglasses"
+             loading="lazy"
+             style="max-width:220px; width:100%; height:auto; display:inline-block; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.06);" />
+      </figure>
+
       <p class="lead">The West Coast Plato Workshop was started in 2008 by Rachana Kamtekar and Jan Szaif. They hosted the first meeting at UC Davis, with papers focusing on the text of <i>Theaetetus</i>.</p>
       <p>WCPW has been a beloved ancient philosophy workshop ever since, with scholars of all levels, from graduate students to emeritus professors, sharing their interpretations of Plato in a colleagial and sunny (or maybe cloudy, in the years that Pacific Northwest institutions host) environment.</p>
     </section>
+
 
     <section id="meeting2026">
       <h2>2026 Meeting</h2>
       <p>The 2026 workshop will be on the text of <i>Republic</i> Books VIII and IX, hosted by Chapman University in Orange, CA. </p>
     </section>
+
   </main>
 
-  <!-- Load shared dropdown behavior -->
   <script src="/js/dropdowns.js"></script>
 </body>
 </html>
