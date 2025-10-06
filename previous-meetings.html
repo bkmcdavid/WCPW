@@ -9,19 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- Site stylesheet (contains the header/logo/menu styles we designed) -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
 
   <!-- Page-specific styles to harmonize meeting list with the header/logo design -->
   <style>
     /* Make sure page text uses the same UI font used in the header */
     body { font-family: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; color: #111; }
 
-    /* Constrain content and match spacing from the home layout */
-    .container {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: calc(var(--logo-height,170px) + var(--menu-height,56px) + 12px) 20px 3rem;
-    }
+    /* Removed page-local .container override so global --heading-gap applies consistently.
+       Use the global .container from styles.css to get consistent top padding. */
 
     h1.page-title {
       text-align: center;
@@ -32,13 +28,13 @@
       text-transform: uppercase;
     }
 
+    /* Intro text now left-aligned to match your request (headings stay centered) */
     .intro {
-      text-align: center;
+      text-align: left;
       color: #333;
       margin-bottom: 1.6rem;
       max-width: 76ch;
-      margin-left: auto;
-      margin-right: auto;
+      margin-left: 0;
       line-height: 1.6;
     }
 
@@ -684,7 +680,7 @@
   </main>
 
   <!-- small page-level toggle script (kept from your original file) -->
-  <script>
+<script>
     function toggleDetails(id, btn) {
       var el = document.getElementById(id);
       if (!el) return;
@@ -702,100 +698,9 @@
     }
   </script>
 
-  <!-- Dropdown script copied from index so dropdowns behave the same on this page -->
-  <script>
-    (function () {
-      const triggers = Array.from(document.querySelectorAll('.nav-trigger'));
-
-      function toggle(trigger) {
-        const expanded = trigger.getAttribute('aria-expanded') === 'true';
-        triggers.forEach(t => {
-          t.setAttribute('aria-expanded', 'false');
-          const id = t.getAttribute('aria-controls');
-          const menu = document.getElementById(id);
-          if (menu) menu.classList.remove('open');
-        });
-
-        if (!expanded) {
-          trigger.setAttribute('aria-expanded', 'true');
-          const id = trigger.getAttribute('aria-controls');
-          const menu = document.getElementById(id);
-          if (menu) menu.classList.add('open');
-        }
-      }
-
-      triggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggle(trigger);
-        });
-
-        trigger.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggle(trigger);
-          } else if (e.key === 'Escape') {
-            trigger.setAttribute('aria-expanded', 'false');
-            const menu = document.getElementById(trigger.getAttribute('aria-controls'));
-            if (menu) menu.classList.remove('open');
-            trigger.focus();
-          } else if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            const menu = document.getElementById(trigger.getAttribute('aria-controls'));
-            if (menu) {
-              const first = menu.querySelector('[role="menuitem"]');
-              if (first) first.focus();
-            }
-          }
-        });
-      });
-
-      document.addEventListener('click', () => {
-        triggers.forEach(t => {
-          t.setAttribute('aria-expanded', 'false');
-          const menu = document.getElementById(t.getAttribute('aria-controls'));
-          if (menu) menu.classList.remove('open');
-        });
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          triggers.forEach(t => {
-            t.setAttribute('aria-expanded', 'false');
-            const menu = document.getElementById(t.getAttribute('aria-controls'));
-            if (menu) menu.classList.remove('open');
-          });
-        }
-      });
-
-      const menus = Array.from(document.querySelectorAll('.dropdown'));
-      menus.forEach(menu => {
-        menu.addEventListener('keydown', (e) => {
-          const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
-          const idx = items.indexOf(document.activeElement);
-          if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            const next = items[(idx + 1) % items.length];
-            if (next) next.focus();
-          } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            const prev = items[(idx - 1 + items.length) % items.length];
-            if (prev) prev.focus();
-          } else if (e.key === 'Home') {
-            e.preventDefault();
-            if (items[0]) items[0].focus();
-          } else if (e.key === 'End') {
-            e.preventDefault();
-            if (items[items.length - 1]) items[items.length - 1].focus();
-          }
-        });
-
-        menu.addEventListener('click', (e) => {
-          e.stopPropagation();
-        });
-      });
-    })();
-  </script>
+  <!-- Load shared dropdown behavior; page relies on /js/dropdowns.js -->
   <script src="/js/dropdowns.js"></script>
 </body>
 </html>
+
+  
