@@ -170,7 +170,8 @@ a { color: inherit; text-decoration: none; }
   font-size: 22px;
   text-transform: uppercase;
 }
-.lead { max-width: 76ch; margin: .6rem auto 1.25rem; text-align:center; color:#333; line-height:1.6; }
+/* Body/lead text left-aligned now so headings stay centered but paragraph content is flush-left */
+.lead { max-width: 76ch; margin: .6rem 0 1.25rem 0; text-align:left; color:#333; line-height:1.6; }
 
 .card {
   background:#fff;
