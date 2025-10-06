@@ -5,7 +5,7 @@
 
   --logo-height: 170px;
   --menu-height: 56px;
-  /* increased gap so there is more vertical space between the fixed menu and page text */
+  /* comfortable gap so there is more vertical space between the fixed menu and page text */
   --heading-gap: 72px;
 
   --menu-item-gap: 36px;
@@ -16,11 +16,14 @@
   --menu-bg: #f8f8ff;
   --muted: #666;
   --accent: rgba(160,120,48,0.12);
+
+  /* base font sizing (adjustable) */
+  --base-font-size: 18px;
 }
 
 /* Basic resets */
 * { box-sizing: border-box; }
-html,body { height:100%; margin:0; font-family: var(--ui-font); color:#111; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+html,body { height:100%; margin:0; font-family: var(--ui-font); color:#111; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; font-size: var(--base-font-size); }
 a { color: inherit; text-decoration: none; }
 
 /* Skip link for accessibility */
@@ -105,7 +108,7 @@ a { color: inherit; text-decoration: none; }
   border: none;
   padding: 8px 6px;
   font-family: var(--ui-font);
-  font-size: 18px;
+  font-size: 1.125rem; /* 18px base -> 1.125rem = 20.25px for emphasis on nav */
   font-weight: 500;
   color: #222;
   cursor: pointer;
@@ -141,7 +144,7 @@ a { color: inherit; text-decoration: none; }
   display: block;
   padding: 8px 18px;
   color: #111;
-  font-size: 16px;
+  font-size: 1rem; /* relative to base */
   white-space: nowrap;
 }
 
@@ -169,7 +172,7 @@ a { color: inherit; text-decoration: none; }
   padding: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)) 16px 3rem 16px;
 }
 
-/* anchor target offset */
+/* anchor target offset — uses same var so anchors land consistently beneath fixed header */
 :target { scroll-margin-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap) + 8px); }
 
 /* Page utilities */
@@ -178,7 +181,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 400;
   letter-spacing: 6px;
   margin: 0 0 0.75rem 0;
-  font-size: 22px;
+  font-size: 1.125rem; /* slightly larger header */
   text-transform: uppercase;
 }
 
@@ -190,6 +193,7 @@ a { color: inherit; text-decoration: none; }
   text-align: left;
   color:#333;
   line-height:1.6;
+  font-size: 1rem; /* 18px base -> 1rem = 18px */
 }
 
 /* Card utility */
@@ -200,6 +204,7 @@ a { color: inherit; text-decoration: none; }
   border-left:4px solid rgba(23,74,124,0.08);
   box-shadow: 0 1px 0 rgba(0,0,0,0.03);
   margin-bottom:1rem;
+  line-height: 1.6;
 }
 
 /* previous meetings */
@@ -233,18 +238,18 @@ a { color: inherit; text-decoration: none; }
 /* Keep form styles scoped and simple */
 form .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 form .row .full { grid-column: 1 / -1; }
-label { display:block; font-weight:600; color:var(--deep-blue); margin-bottom:.25rem; font-size:.95rem; }
+label { display:block; font-weight:600; color:var(--deep-blue); margin-bottom:.25rem; font-size:1rem; }
 input, textarea, select {
   width:100%;
   padding:10px 12px;
   border:1px solid #e6e6e6;
   border-radius:6px;
-  font-size:.95rem;
+  font-size:1rem;
   background:#fff;
 }
 textarea { min-height:140px; resize:vertical; }
 
-.hint { color:var(--muted); font-size:.9rem; margin-top:.25rem; }
+.hint { color:var(--muted); font-size:.95rem; margin-top:.25rem; }
 .form-actions { display:flex; gap:12px; align-items:center; margin-top:.75rem; }
 button.cta { background:var(--deep-blue); color:#fff; border:none; padding:10px 16px; border-radius:6px; font-weight:600; cursor:pointer; }
 button.cta[disabled] { opacity:.6; cursor:not-allowed; }
@@ -252,7 +257,6 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
 /* NAV TRIGGERS / TOP-MENU LINKS: same keyboard-only focus behavior */
 .nav-trigger,
 .top-menu a {
-  /* remove default focus styling so mouse won't show a focus ring */
   outline: none;
 }
 
@@ -263,24 +267,22 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
   border-radius: 4px;
 }
 
-/* accessibility focus for dropdown anchors already handled above with :focus-visible */
-
 /* responsive */
 @media (max-width:900px) {
-  :root { --logo-height:150px; --menu-height:52px; /* a bit larger gap for tablet */ --heading-gap:56px; }
+  :root { --logo-height:150px; --menu-height:52px; --heading-gap:56px; }
   .logo-bar svg { width: min(86vw, 600px); }
   .nav-list { gap:24px; }
-  .top-menu a { font-size: 16px; }
+  .top-menu a { font-size: 1rem; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
 }
 
 @media (max-width:700px) { form .row { grid-template-columns: 1fr; } }
 
 @media (max-width:520px) {
-  :root { --logo-height:120px; --menu-height:50px; /* preserve comfortable spacing on small screens */ --heading-gap:32px; }
+  :root { --logo-height:120px; --menu-height:50px; --heading-gap:32px; --base-font-size:16px; }
   .logo-bar svg { width:94vw; }
   .nav-list { gap:12px; }
-  .top-menu a { font-size:15px; padding:6px; }
+  .top-menu a { font-size:0.94rem; padding:6px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
   .dropdown { left: 0; transform: translateX(0); min-width: 60vw; }
 }
@@ -294,8 +296,8 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
   gap: var(--menu-item-gap);
   align-items: center;
 
-  width: auto;               /* don't force full width */
-  justify-content: center;   /* center items inside the list */
-  margin: 0 auto;            /* center the list itself */
-  max-width: 920px;          /* optional: align nav width with main content */
+  width: auto;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 920px;
 }
