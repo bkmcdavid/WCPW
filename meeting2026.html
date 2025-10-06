@@ -9,13 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- Site stylesheet (contains the header/logo/menu styles we designed) -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
 
   <!-- Load the dropdown handler once, deferred so it runs after parsing -->
   <script src="/js/dropdowns.js" defer></script>
 
   <!-- Page-specific styles to harmonize this meeting page with the header/logo design -->
   <style>
+    /* keep the font consistent with the site header, and keep the centered page heading / lead styling
+       you liked on this page (this will override the global .lead alignment for this page only) */
     body { font-family: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; color: #111; }
 
     .container {
@@ -33,12 +35,25 @@
       text-transform: uppercase;
     }
 
+    /* on this page keep the lead centered so it matches the style you posted */
     .lead {
       max-width: 76ch;
       margin: 0.6rem auto 1.25rem auto;
       text-align: center;
       color: #333;
       line-height: 1.6;
+    }
+
+    /* Meeting image styling */
+    .meeting-image {
+      width: 100%;
+      max-width: 820px;
+      display: block;
+      margin: 1.25rem auto;
+      border-radius: 8px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+      object-fit: cover;
+      height: auto;
     }
 
     .meta {
@@ -72,9 +87,11 @@
       text-decoration: underline;
     }
 
+    /* small screens */
     @media (max-width: 520px) {
       .container { padding-left: 14px; padding-right: 14px; }
       .meta { flex-direction: column; gap: 8px; }
+      .meeting-image { margin: 1rem auto; max-width: 94vw; }
     }
   </style>
 </head>
@@ -143,7 +160,7 @@
           </ul>
         </li>
 
-        <!-- Upcoming Meeting with dropdown -->
+        <!-- Upcoming Meeting with dropdown — links point to anchors on this page -->
         <li class="nav-item has-dropdown">
           <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
             Upcoming Meeting
@@ -151,8 +168,9 @@
           </button>
 
           <ul id="upcoming-menu" class="dropdown" role="menu" aria-label="Upcoming Meeting submenu">
-            <li role="none"><a role="menuitem" href="meeting2026.html">2026 WCPW at Chapman University</a></li>
-            <li role="none"><a role="menuitem" href="submit.html">Submit</a></li>
+            <!-- use page+anchor so links work from other pages too -->
+            <li role="none"><a role="menuitem" href="meeting2026.html#meeting2026">2026 WCPW at Chapman University</a></li>
+            <li role="none"><a role="menuitem" href="meeting2026.html#submit">Submit</a></li>
           </ul>
         </li>
 
@@ -163,35 +181,66 @@
   </header>
 
   <main class="container" id="content">
-    <h1 class="page-title">2026 WCPW at Chapman University</h1>
+    <!-- top-of-page meeting section -->
+    <section id="meeting2026" aria-labelledby="meeting-title">
+      <h1 id="meeting-title" class="page-title">2026 WCPW at Chapman University</h1>
 
-    <p class="lead">
-      The 2026 meeting of the West Coast Plato Workshop (WCPW) will be held at Chapman University in Orange, California. Below are the meeting focus, dates, and keynote information.
-    </p>
-
-    <div class="meta">
-      <span>Dates: Fri, May 29 – Sun, May 31, 2026</span>
-      <span>Location: Chapman University, Orange, CA</span>
-    </div>
-
-    <div class="card">
-      <h2>Meeting focus</h2>
-      <p>The workshop will focus on Books VIII and IX of Plato's Republic.</p>
-
-      <h2>Keynote</h2>
-      <p>
-        The keynote speaker will be Mark Johnstone (McMaster University), author of
-        <a href="https://philpapers.org/rec/JOHTSP-5" target="_blank" rel="noopener noreferrer">"Tyrannized Souls: Plato's Depiction of the ‘Tyrannical Man’"</a>
-        and
-        <a href="https://philpapers.org/rec/JOHASP-4" target="_blank" rel="noopener noreferrer">"Anarchic Souls: Plato’s Depiction of the ‘Democratic Man’"</a>,
-        among other recent work on Books VIII and IX.
+      <p class="lead">
+        The 2026 meeting of the West Coast Plato Workshop (WCPW) will be held at Chapman University in Orange, California. Below are the meeting focus, dates, and keynote information.
       </p>
 
-      <h2>Submission / Contact</h2>
-      <p>
-        For submission instructions and deadlines, please visit the <a href="submit.html">Submit</a> page or contact the organizers at <a href="mailto:organizer@example.com">organizer@example.com</a>.
+      <!-- Inserted meeting image -->
+      <figure aria-hidden="false" role="group" aria-labelledby="meeting-image-caption">
+        <img src="images/plato-hammock.jpg" alt="Plato hammock" class="meeting-image" />
+        <!-- optional caption; update or remove as you like -->
+        <figcaption id="meeting-image-caption" style="display:none;">Plato hammock</figcaption>
+      </figure>
+
+      <div class="meta" aria-hidden="false">
+        <span>Dates: Fri, May 29 – Sun, May 31, 2026</span>
+        <span>Location: Chapman University, Orange, CA</span>
+      </div>
+
+      <div class="card" aria-labelledby="focus-heading">
+        <h2 id="focus-heading">Meeting focus</h2>
+        <p>The workshop will focus on Books VIII and IX of Plato's Republic.</p>
+
+        <h2>Keynote</h2>
+        <p>
+          The keynote speaker will be Mark Johnstone (McMaster University), author of
+          <a href="https://philpapers.org/rec/JOHTSP-5" target="_blank" rel="noopener noreferrer">"Tyrannized Souls: Plato's Depiction of the ‘Tyrannical Man’"</a>
+          and
+          <a href="https://philpapers.org/rec/JOHASP-4" target="_blank" rel="noopener noreferrer">"Anarchic Souls: Plato’s Depiction of the ‘Democratic Man’"</a>,
+          among other recent work on Books VIII and IX.
+        </p>
+
+        <h2>Submission / Contact (also reachable via the dropdown)</h2>
+        <p>
+          For submission instructions and deadlines see the <a href="#submit">Submit</a> section below or contact the organizers at <a href="mailto:organizer@example.com">organizer@example.com</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- submit section (scrolled-to by meeting2026.html#submit) -->
+    <section id="submit" aria-labelledby="submit-heading">
+      <h2 id="submit-heading" class="page-title">Submit</h2>
+
+      <p class="lead">
+        The WCPW invites submissions for the 2026 meeting to be held at Chapman University in Orange, CA, on May 29 - May 31.
       </p>
-    </div>
+
+      <div class="card" aria-labelledby="submit-instructions">
+        <h2 id="submit-instructions">Submission details</h2>
+        <p>
+          Papers addressing any aspect of Books VIII and IX of the <em>Republic</em>, including the relationship of those books to the larger dialogue and to other works, both in Plato's corpus and beyond Plato, are welcome.
+        </p>
+
+        <p>
+          Please prepare a 500-word abstract, including the paper's title and at least three keywords, for blind review. Submit prepared abstracts to
+          <a href="mailto:mcdavid@chapman.edu">mcdavid@chapman.edu</a> by December 15, 2025.
+        </p>
+      </div>
+    </section>
   </main>
 
   <!-- keep page-level toggle script for meeting details -->
@@ -212,6 +261,5 @@
       }
     }
   </script>
-
 </body>
 </html>
