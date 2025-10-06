@@ -4,8 +4,35 @@
   <meta charset="UTF-8">
   <title>Steering Committee - West Coast Plato Workshop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Menu / subtitle font -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Site stylesheet (contains the header/logo/menu styles we designed) -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Load the dropdown handler once, deferred so it runs after parsing -->
+  <script src="/js/dropdowns.js" defer></script>
+
+  <!-- Page-specific styles to harmonize this page with the header/logo design -->
   <style>
+    body { font-family: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; color: #111; }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: calc(var(--logo-height,170px) + var(--menu-height,56px) + 12px) 20px 3rem;
+    }
+
+    h1.page-title {
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 6px;
+      margin: 0 0 0.75rem 0;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
+
     .about-section {
       margin-bottom: 2em;
       padding-bottom: 1em;
@@ -17,24 +44,101 @@
       padding: 1.5em 2em;
       border-bottom: 1px solid #e0c080;
     }
-    .contact-info {
-      margin-top: 2em;
-      padding: 1em 2em;
-      background: #f9f6ee;
-      border: 1px solid #e0c080;
-      border-radius: 6px;
-      font-size: 1rem;
+
+    h2.smaller-heading {
+      color: #174A7C;
+      font-size: 1.4rem;
+      margin-top: 1.5em;
+      margin-bottom: 0.75em;
+    }
+
+    @media (max-width: 520px) {
+      .container { padding-left: 14px; padding-right: 14px; }
     }
   </style>
 </head>
 <body>
-  <header class="header-with-bg">
-    <h1>West Coast Plato Workshop</h1>
-    <nav>
-      <a href="about.html">About the WCPW</a>
-      <a href="previous-meetings.html">Previous Meetings</a>
-      <a href="meeting2026.html">2026 Meeting</a>
-      <a href="steering.html">Steering Committee</a>
+  <!-- Header with logo and dropdown nav (same markup used on homepage) -->
+  <header>
+    <div class="logo-bar">
+      <a href="index.html#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
+        <svg viewBox="0 0 1000 240"
+             xmlns="http://www.w3.org/2000/svg"
+             role="img"
+             aria-label="West Coast Plato Workshop logo"
+             preserveAspectRatio="xMidYMid meet"
+             focusable="false">
+
+          <!-- First W -->
+          <g transform="translate(384,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
+                  font-weight="600" font-size="96" fill="#174A7C">W</text>
+          </g>
+
+          <!-- C -->
+          <g transform="translate(468,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Sera, Georgia, serif"
+                  font-weight="400" font-size="96" fill="#21B6A8">C</text>
+          </g>
+
+          <!-- P -->
+          <g transform="translate(544,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
+                  font-weight="600" font-size="96" fill="#174A7C">P</text>
+          </g>
+
+          <!-- Last W -->
+          <g transform="translate(636,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Sera, Georgia, serif"
+                  font-weight="400" font-size="96" fill="#21B6A8">W</text>
+          </g>
+
+          <!-- Subtitle -->
+          <text x="500" y="168" text-anchor="middle"
+                font-family="'Josefin Sans', 'Helvetica Neue', Arial, sans-serif"
+                font-size="28" fill="#000000" letter-spacing="8">
+            WEST COAST PLATO WORKSHOP
+          </text>
+        </svg>
+      </a>
+    </div>
+
+    <nav class="top-menu" aria-label="Main navigation">
+      <ul class="nav-list">
+        <!-- About with dropdown -->
+        <li class="nav-item has-dropdown">
+          <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">
+            About
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <ul id="about-menu" class="dropdown" role="menu" aria-label="About submenu">
+            <li role="none"><a role="menuitem" href="index.html#history">What is the WCPW?</a></li>
+            <li role="none"><a role="menuitem" href="previous-meetings.html">Previous Meetings</a></li>
+            <li role="none"><a role="menuitem" href="steering.html">Steering Committee</a></li>
+          </ul>
+        </li>
+
+        <!-- Upcoming Meeting with dropdown -->
+        <li class="nav-item has-dropdown">
+          <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
+            Upcoming Meeting
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <ul id="upcoming-menu" class="dropdown" role="menu" aria-label="Upcoming Meeting submenu">
+            <li role="none"><a role="menuitem" href="meeting2026.html">2026 WCPW at Chapman University</a></li>
+            <li role="none"><a role="menuitem" href="submit.html">Submit</a></li>
+          </ul>
+        </li>
+
+        <!-- Contact -->
+        <li class="nav-item"><a href="steering.html">Contact</a></li>
+      </ul>
     </nav>
   </header>
   <div class="container">
