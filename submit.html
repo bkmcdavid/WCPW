@@ -1,47 +1,115 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-  <meta charset="utf-8" /> 
-  <title>Submit</title> 
-  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-  
-  <style> body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; } form { max-width: 560px; } .field { margin-bottom: 14px; } label { display: block; font-weight: 600; margin-bottom: 6px; } input[type="text"], input[type="email"], input[type="file"] { width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; } .error { color: #b00020; margin-top: 8px; } .success { color: #0a7a2f; margin-top: 8px; } .actions { margin-top: 16px; } button { padding: 8px 14px; font-size: 14px; } .hidden { display: none; } </style> 
-</head> 
-  
-  <body> 
-    <h1>Submit</h1> 
-    <form id="submit-form" novalidate> 
-      <div class="field"> 
-        <label for="name">Your name</label> 
-        <input id="name" name="name" type="text" autocomplete="name" required /> 
-      </div>
-      <div class="field">
-        <label for="email">Your email</label>
-        <input id="email" name="email" type="email" autocomplete="email" required />
-      </div>
-      
-      <div class="field">
-        <label for="file">Upload file (PDF or Word)</label>
-        <input id="file" name="file" type="file"
-               accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-               required />
-        <small>Max 10 MB.</small>
-      </div>
-      
-      <!-- Honeypot anti-spam -->
-      <div class="hidden" aria-hidden="true">
-        <label for="website">Website</label>
-        <input id="website" name="website" type="text" tabindex="-1" />
-      </div>
-      
-      <div id="msg" class="" role="status" aria-live="polite"></div>
-      
-      <div class="actions">
-        <button id="submit-btn" type="submit">Submit</button>
-      </div>
 
-    </form> 
-    
-    <script> const form = document.getElementById('submit-form'); const nameEl = document.getElementById('name'); const emailEl = document.getElementById('email'); const fileEl = document.getElementById('file'); const hpEl = document.getElementById('website'); const btn = document.getElementById('submit-btn'); const msg = document.getElementById('msg'); const MAX_SIZE = 10 * 1024 * 1024; // 10 MB const allowedTypes = new Set([ 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ]); function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); } function validate(showMessages = false) { msg.textContent = ''; msg.className = ''; const name = nameEl.value.trim(); const email = emailEl.value.trim(); const file = fileEl.files[0]; if (!name) { if (showMessages) { msg.textContent = 'Please enter your name.'; msg.className = 'error'; } return false; } if (!isValidEmail(email)) { if (showMessages) { msg.textContent = 'Please enter a valid email address.'; msg.className = 'error'; } return false; } if (!file) { if (showMessages) { msg.textContent = 'Please choose a file to upload.'; msg.className = 'error'; } return false; } if (!allowedTypes.has(file.type)) { // Some browsers may not set type; fallback to extension check const fn = file.name.toLowerCase(); const okExt = fn.endsWith('.pdf') || fn.endsWith('.doc') || fn.endsWith('.docx'); if (!okExt) { if (showMessages) { msg.textContent = 'File must be a PDF or Word document.'; msg.className = 'error'; } return false; } } if (file.size > MAX_SIZE) { if (showMessages) { msg.textContent = 'File is too large (max 10 MB).'; msg.className = 'error'; } return false; } return true; } form.addEventListener('submit', async (e) => { e.preventDefault(); if (hpEl.value.trim()) { // Bot: pretend success msg.textContent = 'Submitted.'; msg.className = 'success'; form.reset(); return; } if (!validate(true)) return; const fd = new FormData(); fd.append('name', nameEl.value.trim()); fd.append('email', emailEl.value.trim()); fd.append('file', fileEl.files[0]); btn.disabled = true; btn.textContent = 'Submitting…'; msg.textContent = ''; msg.className = ''; try { const res = await fetch('/api/submit', { method: 'POST', body: fd }); const data = await res.json().catch(() => ({})); if (!res.ok) { throw new Error(data.message || `Submit failed (${res.status})`); } msg.textContent = 'Thank you! Your submission has been received. A confirmation email was sent.'; msg.className = 'success'; form.reset(); } catch (ex) { msg.textContent = ex.message || 'Something went wrong. Please try again.'; msg.className = 'error'; } finally { btn.disabled = false; btn.textContent = 'Submit'; } }); </script> 
-  </body> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Submit - West Coast Plato Workshop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Menu / subtitle font -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Site stylesheet (contains the header/logo/menu styles) -->
+  <link rel="stylesheet" href="/styles.css" />
+  <style>html { scroll-behavior: smooth; }</style>
+</head>
+<body>
+  <a id="top"></a>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header>
+    <div class="logo-bar">
+      <a href="index.html#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
+        <svg viewBox="0 0 1000 240"
+             xmlns="http://www.w3.org/2000/svg"
+             role="img"
+             aria-label="West Coast Plato Workshop logo"
+             preserveAspectRatio="xMidYMid meet"
+             focusable="false">
+
+          <!-- First W -->
+          <g transform="translate(384,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
+                  font-weight="600" font-size="96" fill="#174A7C">W</text>
+          </g>
+
+          <!-- C -->
+          <g transform="translate(468,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Sera, Georgia, serif"
+                  font-weight="400" font-size="96" fill="#21B6A8">C</text>
+          </g>
+
+          <!-- P -->
+          <g transform="translate(544,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
+                  font-weight="600" font-size="96" fill="#174A7C">P</text>
+          </g>
+
+          <!-- Last W -->
+          <g transform="translate(636,120) scale(1.25,1.22)">
+            <text x="0" y="0" text-anchor="middle"
+                  font-family="Proxima Sera, Georgia, serif"
+                  font-weight="400" font-size="96" fill="#21B6A8">W</text>
+          </g>
+
+          <!-- Subtitle -->
+          <text x="500" y="168" text-anchor="middle"
+                font-family="'Josefin Sans', 'Helvetica Neue', Arial, sans-serif"
+                font-size="28" fill="#000000" letter-spacing="8">
+            WEST COAST PLATO WORKSHOP
+          </text>
+        </svg>
+      </a>
+    </div>
+
+    <nav class="top-menu" aria-label="Main navigation">
+      <ul class="nav-list">
+        <!-- About with dropdown -->
+        <li class="nav-item has-dropdown">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">
+            About
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <ul id="about-menu" class="dropdown" role="menu" aria-label="About submenu">
+            <li role="none"><a role="menuitem" href="index.html#history">What is the WCPW?</a></li>
+            <li role="none"><a role="menuitem" href="previous-meetings.html">Previous Meetings</a></li>
+          </ul>
+        </li>
+
+        <!-- Upcoming Meeting with dropdown -->
+        <li class="nav-item has-dropdown">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
+            Upcoming Meeting
+            <span class="chev" aria-hidden="true">▾</span>
+          </button>
+
+          <ul id="upcoming-menu" class="dropdown" role="menu" aria-label="Upcoming Meeting submenu">
+            <li role="none"><a role="menuitem" href="meeting2026.html">2026 WCPW at Chapman University</a></li>
+            <li role="none"><a role="menuitem" href="submit.html">Submit</a></li>
+          </ul>
+        </li>
+
+        <!-- Contact -->
+        <li class="nav-item"><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container" id="content">
+    <h1 class="page-title">Submit</h1>
+
+    <p class="lead">The WCPW invites submissions for the 2026 meeting to be held at Chapman University in Orange, CA, on May 29 - May 31.</p>
+
+    <p>Papers addressing any aspect of Books VIII and IX of the <em>Republic</em>, including the relationship of those books to the larger dialogue and to other works, both in Plato's corpus and beyond Plato, are welcome.</p>
+
+    <p>Please prepare a 500-word abstract, including the paper's title and at least three keywords, for blind review. Submit prepared abstracts to <a href="mailto:mcdavid@chapman.edu">mcdavid@chapman.edu</a> by December 15, 2025.</p>
+  </main>
+
+  <!-- Shared dropdown behavior -->
+  <script src="/js/dropdowns.js"></script>
+</body>
 </html>
