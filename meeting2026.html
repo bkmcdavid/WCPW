@@ -24,11 +24,10 @@
   <!-- Load the dropdown handler once, deferred so it runs after parsing -->
   <script src="/js/dropdowns.js" defer></script>
 
-  <!-- Page-specific styles: smaller meeting image, use global container spacing -->
+  <!-- Page-specific styles -->
   <style>
     body { font-family: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif; color: #111; }
 
-    /* Use the global .container spacing (based on --heading-gap) so heading offsets match other pages */
     .container {
       max-width: 920px;
       margin: 0 auto;
@@ -44,7 +43,18 @@
       text-transform: uppercase;
     }
 
-    /* keep the lead centered visually on this page */
+    h2.section-title {
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 4px;
+      margin: 2.5rem 0 1rem 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: #174A7C;
+      border-bottom: 1px solid rgba(23,74,124,0.15);
+      padding-bottom: 0.5rem;
+    }
+
     .lead {
       max-width: 76ch;
       margin: 0.6rem auto 1.25rem auto;
@@ -54,10 +64,9 @@
       font-size: 1rem;
     }
 
-    /* Meeting image styled smaller for this page */
     .meeting-image {
       width: 100%;
-      max-width: 420px; /* intentionally smaller */
+      max-width: 420px;
       display: block;
       margin: 1.25rem auto;
       border-radius: 8px;
@@ -66,36 +75,145 @@
       height: auto;
     }
 
-    .meta {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 1.25rem;
-      color: #174A7C;
-      font-weight: 600;
-    }
-
     .card {
       background: #fff;
       border-radius: 8px;
       padding: 1.1rem 1.25rem;
       box-shadow: 0 1px 0 rgba(0,0,0,0.03);
-      border-left: 4px solid rgba(23,74,124,0.08);
       margin-bottom: 1rem;
       line-height: 1.6;
     }
 
-    .card h2 {
+    .card h2, .card h3 {
       margin-top: 0;
       margin-bottom: 0.6rem;
       color: #174A7C;
       font-size: 1.05rem;
     }
 
+    .card h3 {
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+    }
+
+    .card p {
+      margin: 0.5rem 0 0.5rem 1.5rem;
+    }
+
+    .card > p:first-child {
+      margin-left: 0;
+    }
+
+    .map-container {
+      width: calc(100% - 1.5rem);
+      max-width: calc(100% - 1.5rem);
+      margin: 1rem 0 1rem 1.5rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 350px;
+      border: 0;
+    }
+
+    .venue-list, .restaurant-list, .coffee-list, .treasure-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0.75rem 1.5rem;
+    }
+
+    .venue-list li, .restaurant-list li, .coffee-list li, .treasure-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .venue-list li:last-child, .restaurant-list li:last-child, .coffee-list li:last-child, .treasure-list li:last-child {
+      border-bottom: none;
+    }
+
+    .venue-name, .restaurant-name, .coffee-name, .treasure-name {
+      font-weight: 600;
+      color: #174A7C;
+    }
+
+    .venue-name a, .restaurant-name a, .coffee-name a, .treasure-name a {
+      color: #174A7C;
+      text-decoration: none;
+    }
+
+    .venue-name a:hover, .restaurant-name a:hover, .coffee-name a:hover, .treasure-name a:hover {
+      text-decoration: underline;
+    }
+
+    .price-range {
+      color: #21B6A8;
+      font-weight: 500;
+      margin-left: 0.5rem;
+    }
+
+    .restaurant-category {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #555;
+      margin: 1.25rem 0 0.5rem 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .venue-desc, .restaurant-desc, .coffee-desc, .treasure-desc {
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #666;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .picks-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .picks-header h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .picks-header .picks-icon {
+      font-size: 1.2rem;
+    }
+
+    .airport-note {
+      background: rgba(33, 182, 168, 0.08);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0 1rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .airport-note p {
+      margin-left: 0;
+    }
+
+    .airport-note strong {
+      color: #174A7C;
+    }
+
     @media (max-width: 520px) {
       .container { padding-left: 14px; padding-right: 14px; }
-      .meta { flex-direction: column; gap: 8px; }
       .meeting-image { margin: 1rem auto; max-width: 94vw; }
+      .map-container iframe { height: 280px; }
     }
   </style>
 </head>
@@ -152,13 +270,15 @@
         </li>
 
         <li class="nav-item has-dropdown">
-          <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
-            Upcoming Meeting
+          <a href="meeting2026.html" class="nav-link-text">Upcoming Meeting</a>
+          <button type="button" class="nav-trigger nav-trigger-chevron" aria-haspopup="true" aria-expanded="false" aria-controls="upcoming-menu">
             <span class="chev" aria-hidden="true">▾</span>
           </button>
           <ul id="upcoming-menu" class="dropdown" role="menu" aria-label="Upcoming Meeting submenu">
-            <li role="none"><a role="menuitem" href="meeting2026.html#meeting2026">2026 WCPW</a></li>
-            <li role="none"><a role="menuitem" href="meeting2026.html#submit">Submit</a></li>
+            <li role="none"><a role="menuitem" href="meeting2026.html#schedule">Schedule</a></li>
+            <li role="none"><a role="menuitem" href="meeting2026.html#getting-there">How to Get to the Workshop</a></li>
+            <li role="none"><a role="menuitem" href="meeting2026.html#accommodations">Accommodations &amp; Restaurants</a></li>
+            <li role="none"><a role="menuitem" href="meeting2026.html#socal-treasures">SoCal Treasures</a></li>
           </ul>
         </li>
 
@@ -168,99 +288,220 @@
   </header>
 
   <main class="container" id="content">
+    
+    <!-- HEADER SECTION WITH IMAGE -->
     <section id="meeting2026" aria-labelledby="meeting-title">
       <h1 id="meeting-title" class="page-title">2026 West Coast Plato Workshop</h1>
 
       <p class="lead">
-        The 19th annual meeting of the WCPW will be held at Chapman University in Orange, California. Below are the meeting focus, dates, and keynote information.
+        The 19th annual meeting of the WCPW will be held at Chapman University in Orange, California. Below are the details of the workshop and logistical information for participants.
       </p>
 
       <figure role="group" aria-labelledby="meeting-image-caption">
         <img src="images/plato-hammock.jpg" alt="Plato hammock" class="meeting-image" />
         <figcaption id="meeting-image-caption" style="display:none;">Plato hammock</figcaption>
       </figure>
+    </section>
 
-      <div class="meta" aria-hidden="false">
-        <span>Dates: Fri, May 29 – Sun, May 31, 2026</span>
-        <span>Location: Chapman University, Orange, CA</span>
-      </div>
-
+    <!-- SCHEDULE SECTION -->
+    <section id="schedule" aria-labelledby="schedule-title">
+      <h2 id="schedule-title" class="section-title">Schedule</h2>
+      
       <div class="card" aria-labelledby="focus-heading">
-        <h2 id="focus-heading">Meeting focus</h2>
-        <p>The workshop will focus on Books VIII and IX of Plato's Republic.</p>
+        <h2>Dates</h2>
+        <p>Friday, May 29 – Sunday, May 31, 2026</p>
+
+        <h2 id="focus-heading">Meeting Focus</h2>
+        <p>The workshop will focus on Books VIII and IX of Plato's <em>Republic</em>.</p>
 
         <h2>Keynote</h2>
         <p>
           The keynote speaker will be Mark Johnstone (McMaster University), author of
-          <a href="https://philpapers.org/rec/JOHTSP-5" target="_blank" rel="noopener noreferrer">"Tyrannized Souls: Plato's Depiction of the ‘Tyrannical Man’"</a>
+          <a href="https://philpapers.org/rec/JOHTSP-5" target="_blank" rel="noopener noreferrer">"Tyrannized Souls: Plato's Depiction of the 'Tyrannical Man'"</a>
           and
-          <a href="https://philpapers.org/rec/JOHASP-4" target="_blank" rel="noopener noreferrer">"Anarchic Souls: Plato’s Depiction of the ‘Democratic Man’"</a>.
+          <a href="https://philpapers.org/rec/JOHASP-4" target="_blank" rel="noopener noreferrer">"Anarchic Souls: Plato's Depiction of the 'Democratic Man'"</a>.
         </p>
 
-        <h2>Participants</h2>
-        <p>
-          We anticipate ten main papers and ten commentators. All who are interested in participating are welcome to submit an abstract (required for consideration for main papers) or to email the meeting organizer (Brennan McDavid, <a href="mailto:mcdavid@chapman.edu">mcdavid@chapman.edu</a>) to indicate interest in commenting.
-        </p>
-
-
-    <section id="submit" aria-labelledby="submit-heading">
-      <h2 id="submit-heading" class="page-title">Submit</h2>
-
-      <p class="lead">
-        Submissions are open for the 2026 meeting of the WCPW to be held at Chapman University in Orange, CA, on May 29 - May 31. 
-      </p>  
-      <p>
-        Last day to submit is December 15, 2025.
-      </p>
-
-      <div class="card" aria-labelledby="submit-instructions">
-        <h2 id="abstract-prep">Preparing Your Abstract</h2>
-        <p>
-          Papers addressing any aspect of Books VIII and IX of the <em>Republic</em>, including the relationship of those books to the larger dialogue and to other works, both in Plato's corpus and beyond Plato, are welcome.
-        </p>
-        <p>
-          Only an abstract (not full paper) is necessary at this stage. Please limit your abstract to 500 words. Include a title and three keywords. 
-        </p>
-        <p>
-          Your abstract should be prepared for blind review. Do not include your name in the document. 
-        </p>
-        <p>
-          Acceptable file types:
-          <ul>
-            <li>PDF</li>
-            <li>doc</li>
-            <li>docx</li>
-          </ul>
-        </p>
-
-        <h2 id="submit-instructions">Submission Instructions</h2>
-        <p>
-           Submit prepared abstracts to Brennan McDavid (meeting organizer) at
-          <a href="mailto:mcdavid@chapman.edu">mcdavid@chapman.edu</a> by December 15, 2025.
-        </p>
-        <p>
-          All inquiries regarding submissions should be directed to Dr. McDavid.
+        <p class="coming-soon">
+          Full schedule with participant names, paper titles, and commentators coming soon.
         </p>
       </div>
     </section>
+
+    <!-- HOW TO GET TO THE WORKSHOP SECTION -->
+    <section id="getting-there" aria-labelledby="getting-there-title">
+      <h2 id="getting-there-title" class="section-title">How to Get to the Workshop</h2>
+      
+      <div class="card">
+        <h2>Chapman University</h2>
+        <p>
+          The workshop will be hosted by <a href="https://www.chapman.edu" target="_blank" rel="noopener noreferrer">Chapman University</a>, situated in the City of Orange at the heart of Orange County.
+        </p>
+
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.8599089394784!2d-117.85350068479373!3d33.79289398067789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcd7d699330687%3A0x9083a7c8a2ab5c35!2sChapman%20University!5e0!3m2!1sen!2sus!4v1706000000000!5m2!1sen!2sus"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Chapman University campus map">
+          </iframe>
+        </div>
+
+        <h3>Workshop Venue: The Killefer School Building</h3>
+        <p>
+          Sessions will take place in Chapman's newest building renovation: the <a href="https://www.chapman.edu/research/institutes-and-centers/quantum-studies/killefer/index.aspx" target="_blank" rel="noopener noreferrer">Killefer School building</a>, home to Chapman's Institute for Quantum Studies. This beautifully restored 1931 landmark holds a unique place in American civil rights history—it was one of the first schools in California to desegregate, welcoming students of all backgrounds in 1944.
+        </p>
+
+        <h3>Getting Here by Air</h3>
+        <div class="airport-note">
+          <p><strong>Recommended:</strong> John Wayne Airport (SNA) is the nearest airport, located just 15 minutes from campus. Most domestic flights to Southern California can connect through SNA.</p>
+          <p><strong>Avoid if possible:</strong> Los Angeles International Airport (LAX) is significantly farther (approximately 45–90 minutes depending on traffic) and should be avoided except for international flights with no SNA connection.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCOMMODATIONS & RESTAURANTS SECTION -->
+    <section id="accommodations" aria-labelledby="accommodations-title">
+      <h2 id="accommodations-title" class="section-title">Local Accommodations &amp; Restaurants</h2>
+      
+      <div class="card">
+        <h2>Hotels</h2>
+        <p>The following hotels are convenient options for workshop participants. All require a short drive to campus, but <strong>shuttle service will be arranged by the WCPW organizers</strong> for participants staying at these locations.</p>
+        
+        <ul class="venue-list">
+          <li>
+            <span class="venue-name"><a href="https://www.ayreshotels.com/alo-hotel-by-ayres" target="_blank" rel="noopener noreferrer">ALO Hotel by Ayres</a></span>
+          </li>
+          <li>
+            <span class="venue-name"><a href="https://www.ayreshotels.com/ayres-hotel-orange" target="_blank" rel="noopener noreferrer">Ayres Hotel Orange</a></span>
+          </li>
+          <li>
+            <span class="venue-name"><a href="https://www.hotelfera.com/" target="_blank" rel="noopener noreferrer">Hotel Fera</a></span>
+          </li>
+        </ul>
+
+        <div class="picks-header">
+          <span class="picks-icon">☕</span>
+          <h3>Brennan's Coffee Picks</h3>
+        </div>
+        
+        <ul class="coffee-list">
+          <li>
+            <span class="coffee-name"><a href="https://www.google.com/maps/search/?api=1&query=Play+Coffee+101+E+Chapman+Ave+Orange+CA" target="_blank" rel="noopener noreferrer">Play Coffee</a></span>
+            <p class="coffee-desc">Specialty coffee in a gorgeously converted historic bank building on the Orange Circle. The kind of place where baristas know their single-origins and the oat milk is always perfectly steamed.</p>
+          </li>
+          <li>
+            <span class="coffee-name"><a href="https://www.google.com/maps/search/?api=1&query=Contra+Coffee+Tea+115+N+Orange+St+Orange+CA" target="_blank" rel="noopener noreferrer">Contra Coffee &amp; Tea</a></span>
+            <p class="coffee-desc">Creative iced coffees and teas on tap with rotating flavors. A neighborhood gem with a cozy, unpretentious atmosphere perfect for reading Plato before sessions.</p>
+          </li>
+          <li>
+            <span class="coffee-name"><a href="https://www.google.com/maps/search/?api=1&query=Zinc+Cafe+Market+195+S+Glassell+St+Orange+CA" target="_blank" rel="noopener noreferrer">Zinc Café &amp; Market</a></span>
+            <p class="coffee-desc">Part café, part market, part lifestyle. Great coffee alongside fresh pastries, and an airy indoor-outdoor space that captures the SoCal spirit.</p>
+          </li>
+        </ul>
+
+        <div class="picks-header">
+          <span class="picks-icon">🍽️</span>
+          <h3>Brennan's Restaurant Picks</h3>
+        </div>
+
+        <h4 class="restaurant-category">Quick</h4>
+        
+        <ul class="restaurant-list">
+          <li>
+            <span class="restaurant-name"><a href="https://www.google.com/maps/search/?api=1&query=Bruxie+Orange+CA" target="_blank" rel="noopener noreferrer">Bruxie</a></span>
+            <span class="price-range">$10–20</span>
+            <p class="restaurant-desc">Waffle sandwiches and crispy fried chicken in a fun, casual setting. Perfect for a quick and satisfying lunch between sessions.</p>
+          </li>
+          <li>
+            <span class="restaurant-name"><a href="https://www.google.com/maps/search/?api=1&query=The+Taco+Stand+240+W+Chapman+Ave+Orange+CA" target="_blank" rel="noopener noreferrer">The Taco Stand</a></span>
+            <span class="price-range">$10–20</span>
+            <p class="restaurant-desc">Tijuana-style street tacos with handmade tortillas pressed to order. Fast, casual, and beloved by locals for the California burrito.</p>
+          </li>
+        </ul>
+
+        <h4 class="restaurant-category">Take Your Time</h4>
+        
+        <ul class="restaurant-list">
+          <li>
+            <span class="restaurant-name"><a href="https://www.google.com/maps/search/?api=1&query=Anepalco+Mexican+Restaurant+3737+W+Chapman+Ave+Orange+CA" target="_blank" rel="noopener noreferrer">Anepalco</a></span>
+            <span class="price-range">$20–30</span>
+            <p class="restaurant-desc">French-Mexican fusion located at ALO Hotel—convenient for those staying nearby. Creative dishes and excellent Sunday brunch.</p>
+          </li>
+          <li>
+            <span class="restaurant-name"><a href="https://www.google.com/maps/search/?api=1&query=Culinary+Dropout+191+N+Orange+St+Orange+CA" target="_blank" rel="noopener noreferrer">Culinary Dropout</a></span>
+            <span class="price-range">$20–30</span>
+            <p class="restaurant-desc">Lively gastropub with live music, craft cocktails, and comfort food like pretzels with fondue. Great for groups and casual evening gatherings.</p>
+          </li>
+          <li>
+            <span class="restaurant-name"><a href="https://www.google.com/maps/search/?api=1&query=Gabbis+Mexican+Kitchen+141+S+Glassell+St+Orange+CA" target="_blank" rel="noopener noreferrer">Gabbi's Mexican Kitchen</a></span>
+            <span class="price-range">$20–30</span>
+            <p class="restaurant-desc">Michelin Bib Gourmand recipient serving elevated regional Mexican cuisine. The mole and signature tacos are exceptional.</p>
+          </li>
+          <li>
+            <span class="restaurant-name"><a href="https://www.google.com/maps/search/?api=1&query=O+SEA+109+S+Glassell+St+Orange+CA" target="_blank" rel="noopener noreferrer">O SEA</a></span>
+            <span class="price-range">$20–30</span>
+            <p class="restaurant-desc">LA Times "Best Seafood Restaurant" in Orange County. Fresh ceviche, poke, and oysters in a stylish historic building on the Plaza. 🍷 Wino destination.</p>
+          </li>
+          <li>
+            <span class="restaurant-name"><a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+Irene+123+N+Olive+St+Orange+CA" target="_blank" rel="noopener noreferrer">Pizzeria Irene</a></span>
+            <span class="price-range">$20–30</span>
+            <p class="restaurant-desc">Wood-fired Neapolitan pizza in a cozy, intimate space. The owner trained in Italy and crafts exceptional pies with locally sourced ingredients. 🍷 Wino destination.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SOCAL TREASURES SECTION -->
+    <section id="socal-treasures" aria-labelledby="treasures-title">
+      <h2 id="treasures-title" class="section-title">SoCal Treasures</h2>
+      
+      <div class="card">
+        <p>If you have time on either end of your visit, here are some amazing attractions within reach of Orange:</p>
+        
+        <ul class="treasure-list">
+          <li>
+            <span class="treasure-name"><a href="https://www.mlb.com/angels/ballpark" target="_blank" rel="noopener noreferrer">Angel Stadium</a></span>
+            <p class="treasure-desc">Catch an Angels game just 10 minutes from campus. A classic ballpark experience with views of the surrounding mountains.</p>
+          </li>
+          <li>
+            <span class="treasure-name"><a href="https://www.visitcalifornia.com/places-to-visit/orange-county-beaches/" target="_blank" rel="noopener noreferrer">The Beaches</a></span>
+            <p class="treasure-desc">Huntington Beach, Newport Beach, and Laguna Beach are all 20–30 minutes away. Watch the sunset over the Pacific after a day of philosophical dialogue.</p>
+          </li>
+          <li>
+            <span class="treasure-name"><a href="https://www.parks.ca.gov/?page_id=644" target="_blank" rel="noopener noreferrer">Crystal Cove State Park</a></span>
+            <p class="treasure-desc">Stunning coastal hiking trails and a historic beach cottage district about 25 minutes away. Perfect for a morning hike before sessions.</p>
+          </li>
+          <li>
+            <span class="treasure-name"><a href="https://disneyland.disney.go.com/" target="_blank" rel="noopener noreferrer">Disneyland Resort</a></span>
+            <p class="treasure-desc">The original Magic Kingdom is just 10 minutes from Chapman. Even philosophers deserve a little wonder.</p>
+          </li>
+          <li>
+            <span class="treasure-name"><a href="https://www.getty.edu/visit/villa/" target="_blank" rel="noopener noreferrer">The Getty Villa (Malibu)</a></span>
+            <p class="treasure-desc">Roman and Greek antiquities in a stunning recreation of a Roman country house overlooking the Pacific. Free admission; about an hour's drive.</p>
+          </li>
+          <li>
+            <span class="treasure-name"><a href="https://hilbertmuseum.org/" target="_blank" rel="noopener noreferrer">The Hilbert Museum of California Art</a></span>
+            <p class="treasure-desc">Right on Chapman's campus, this recently expanded museum houses one of the world's largest collections of California narrative art. Free admission.</p>
+          </li>
+          <li>
+            <span class="treasure-name"><a href="https://www.huntington.org/" target="_blank" rel="noopener noreferrer">The Huntington Library</a></span>
+            <p class="treasure-desc">Renowned art collections, rare books (including a Gutenberg Bible), and spectacular botanical gardens in San Marino. About 45 minutes away.</p>
+          </li>
+          <li>
+            <span class="treasure-name"><a href="https://www.nixonlibrary.gov/" target="_blank" rel="noopener noreferrer">Nixon Presidential Library</a></span>
+            <p class="treasure-desc">Presidential museum and birthplace in Yorba Linda, just 15 minutes away. Fascinating Cold War history and beautiful grounds.</p>
+          </li>
+          <li>
+            <span class="treasure-name"><a href="https://www.scfta.org/" target="_blank" rel="noopener noreferrer">Segerstrom Center for the Arts</a></span>
+            <p class="treasure-desc">Home of the Pacific Symphony, about 15 minutes away in Costa Mesa. World-class performances in a stunning venue.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
   </main>
 
-  <script>
-    function toggleDetails(id, btn) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      if (el.style.display === "block") {
-        el.style.display = "none";
-        btn.textContent = "more...";
-        btn.setAttribute('aria-expanded', 'false');
-        el.setAttribute('aria-hidden', 'true');
-      } else {
-        el.style.display = "block";
-        btn.textContent = "less...";
-        btn.setAttribute('aria-expanded', 'true');
-        el.setAttribute('aria-hidden', 'false');
-      }
-    }
-  </script>
 </body>
 </html>
