@@ -125,6 +125,7 @@ a {
   font-weight: 500;
   color: #222;
   cursor: pointer;
+  text-decoration: none;
 }
 
 /* chevron */
