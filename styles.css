@@ -128,6 +128,22 @@ a {
   text-decoration: none;
 }
 
+/* Split nav item: text link + chevron button */
+.nav-link-text {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 0 8px 6px;
+  font-family: var(--ui-font);
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #222;
+  text-decoration: none;
+}
+
+.nav-trigger-chevron {
+  padding: 8px 6px 8px 4px;
+}
+
 /* chevron */
 .chev { font-size: .85em; color: rgba(0,0,0,0.6); }
 
