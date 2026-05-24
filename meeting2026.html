@@ -210,39 +210,31 @@
       color: #174A7C;
     }
 
-    .abstract-toggle {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    .abstract-toggle summary {
+    .abstract-link {
       cursor: pointer;
       color: #174A7C;
       font-weight: 600;
-      list-style: none;
-      display: inline-block;
+      font-size: 0.9rem;
       user-select: none;
+      margin-left: 0.25rem;
+      white-space: nowrap;
     }
 
-    .abstract-toggle summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .abstract-toggle summary::before {
+    .abstract-link::before {
       content: "▸ ";
       display: inline-block;
-      transition: transform 0.15s ease;
     }
 
-    .abstract-toggle[open] summary::before {
+    .abstract-link.open::before {
       content: "▾ ";
     }
 
-    .abstract-toggle summary:hover {
+    .abstract-link:hover {
       text-decoration: underline;
     }
 
     .abstract-text {
+      display: block;
       margin-top: 0.5rem;
       padding: 0.75rem 1rem;
       background: rgba(23, 74, 124, 0.04);
@@ -372,13 +364,10 @@
           <strong style="color: var(--teal-blue);">4:00 – 6:00 PM</strong><br>
           <strong>Keynote Address</strong><br>
           <strong style="color: var(--deep-blue);">Mark Johnstone</strong>, McMaster University<br>
-          <em>"Plato on Becoming Bad: Character Formation in Republic 8-9"</em>
-          <details class="abstract-toggle">
-            <summary>Abstract</summary>
-            <div class="abstract-text">
-              In <em>Republic</em> 8-9, Socrates describes the nature and emergence of the four main kinds of vice, in both city and soul. In the political narrative, he describes the decline of a good polis through the progressively more flawed forms of timocracy, oligarchy, democracy, and tyranny. In the corresponding psychological narrative, however, he describes, not the decline of a single person into ever worse forms of vice, as we might expect, but rather a series of distinct people, each of whom is the child of a person of the previous type. This difference, I argue, is deliberate and required by Plato's views on character formation; for while a single polis can change steadily over time, a human being develops their character in a patterned way across their lifetime, with the early years being the most important. In this paper, I examine what we can learn about Plato's views on character formation from his depiction of the emergence of various kinds of vice in <em>Republic</em> 8-9. I argue these passages apply Plato's idea that our souls are "malleable" when we are young. More specifically, they integrate this idea about character formation in childhood with the city-soul analogy, via the idea that each of us establishes a "ruler" and a "constitution" within. I explore how this happens and what this political language means, concretely, when it is applied in the context of psychology. I also note how certain passages complicate the idea that our character is fixed by adulthood, by describing character change later in life.
-            </div>
-          </details>
+          <em>"Plato on Becoming Bad: Character Formation in Republic 8-9"</em> <span class="abstract-link" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'; this.classList.toggle('open');">Abstract</span>
+          <span class="abstract-text" style="display: none;">
+            In <em>Republic</em> 8-9, Socrates describes the nature and emergence of the four main kinds of vice, in both city and soul. In the political narrative, he describes the decline of a good polis through the progressively more flawed forms of timocracy, oligarchy, democracy, and tyranny. In the corresponding psychological narrative, however, he describes, not the decline of a single person into ever worse forms of vice, as we might expect, but rather a series of distinct people, each of whom is the child of a person of the previous type. This difference, I argue, is deliberate and required by Plato's views on character formation; for while a single polis can change steadily over time, a human being develops their character in a patterned way across their lifetime, with the early years being the most important. In this paper, I examine what we can learn about Plato's views on character formation from his depiction of the emergence of various kinds of vice in <em>Republic</em> 8-9. I argue these passages apply Plato's idea that our souls are "malleable" when we are young. More specifically, they integrate this idea about character formation in childhood with the city-soul analogy, via the idea that each of us establishes a "ruler" and a "constitution" within. I explore how this happens and what this political language means, concretely, when it is applied in the context of psychology. I also note how certain passages complicate the idea that our character is fixed by adulthood, by describing character change later in life.
+          </span>
         </p>
 
         <p>
