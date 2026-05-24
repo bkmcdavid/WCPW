@@ -210,6 +210,50 @@
       color: #174A7C;
     }
 
+    .abstract-toggle {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .abstract-toggle summary {
+      cursor: pointer;
+      color: #174A7C;
+      font-weight: 600;
+      list-style: none;
+      display: inline-block;
+      user-select: none;
+    }
+
+    .abstract-toggle summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .abstract-toggle summary::before {
+      content: "▸ ";
+      display: inline-block;
+      transition: transform 0.15s ease;
+    }
+
+    .abstract-toggle[open] summary::before {
+      content: "▾ ";
+    }
+
+    .abstract-toggle summary:hover {
+      text-decoration: underline;
+    }
+
+    .abstract-text {
+      margin-top: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: rgba(23, 74, 124, 0.04);
+      border-left: 3px solid #21B6A8;
+      border-radius: 4px;
+      color: #333;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
     @media (max-width: 520px) {
       .container { padding-left: 14px; padding-right: 14px; }
       .meeting-image { margin: 1rem auto; max-width: 94vw; }
@@ -328,7 +372,13 @@
           <strong style="color: var(--teal-blue);">4:00 – 6:00 PM</strong><br>
           <strong>Keynote Address</strong><br>
           <strong style="color: var(--deep-blue);">Mark Johnstone</strong>, McMaster University<br>
-          <em>Title TBA</em>
+          <em>"Plato on Becoming Bad: Character Formation in Republic 8-9"</em>
+          <details class="abstract-toggle">
+            <summary>Abstract</summary>
+            <div class="abstract-text">
+              In <em>Republic</em> 8-9, Socrates describes the nature and emergence of the four main kinds of vice, in both city and soul. In the political narrative, he describes the decline of a good polis through the progressively more flawed forms of timocracy, oligarchy, democracy, and tyranny. In the corresponding psychological narrative, however, he describes, not the decline of a single person into ever worse forms of vice, as we might expect, but rather a series of distinct people, each of whom is the child of a person of the previous type. This difference, I argue, is deliberate and required by Plato's views on character formation; for while a single polis can change steadily over time, a human being develops their character in a patterned way across their lifetime, with the early years being the most important. In this paper, I examine what we can learn about Plato's views on character formation from his depiction of the emergence of various kinds of vice in <em>Republic</em> 8-9. I argue these passages apply Plato's idea that our souls are "malleable" when we are young. More specifically, they integrate this idea about character formation in childhood with the city-soul analogy, via the idea that each of us establishes a "ruler" and a "constitution" within. I explore how this happens and what this political language means, concretely, when it is applied in the context of psychology. I also note how certain passages complicate the idea that our character is fixed by adulthood, by describing character change later in life.
+            </div>
+          </details>
         </p>
 
         <p>
@@ -356,24 +406,21 @@
           <span style="color: var(--muted); font-size: 0.9rem;">Comments by <strong>George Walter</strong>, Pasco-Hernando State College</span>
         </p>
 
-        <p style="color: var(--muted); font-style: italic; font-size: 0.9rem;">Lunch · 12:15 – 1:15 PM</p>
+        <p style="color: var(--muted); font-style: italic; font-size: 0.9rem;">Lunch · 12:15 – 12:45 PM</p>
 
         <p>
-          <strong style="color: var(--teal-blue);">1:15 – 2:45 PM</strong><br>
+          <strong style="color: var(--teal-blue);">12:45 – 1:30 PM</strong><br>
+          <strong>WCPW Business Meeting</strong>
+        </p>
+
+        <p style="color: var(--muted); font-style: italic; font-size: 0.9rem;">Break · 1:30 – 3:00 PM</p>
+
+        <p>
+          <strong style="color: var(--teal-blue);">3:00 – 4:30 PM</strong><br>
           <span style="color: var(--muted); font-size: 0.9rem;">Chair: <strong>Zih-Syuan "Tom" Chiu</strong>, Binghamton University</span><br>
           <strong style="color: var(--deep-blue);">Eva Odzuck</strong>, University of Regensburg<br>
           <em>"Beautiful and endangered in its liberty: Understanding Plato's critique of democracy"</em><br>
           <span style="color: var(--muted); font-size: 0.9rem;">Comments by <strong>Merrick Anderson</strong>, University of Southern California</span>
-        </p>
-
-        <p style="color: var(--muted); font-style: italic; font-size: 0.9rem;">Break · 2:45 – 3:00 PM</p>
-
-        <p>
-          <strong style="color: var(--teal-blue);">3:00 – 4:30 PM</strong><br>
-          <span style="color: var(--muted); font-size: 0.9rem;">Chair: <strong>Tang Li</strong>, UCLA</span><br>
-          <strong style="color: var(--deep-blue);">Geoff Sayre-McCord</strong>, University of North Carolina at Chapel Hill<br>
-          <em>"Socrates's (much better than often thought) Defense of Justice in The Republic"</em><br>
-          <span style="color: var(--muted); font-size: 0.9rem;">Comments by <strong>Sarale Ben-Asher</strong>, University of New Mexico</span>
         </p>
 
         <p style="color: var(--muted); font-style: italic; font-size: 0.9rem;">Break · 4:30 – 4:45 PM</p>
@@ -396,9 +443,9 @@
         <p>
           <strong style="color: var(--teal-blue);">9:00 – 10:30 AM</strong><br>
           <span style="color: var(--muted); font-size: 0.9rem;">Chair: <strong>Evan Rodriguez</strong>, Idaho State University</span><br>
-          <strong style="color: var(--deep-blue);">Derek van Zoonen</strong>, University of Oslo<br>
-          <em>"False Pleasure and Psychic Disintegration in Plato's Tyrant"</em><br>
-          <span style="color: var(--muted); font-size: 0.9rem;">Comments by <strong>David Jennings</strong>, University of California, Merced</span>
+          <strong style="color: var(--deep-blue);">Geoff Sayre-McCord</strong>, University of North Carolina at Chapel Hill<br>
+          <em>"Socrates's (much better than often thought) Defense of Justice in The Republic"</em><br>
+          <span style="color: var(--muted); font-size: 0.9rem;">Comments by <strong>Sarale Ben-Asher</strong>, University of New Mexico</span>
         </p>
 
         <p style="color: var(--muted); font-style: italic; font-size: 0.9rem;">Break · 10:30 – 10:45 AM</p>
