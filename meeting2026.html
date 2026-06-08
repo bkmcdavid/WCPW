@@ -19,10 +19,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- Site stylesheet (contains the header/logo/menu styles we designed) -->
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="styles.css">
 
   <!-- Load the dropdown handler once, deferred so it runs after parsing -->
-  <script src="/js/dropdowns.js" defer></script>
+  <script src="js/dropdowns.js" defer></script>
 
   <!-- Page-specific styles -->
   <style>
@@ -50,8 +50,8 @@
       margin: 2.5rem 0 1rem 0;
       font-size: 1rem;
       text-transform: uppercase;
-      color: #174A7C;
-      border-bottom: 1px solid rgba(23,74,124,0.15);
+      color: #3A4D5C;
+      border-bottom: 1px solid rgba(58,77,92,0.15);
       padding-bottom: 0.5rem;
     }
 
@@ -87,7 +87,7 @@
     .card h2, .card h3 {
       margin-top: 0;
       margin-bottom: 0.6rem;
-      color: #174A7C;
+      color: #3A4D5C;
       font-size: 1.05rem;
     }
 
@@ -136,11 +136,11 @@
 
     .venue-name, .restaurant-name, .coffee-name, .treasure-name {
       font-weight: 600;
-      color: #174A7C;
+      color: #3A4D5C;
     }
 
     .venue-name a, .restaurant-name a, .coffee-name a, .treasure-name a {
-      color: #174A7C;
+      color: #3A4D5C;
       text-decoration: none;
     }
 
@@ -149,7 +149,7 @@
     }
 
     .price-range {
-      color: #21B6A8;
+      color: #1A7E6C;
       font-weight: 500;
       margin-left: 0.5rem;
     }
@@ -195,7 +195,7 @@
     }
 
     .airport-note {
-      background: rgba(33, 182, 168, 0.08);
+      background: rgba(26, 126, 108, 0.08);
       border-radius: 6px;
       padding: 0.75rem 1rem;
       margin: 1rem 0 1rem 1.5rem;
@@ -207,12 +207,12 @@
     }
 
     .airport-note strong {
-      color: #174A7C;
+      color: #3A4D5C;
     }
 
     .abstract-link {
       cursor: pointer;
-      color: #174A7C;
+      color: #3A4D5C;
       font-weight: 600;
       font-size: 0.9rem;
       user-select: none;
@@ -237,8 +237,8 @@
       display: block;
       margin-top: 0.5rem;
       padding: 0.75rem 1rem;
-      background: rgba(23, 74, 124, 0.04);
-      border-left: 3px solid #21B6A8;
+      background: rgba(58, 77, 92, 0.04);
+      border-left: 3px solid #1A7E6C;
       border-radius: 4px;
       color: #333;
       font-size: 0.95rem;
@@ -266,22 +266,22 @@
           <g transform="translate(384,120) scale(1.25,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
-                  font-weight="600" font-size="96" fill="#174A7C">W</text>
+                  font-weight="600" font-size="96" fill="#3A4D5C">W</text>
           </g>
           <g transform="translate(468,120) scale(1.25,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Proxima Sera, Georgia, serif"
-                  font-weight="400" font-size="96" fill="#21B6A8">C</text>
+                  font-weight="400" font-size="96" fill="#1A7E6C">C</text>
           </g>
           <g transform="translate(544,120) scale(1.25,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
-                  font-weight="600" font-size="96" fill="#174A7C">P</text>
+                  font-weight="600" font-size="96" fill="#3A4D5C">P</text>
           </g>
           <g transform="translate(636,120) scale(1.25,1.22)">
             <text x="0" y="0" text-anchor="middle"
                   font-family="Proxima Sera, Georgia, serif"
-                  font-weight="400" font-size="96" fill="#21B6A8">W</text>
+                  font-weight="400" font-size="96" fill="#1A7E6C">W</text>
           </g>
           <text x="500" y="168" text-anchor="middle"
                 font-family="'Josefin Sans', 'Helvetica Neue', Arial, sans-serif"
@@ -294,16 +294,7 @@
 
     <nav class="top-menu" aria-label="Main navigation">
       <ul class="nav-list">
-        <li class="nav-item has-dropdown">
-          <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">
-            About
-            <span class="chev" aria-hidden="true">▾</span>
-          </button>
-          <ul id="about-menu" class="dropdown" role="menu" aria-label="About submenu">
-            <li role="none"><a role="menuitem" href="index.html#history">What is the WCPW?</a></li>
-            <li role="none"><a role="menuitem" href="previous-meetings.html">Previous Meetings</a></li>
-          </ul>
-        </li>
+        <li class="nav-item"><a href="about.html">About</a></li>
 
         <li class="nav-item"><a href="meeting2027.html">2027 Meeting</a></li>
 

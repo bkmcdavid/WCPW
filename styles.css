@@ -11,11 +11,11 @@
   --menu-item-gap: 36px;
   --svg-max-width: 700px;
 
-  --deep-blue: #174A7C;
-  --teal-blue: #21B6A8;
+  --deep-blue: #3A4D5C;
+  --teal-blue: #1A7E6C;
   --menu-bg: #f8f8ff;
   --muted: #666;
-  --accent: rgba(160,120,48,0.12);
+  --accent: rgba(58,77,92,0.12);
 
   /* base font sizing (adjustable) */
   --base-font-size: 18px;
@@ -32,6 +32,11 @@ html,body {
   -moz-osx-font-smoothing:grayscale;
   font-size: var(--base-font-size);
 }
+
+/* Always reserve the vertical scrollbar's space so the centered logo and
+   menu don't shift sideways between short pages (e.g. Contact) and long
+   ones (e.g. the meeting pages). */
+html { scrollbar-gutter: stable; }
 a {
   color: inherit;
   text-decoration: underline;
@@ -187,7 +192,7 @@ a {
 /* Only show visible focus ring/background for keyboard users */
 .dropdown a:focus-visible {
   background: rgba(0,0,0,0.04);
-  outline: 3px solid rgba(23,74,124,0.15);
+  outline: 3px solid rgba(58,77,92,0.15);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -231,7 +236,7 @@ a {
   background:#fff;
   border-radius:8px;
   padding:1.1rem 1.25rem;
-  border-left:4px solid rgba(23,74,124,0.08);
+  border-left:4px solid rgba(58,77,92,0.08);
   box-shadow: 0 1px 0 rgba(0,0,0,0.03);
   margin-bottom:1rem;
   line-height: 1.6;
@@ -248,16 +253,16 @@ a {
 }
 .meeting-summary > .summary-line { display:flex; flex-wrap:wrap; align-items:center; gap:12px; font-size:1.05rem; }
 .meeting-date { font-weight:600; color:var(--deep-blue); margin-right:.5rem; }
-.toggle-more { margin-left:auto; background:none; border:none; color:#a47d2b; text-decoration:underline; cursor:pointer; }
+.toggle-more { margin-left:auto; background:none; border:none; color:#1A7E6C; text-decoration:underline; cursor:pointer; }
 
 /* details */
 .meeting-details {
   display:none;
   margin-top:.8em;
-  background:#fffbe9cc;
+  background:#eef2f3;
   padding:.8em 1.1em;
   border-radius:6px;
-  border:1px solid rgba(225,200,150,0.6);
+  border:1px solid rgba(58,77,92,0.18);
   font-size:.98rem;
   line-height:1.45;
 }
@@ -292,7 +297,7 @@ button.cta[disabled] { opacity:.6; cursor:not-allowed; }
 
 .nav-trigger:focus-visible,
 .top-menu a:focus-visible {
-  outline: 3px solid rgba(23,74,124,0.15);
+  outline: 3px solid rgba(58,77,92,0.15);
   outline-offset: 2px;
   border-radius: 4px;
 }

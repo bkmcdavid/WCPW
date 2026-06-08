@@ -7,7 +7,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'G-DZQY1ZZ7YG');
   </script>
 
@@ -15,115 +15,196 @@
   <title>West Coast Plato Workshop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Subtitle/menu font from Google Fonts -->
+  <!-- Menu / subtitle font -->
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" />
-  <style>html { scroll-behavior: smooth; }</style>
+  <style>
+    :root {
+      --deep-blue: #3A4D5C;
+      --teal: #1A7E6C;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* Full-viewport stage holding the four scenes */
+    .landing {
+      position: relative;
+      height: 100svh;
+      width: 100%;
+    }
+
+    .panes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 100%;
+      width: 100%;
+    }
+
+    .pane {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Fallback tones shown while a clip loads (or if video is unavailable) */
+    .pane--t1 { background: linear-gradient(160deg, #1b5e7a 0%, #0e3a52 60%, #08283a 100%); }
+    .pane--t2 { background: linear-gradient(160deg, #c79a5b 0%, #7d8a4e 55%, #4e5d33 100%); }
+    .pane--t3 { background: linear-gradient(160deg, #2f5d3a 0%, #1d3f28 60%, #122a1a 100%); }
+    .pane--t4 { background: linear-gradient(160deg, #b9a05c 0%, #8a7d3f 55%, #5c4a5e 100%); }
+
+    .pane video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    /* Subtle darkening so the white letter stays legible over any footage */
+    .pane::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.22);
+      z-index: 1;
+    }
+
+    .pane .letter {
+      position: relative;
+      z-index: 2;
+      font-weight: 600;
+      font-size: clamp(3.5rem, 14vw, 11rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: #fff;
+      text-shadow: 0 4px 28px rgba(0, 0, 0, 0.45);
+      user-select: none;
+    }
+
+    /* Thin dividers between panes */
+    .pane + .pane { box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.12); }
+
+    /* Top navigation, floating over the scenes */
+    .top-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      gap: clamp(1.5rem, 5vw, 4rem);
+      padding: 1.4rem 1rem;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0));
+    }
+
+    .top-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.18s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus-visible { border-bottom-color: var(--teal); }
+
+    /* Wordmark caption under the letters (the full title, for clarity + SEO) */
+    .wordmark {
+      position: absolute;
+      bottom: clamp(1.5rem, 6vh, 3.5rem);
+      left: 0;
+      right: 0;
+      z-index: 5;
+      text-align: center;
+      font-size: clamp(0.7rem, 1.6vw, 0.95rem);
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+      pointer-events: none;
+    }
+
+    /* Phones / narrow screens: 2x2 grid instead of four tall slivers */
+    @media (max-width: 720px) {
+      .panes { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); }
+      .pane + .pane { box-shadow: none; }
+    }
+
+    /* Respect users who ask for less motion: drop the video, keep the scene tones */
+    @media (prefers-reduced-motion: reduce) {
+      .pane video { display: none; }
+    }
+  </style>
 </head>
 <body>
-  <a id="top" class="skip-link" href="#history">Skip to content</a>
+  <main class="landing" id="top" aria-label="West Coast Plato Workshop">
+    <nav class="top-nav" aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="meeting2027.html">2027 Meeting</a>
+      <a href="contact.html">Contact</a>
+    </nav>
 
-  <header>
-    <div class="logo-bar">
-      <a href="#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
-        <svg viewBox="0 0 1000 240"
-             xmlns="http://www.w3.org/2000/svg"
-             role="img"
-             aria-label="West Coast Plato Workshop logo"
-             preserveAspectRatio="xMidYMid meet"
-             focusable="false">
-
-          <!-- First W -->
-          <g transform="translate(384,120) scale(1.25,1.22)">
-            <text x="0" y="0" text-anchor="middle"
-                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
-                  font-weight="600" font-size="96" fill="#174A7C">W</text>
-          </g>
-
-          <!-- C -->
-          <g transform="translate(468,120) scale(1.25,1.22)">
-            <text x="0" y="0" text-anchor="middle"
-                  font-family="Proxima Sera, Georgia, serif"
-                  font-weight="400" font-size="96" fill="#21B6A8">C</text>
-          </g>
-
-          <!-- P -->
-          <g transform="translate(544,120) scale(1.25,1.22)">
-            <text x="0" y="0" text-anchor="middle"
-                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
-                  font-weight="600" font-size="96" fill="#174A7C">P</text>
-          </g>
-
-          <!-- Last W -->
-          <g transform="translate(636,120) scale(1.25,1.22)">
-            <text x="0" y="0" text-anchor="middle"
-                  font-family="Proxima Sera, Georgia, serif"
-                  font-weight="400" font-size="96" fill="#21B6A8">W</text>
-          </g>
-
-          <!-- Subtitle -->
-          <text x="500" y="168" text-anchor="middle"
-                font-family="'Josefin Sans', 'Helvetica Neue', Arial, sans-serif"
-                font-size="28" fill="#000000" letter-spacing="8">
-            WEST COAST PLATO WORKSHOP
-          </text>
-        </svg>
-      </a>
+    <div class="panes" role="img" aria-label="West Coast Plato Workshop — scenes of the West Coast">
+      <div class="pane pane--t1"><video autoplay muted loop playsinline preload="auto"></video><span class="letter" aria-hidden="true">W</span></div>
+      <div class="pane pane--t2"><video autoplay muted loop playsinline preload="auto"></video><span class="letter" aria-hidden="true">C</span></div>
+      <div class="pane pane--t3"><video autoplay muted loop playsinline preload="auto"></video><span class="letter" aria-hidden="true">P</span></div>
+      <div class="pane pane--t4"><video autoplay muted loop playsinline preload="auto"></video><span class="letter" aria-hidden="true">W</span></div>
     </div>
 
-    <nav class="top-menu" aria-label="Main navigation">
-      <ul class="nav-list">
-        <li class="nav-item has-dropdown">
-          <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="about-menu">
-            About
-            <span class="chev" aria-hidden="true">▾</span>
-          </button>
-          <ul id="about-menu" class="dropdown" role="menu" aria-label="About submenu">
-            <li role="none"><a role="menuitem" href="index.html#history">What is the WCPW?</a></li>
-            <li role="none"><a role="menuitem" href="previous-meetings.html">Previous Meetings</a></li>
-          </ul>
-        </li>
-    
-        <li class="nav-item"><a href="meeting2027.html">2027 Meeting</a></li>
-    
-        <li class="nav-item"><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section id="history">
-      <h1 class="page-title">What is the WCPW?</h1>
-
-      <!-- Small Plato image inserted directly below the heading.
-           Upload images/platosunglasses.png to this path on the server. -->
-      <figure aria-hidden="false" style="margin: .6rem 0 1rem 0; text-align:center;">
-        <img src="images/platosunglasses.png"
-             alt="Cartoon of Plato wearing sunglasses"
-             loading="lazy"
-             style="max-width:220px; width:100%; height:auto; display:inline-block; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.06);" />
-      </figure>
-
-       <div class="card" aria-labelledby="origins-heading">
-          <h2 id="origins-heading">Origins</h2>
-          <p>The West Coast Plato Workshop was started in 2008 by Rachana Kamtekar and Jan Szaif. They hosted the first meeting at UC Davis, with papers focusing on the text of <i>Theaetetus</i>.</p>
-  
-          <h2>Friendly Character</h2>
-          <p>
-            WCPW has been a beloved ancient philosophy workshop ever since, with scholars of all levels, from graduate students to emeritus professors, sharing their interpretations of Plato in a collegial and sunny (or maybe cloudy, in the years that Pacific Northwest institutions host) environment.
-          </p>
-  
-          <h2>Grassroots Organization</h2>
-          <p>
-            Hosts are volunteers who coordinate with their home institution to bring a band of Plato scholars to their campus in late spring or early summer. The annual business meeting of the WCPW, scheduled and held during each year's workshop, is the principal site of planning and steering for future workshops. If you are interested in hosting, please let us know!
-          </p>
-     
-    </section>
-
-
+    <div class="wordmark">West Coast Plato Workshop</div>
   </main>
 
-  <script src="/js/dropdowns.js"></script>
+  <script>
+    // Pool of background clips. To add or remove a scene, just edit this list
+    // (a static site can't read the videos/ folder on its own).
+    (function () {
+      var VIDEOS = [
+        "scene-1.mp4",
+        "scene-2.mp4",
+        "scene-3.mp4",
+        "scene-4.mp4",
+        "scene-5.mp4",
+        "scene-6.mp4",
+        "scene-7.mp4",
+        "scene-8.mp4"
+      ];
+
+      // Fisher–Yates shuffle, then take the first four — a fresh, distinct
+      // set of scenes on every page load.
+      for (var i = VIDEOS.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = VIDEOS[i]; VIDEOS[i] = VIDEOS[j]; VIDEOS[j] = tmp;
+      }
+
+      var panes = document.querySelectorAll(".pane video");
+      VIDEOS.slice(0, panes.length).forEach(function (file, idx) {
+        var v = panes[idx];
+        var source = document.createElement("source");
+        source.src = "videos/" + file;
+        source.type = "video/mp4";
+        v.appendChild(source);
+        v.load();
+        var playing = v.play();
+        if (playing && playing.catch) playing.catch(function () {});
+      });
+    })();
+  </script>
 </body>
 </html>

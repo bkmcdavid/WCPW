@@ -1,2 +1,7 @@
 # macOS Finder metadata
 .DS_Store
+
+# Full-resolution source video originals — the web-optimized copies that the
+# site actually uses live in videos/. The images/ originals are large
+# (hundreds of MB, some over GitHub's 100MB limit) and must not be committed.
+images/*.mp4
