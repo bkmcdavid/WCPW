@@ -1,19 +1,13 @@
 :root{
   --ui-font: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif;
-  --initials-font: 'Proxima Nova', "Helvetica Neue", Arial, sans-serif;
-  --serif-initials-font: 'Proxima Sera', Georgia, serif;
 
   --logo-height: 170px;
   --menu-height: 56px;
-  /* comfortable gap so there is more vertical space between the fixed menu and page text */
+  /* comfortable gap between the header area and the page text */
   --heading-gap: 72px;
-
-  --menu-item-gap: 36px;
-  --svg-max-width: 700px;
 
   --deep-blue: #3A4D5C;
   --teal-blue: #1A7E6C;
-  --menu-bg: #f8f8ff;
   --muted: #666;
   --accent: rgba(58,77,92,0.12);
 
@@ -33,9 +27,8 @@ html,body {
   font-size: var(--base-font-size);
 }
 
-/* Always reserve the vertical scrollbar's space so the centered logo and
-   menu don't shift sideways between short pages (e.g. Contact) and long
-   ones (e.g. the meeting pages). */
+/* Always reserve the vertical scrollbar's space so centered content doesn't
+   shift sideways between short pages (e.g. Contact) and long ones. */
 html { scrollbar-gutter: stable; }
 
 /* ============================================================
@@ -123,6 +116,7 @@ html { scrollbar-gutter: stable; }
 @media (prefers-reduced-motion: reduce) {
   .site-banner > .banner-video { display: none; }
 }
+
 a {
   color: inherit;
   text-decoration: underline;
@@ -150,150 +144,14 @@ a {
   z-index: 9999;
 }
 
-/* Header / logo bar */
-.logo-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--logo-height);
-  min-height: var(--logo-height);
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1100;
-  padding-top: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-.logo-bar svg { width: min(66vw, var(--svg-max-width)); height: auto; display:block; }
-.logo-link { display:inline-block; }
-
-/* Top fixed horizontal menu */
-.top-menu {
-  position: fixed;
-  top: var(--logo-height);
-  left: 0;
-  right: 0;
-  height: var(--menu-height);
-  background: var(--menu-bg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1090;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-}
-
-/* Horizontal nav list */
-.nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: var(--menu-item-gap);
-  align-items: center;
-}
-
-/* top-level item */
-.nav-item {
-  position: relative; /* anchor for dropdown */
-  display: inline-flex;
-  align-items: center;
-}
-
-/* triggers and links */
-.nav-trigger,
-.top-menu a {
-  display: inline-flex;
-  align-items: center;
-  gap: .35rem;
-  background: none;
-  border: none;
-  padding: 8px 6px;
-  font-family: var(--ui-font);
-  font-size: 1.125rem; /* 18px base -> nav slightly larger */
-  font-weight: 500;
-  color: #222;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-/* Split nav item: text link + chevron button */
-.nav-link-text {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 0 8px 6px;
-  font-family: var(--ui-font);
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: #222;
-  text-decoration: none;
-}
-
-.nav-trigger-chevron {
-  padding: 8px 6px 8px 4px;
-}
-
-/* chevron */
-.chev { font-size: .85em; color: rgba(0,0,0,0.6); }
-
-/* Dropdown container: absolutely positioned, hidden by default */
-.dropdown {
-  position: absolute;
-  top: calc(var(--menu-height) + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 200px;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  padding: 8px 0;
-  border-radius: 6px;
-  list-style: none;
-  margin: 0;
-  display: none;
-  z-index: 1200;
-  pointer-events: auto;
-}
-
-/* visible state */
-.dropdown.open { display: block; }
-
-/* dropdown items: no hover styling; keep keyboard-visible focus only */
-.dropdown a {
-  display: block;
-  padding: 8px 18px;
-  color: #111;
-  font-size: 1rem; /* relative to base */
-  white-space: nowrap;
-}
-
-/* Remove visual styling on plain focus (so mouse-open doesn't show a selected state) */
-.dropdown a:focus {
-  outline: none;
-  background: none;
-}
-
-/* Only show visible focus ring/background for keyboard users */
-.dropdown a:focus-visible {
-  background: rgba(0,0,0,0.04);
-  outline: 3px solid rgba(58,77,92,0.15);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* safety alignment variant for small screens */
-.dropdown.align-left { left: 0; transform: translateX(0); min-width: 60vw; }
-
-/* main content spacing: use variable so we can match subtitle→menu gap */
+/* main content spacing */
 .container {
   max-width: 920px;
   margin: 0 auto;
   padding: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)) 16px 3rem 16px;
 }
 
-/* anchor target offset — uses same var so anchors land consistently beneath fixed header */
+/* anchor target offset so in-page anchors land clear of the top */
 :target { scroll-margin-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap) + 8px); }
 
 /* Page utilities */
@@ -375,19 +233,6 @@ textarea { min-height:140px; resize:vertical; }
 button.cta { background:var(--deep-blue); color:#fff; border:none; padding:10px 16px; border-radius:6px; font-weight:600; cursor:pointer; }
 button.cta[disabled] { opacity:.6; cursor:not-allowed; }
 
-/* NAV TRIGGERS / TOP-MENU LINKS: same keyboard-only focus behavior */
-.nav-trigger,
-.top-menu a {
-  outline: none;
-}
-
-.nav-trigger:focus-visible,
-.top-menu a:focus-visible {
-  outline: 3px solid rgba(58,77,92,0.15);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
 /* --- Page-specific spacing & paragraph block offset --- */
 
 /* Add extra vertical space above the Submit section heading */
@@ -414,9 +259,6 @@ main.container .meeting-details p {
 /* responsive */
 @media (max-width:900px) {
   :root { --logo-height:150px; --menu-height:52px; --heading-gap:56px; }
-  .logo-bar svg { width: min(86vw, 600px); }
-  .nav-list { gap:24px; }
-  .top-menu a { font-size: 1rem; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
 }
 
@@ -424,24 +266,5 @@ main.container .meeting-details p {
 
 @media (max-width:520px) {
   :root { --logo-height:120px; --menu-height:50px; --heading-gap:32px; --base-font-size:16px; }
-  .logo-bar svg { width:94vw; }
-  .nav-list { gap:12px; }
-  .top-menu a { font-size:0.94rem; padding:6px; }
   .container { padding-top: calc(var(--logo-height) + var(--menu-height) + var(--heading-gap)); }
-  .dropdown { left: 0; transform: translateX(0); min-width: 60vw; }
-}
-
-/* keep nav list centered within the top menu; aligns with main content width */
-.top-menu .nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: var(--menu-item-gap);
-  align-items: center;
-
-  width: auto;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 920px;
 }
