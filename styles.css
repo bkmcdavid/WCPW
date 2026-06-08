@@ -37,6 +37,92 @@ html,body {
    menu don't shift sideways between short pages (e.g. Contact) and long
    ones (e.g. the meeting pages). */
 html { scrollbar-gutter: stable; }
+
+/* ============================================================
+   Video header banner (interior pages) — echoes the landing:
+   one random clip behind the white WCPW wordmark + menu.
+   ============================================================ */
+.site-banner {
+  position: relative;
+  width: 100%;
+  min-height: clamp(200px, 30vh, 280px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #20303a;
+}
+.site-banner > .banner-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.site-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.34);
+  z-index: 1;
+}
+.banner-nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(1.25rem, 5vw, 3.5rem);
+  padding: 1.1rem 1rem 0.4rem;
+}
+.banner-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.18s ease;
+}
+.banner-nav a:hover,
+.banner-nav a:focus-visible { border-bottom-color: var(--teal-blue); }
+.banner-brand {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem 1.4rem;
+  text-align: center;
+}
+.banner-brand .wcpw {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 8vw, 3.6rem);
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.45);
+}
+.banner-brand .subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Pages using the banner don't need the big fixed-header top padding */
+.container.has-banner { padding-top: 2.25rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-banner > .banner-video { display: none; }
+}
 a {
   color: inherit;
   text-decoration: underline;

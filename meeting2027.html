@@ -106,58 +106,24 @@
       .meeting-image { margin: 1rem auto; max-width: 94vw; }
     }
   </style>
+  <script src="js/banner.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="logo-bar">
-      <a href="index.html#top" aria-label="West Coast Plato Workshop Home" class="logo-link" title="West Coast Plato Workshop">
-        <svg viewBox="0 0 1000 240"
-             xmlns="http://www.w3.org/2000/svg"
-             role="img"
-             aria-label="West Coast Plato Workshop logo"
-             preserveAspectRatio="xMidYMid meet"
-             focusable="false">
-          <g transform="translate(384,120) scale(1.25,1.22)">
-            <text x="0" y="0" text-anchor="middle"
-                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
-                  font-weight="600" font-size="96" fill="#3A4D5C">W</text>
-          </g>
-          <g transform="translate(468,120) scale(1.25,1.22)">
-            <text x="0" y="0" text-anchor="middle"
-                  font-family="Proxima Sera, Georgia, serif"
-                  font-weight="400" font-size="96" fill="#1A7E6C">C</text>
-          </g>
-          <g transform="translate(544,120) scale(1.25,1.22)">
-            <text x="0" y="0" text-anchor="middle"
-                  font-family="Proxima Nova, 'Helvetica Neue', Arial, sans-serif"
-                  font-weight="600" font-size="96" fill="#3A4D5C">P</text>
-          </g>
-          <g transform="translate(636,120) scale(1.25,1.22)">
-            <text x="0" y="0" text-anchor="middle"
-                  font-family="Proxima Sera, Georgia, serif"
-                  font-weight="400" font-size="96" fill="#1A7E6C">W</text>
-          </g>
-          <text x="500" y="168" text-anchor="middle"
-                font-family="'Josefin Sans', 'Helvetica Neue', Arial, sans-serif"
-                font-size="28" fill="#000000" letter-spacing="8">
-            WEST COAST PLATO WORKSHOP
-          </text>
-        </svg>
-      </a>
-    </div>
-
-    <nav class="top-menu" aria-label="Main navigation">
-      <ul class="nav-list">
-        <li class="nav-item"><a href="about.html">About</a></li>
-
-        <li class="nav-item"><a href="meeting2027.html">2027 Meeting</a></li>
-
-        <li class="nav-item"><a href="contact.html">Contact</a></li>
-      </ul>
+    <header class="site-banner">
+    <video class="banner-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <nav class="banner-nav" aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="meeting2027.html">2027 Meeting</a>
+      <a href="contact.html">Contact</a>
     </nav>
+    <div class="banner-brand">
+      <a class="wcpw" href="index.html" aria-label="West Coast Plato Workshop — home">WCPW</a>
+      <span class="subtitle">West Coast Plato Workshop</span>
+    </div>
   </header>
 
-  <main class="container" id="content">
+
+  <main class="container has-banner" id="content">
 
     <!-- 2026 PARTICIPANTS PHOTO -->
     <section id="meeting2026-recap" aria-labelledby="meeting-title">
