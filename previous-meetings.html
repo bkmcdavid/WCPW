@@ -18,6 +18,11 @@
   <!-- Menu / subtitle font -->
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <!-- Leaflet (interactive map) — free OpenStreetMap tiles, no API key -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+
   <!-- Site stylesheet (contains the header/logo/menu styles we designed) -->
   <link rel="stylesheet" href="styles.css">
 
@@ -115,6 +120,30 @@
       padding: 0;
     }
 
+    /* Interactive meeting map */
+    .meeting-map {
+      width: 100%;
+      max-width: 460px;     /* narrower than the text column */
+      aspect-ratio: 1 / 1;  /* square */
+      border-radius: 8px;
+      margin: 0 auto 1.6rem;  /* centered */
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+      border: 1px solid rgba(58, 77, 92, 0.18);
+      z-index: 0; /* keep tiles below the site header */
+    }
+
+    /* Harmonize Leaflet popups with the site's fonts/colors */
+    .leaflet-popup-content {
+      font-family: 'Josefin Sans', "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.95rem;
+      color: #111;
+      margin: 0.7rem 0.9rem;
+    }
+    .map-popup-name { font-weight: 600; color: var(--deep-blue, #3A4D5C); }
+    .map-popup-city { color: #555; font-size: 0.85rem; margin: 0.1rem 0 0.4rem; }
+    .map-popup ul { margin: 0; padding-left: 1.1rem; line-height: 1.5; }
+    .map-popup .yr { font-weight: 600; color: var(--deep-blue, #3A4D5C); }
+
     /* responsive tweaks */
     @media (max-width: 520px) {
       .meeting-summary { padding: 0.85rem; }
@@ -145,9 +174,15 @@
     <h1 class="page-title">Previous Meetings</h1>
 
     <p class="intro">
-      A running record of WCPW meetings. Click "more..." on each entry to see organizers,
-      keynote speakers, and the list of presenters for that year.
+      A running record of WCPW meetings. The workshop has met up and down the West Coast —
+      with a few gatherings further inland. Click a pin to see the years and dialogues hosted
+      at each campus, then scroll down and click "more..." on any entry for its organizers,
+      keynote speakers, and presenters.
     </p>
+
+    <!-- Interactive map of host campuses -->
+    <div id="meeting-map" class="meeting-map" role="img"
+         aria-label="Map of West Coast Plato Workshop host campuses"></div>
 
     <!-- Meetings list (kept your existing content, rest omitted here for brevity) -->
     
@@ -446,7 +481,7 @@
     <div class="meeting-summary"> 
       <div class="summary-line"> 
         <span class="meeting-date">2017</span> 
-        <span>– <em>Gorgias</em> Conference</span> 
+        <span>– <em>Gorgias</em>, hosted by University of California, Davis</span> 
         <button class="toggle-more" onclick="toggleDetails('details-2017', this)" aria-expanded="false" aria-controls="details-2023">more...</button> 
       </div> 
       <div class="meeting-details" id="details-2017" aria-hidden="true"> 
@@ -751,6 +786,75 @@
         el.setAttribute('aria-hidden', 'false');
       }
     }
+  </script>
+
+  <!-- Leaflet library + interactive map of host campuses -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script>
+    // One entry per host campus. `meetings` is newest-first; repeat hosts list every year.
+    var HOST_CAMPUSES = [
+      { name: "Chapman University", city: "Orange, California", lat: 33.7936, lng: -117.8531,
+        meetings: [ ["2026", "Republic VIII–IX"] ] },
+      { name: "University of California, San Diego", city: "La Jolla, California", lat: 32.8801, lng: -117.2340,
+        meetings: [ ["2025", "First Alcibiades"], ["2010", "Phaedrus"] ] },
+      { name: "Seattle University", city: "Seattle, Washington", lat: 47.6101, lng: -122.3192,
+        meetings: [ ["2024", "Apology"] ] },
+      { name: "Northern Arizona University", city: "Flagstaff, Arizona", lat: 35.1856, lng: -111.6539,
+        meetings: [ ["2023", "Statesman"], ["2021", "Sophist"], ["2016", "Philebus"] ] },
+      { name: "Stanford University", city: "Stanford, California", lat: 37.4275, lng: -122.1697,
+        meetings: [ ["2022", "Republic I–IV"], ["2013", "Cratylus"] ] },
+      { name: "Lewis & Clark College", city: "Portland, Oregon", lat: 45.4493, lng: -122.6699,
+        meetings: [ ["2020", "Lysis"], ["2018", "Republic V–VII"], ["2011", "Phaedo"] ] },
+      { name: "San Diego State University", city: "San Diego, California", lat: 32.7757, lng: -117.0719,
+        meetings: [ ["2019", "Protagoras"] ] },
+      { name: "University of California, Davis", city: "Davis, California", lat: 38.5382, lng: -121.7617,
+        meetings: [ ["2017", "Gorgias"], ["2008", "Theaetetus"] ] },
+      { name: "University of Arizona", city: "Tucson, Arizona", lat: 32.2319, lng: -110.9501,
+        meetings: [ ["2015", "Laws X"] ] },
+      { name: "University of California, Berkeley", city: "Berkeley, California", lat: 37.8719, lng: -122.2585,
+        meetings: [ ["2014", "Hippias I & II"], ["2009", "Euthydemus"] ] },
+      { name: "University of Denver", city: "Denver, Colorado", lat: 39.6766, lng: -104.9619,
+        meetings: [ ["2012", "Meno"] ] }
+    ];
+
+    (function () {
+      var map = L.map('meeting-map', { scrollWheelZoom: false });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+        subdomains: 'abcd',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      }).addTo(map);
+
+      var bounds = [];
+
+      HOST_CAMPUSES.forEach(function (h) {
+        bounds.push([h.lat, h.lng]);
+
+        var items = h.meetings.map(function (m) {
+          return '<li><span class="yr">' + m[0] + '</span> — <em>' + m[1] + '</em></li>';
+        }).join('');
+
+        var html =
+          '<div class="map-popup">' +
+            '<div class="map-popup-name">' + h.name + '</div>' +
+            '<div class="map-popup-city">' + h.city + '</div>' +
+            '<ul>' + items + '</ul>' +
+          '</div>';
+
+        L.circleMarker([h.lat, h.lng], {
+          radius: 6 + h.meetings.length * 2,
+          color: '#ffffff',
+          weight: 2,
+          fillColor: '#1A7E6C',
+          fillOpacity: 0.85
+        }).addTo(map).bindPopup(html);
+      });
+
+      map.fitBounds(bounds, { padding: [40, 40] });
+    })();
   </script>
 
   <!-- Load shared dropdown behavior; page relies on /js/dropdowns.js -->
