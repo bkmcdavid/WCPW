@@ -66,19 +66,13 @@
 
     .meeting-image {
       width: 100%;
-      max-width: 800px;
+      max-width: 520px;
       display: block;
       margin: 1.25rem auto;
       border-radius: 8px;
       box-shadow: 0 6px 24px rgba(0,0,0,0.06);
       object-fit: cover;
       height: auto;
-    }
-
-    figcaption.lead {
-      color: #555;
-      font-size: 0.95rem;
-      font-style: italic;
     }
 
     .card {
@@ -97,13 +91,97 @@
       font-size: 1.05rem;
     }
 
+    .card h3 {
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+    }
+
     .card p {
-      margin: 0.5rem 0;
+      margin: 0.5rem 0 0.5rem 1.5rem;
+    }
+
+    .card > p:first-child {
+      margin-left: 0;
+    }
+
+    .map-container {
+      width: calc(100% - 1.5rem);
+      max-width: calc(100% - 1.5rem);
+      margin: 1rem 0 1rem 1.5rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 350px;
+      border: 0;
+    }
+
+    .venue-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0.75rem 1.5rem;
+    }
+
+    .venue-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .venue-list li:last-child {
+      border-bottom: none;
+    }
+
+    .venue-name {
+      font-weight: 600;
+      color: #3A4D5C;
+    }
+
+    .venue-name a {
+      color: #3A4D5C;
+      text-decoration: none;
+    }
+
+    .venue-name a:hover {
+      text-decoration: underline;
+    }
+
+    .venue-desc {
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+
+    .airport-note {
+      background: rgba(26, 126, 108, 0.08);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0 1rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .airport-note p {
+      margin-left: 0;
+    }
+
+    .airport-note strong {
+      color: #3A4D5C;
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #666;
+      font-style: italic;
+      font-size: 1rem;
     }
 
     @media (max-width: 520px) {
       .container { padding-left: 14px; padding-right: 14px; }
       .meeting-image { margin: 1rem auto; max-width: 94vw; }
+      .map-container iframe { height: 280px; }
     }
   </style>
   <script src="js/banner.js" defer></script>
@@ -125,30 +203,136 @@
 
   <main class="container has-banner" id="content">
 
-    <!-- 2026 PARTICIPANTS PHOTO -->
-    <section id="meeting2026-recap" aria-labelledby="meeting-title">
+    <!-- HEADER SECTION WITH IMAGE -->
+    <section id="meeting2027" aria-labelledby="meeting-title">
       <h1 id="meeting-title" class="page-title">2027 West Coast Plato Workshop</h1>
 
       <p class="lead">
-        Our thanks to everyone who joined us at Chapman University for the 2026 workshop and three good days with Books VIII and IX of the <em>Republic</em>.
+        The 20th annual meeting of the WCPW will be held at the University of California, Davis, and will focus on Plato's <em>Crito</em>. The call for abstracts is open below; the full program and logistical details will follow here.
       </p>
 
       <figure role="group" aria-labelledby="meeting-image-caption">
-        <img src="images/participants-2026-cropped.jpg" alt="Participants of the 2026 West Coast Plato Workshop gathered at Chapman University" class="meeting-image" />
-        <figcaption id="meeting-image-caption" class="lead">Participants of the 2026 West Coast Plato Workshop at Chapman University in Orange, California.</figcaption>
+        <img src="images/platodavis.png" alt="Illustration of Plato in sunglasses riding a bicycle along the UC Davis arboretum waterway, a copy of the Crito in his basket" class="meeting-image" />
+        <figcaption id="meeting-image-caption" style="display:none;">Plato cycles the Davis arboretum with the Crito in his basket.</figcaption>
       </figure>
     </section>
 
-    <!-- 2027 ANNOUNCEMENT -->
-    <section id="next-meeting" aria-labelledby="next-meeting-title">
-      <h2 id="next-meeting-title" class="section-title">The 2027 Meeting</h2>
+    <!-- THE MEETING -->
+    <section id="the-meeting" aria-labelledby="the-meeting-title">
+      <h2 id="the-meeting-title" class="section-title">The Meeting</h2>
+
+      <div class="card">
+        <h2>Dates</h2>
+        <p>Friday, May 14 – Sunday, May 16, 2027</p>
+
+        <h2>Meeting Focus</h2>
+        <p>The workshop will focus on Plato's <em>Crito</em>.</p>
+
+        <h2>Author Meets Critics</h2>
+        <p>
+          The program will include an author-meets-critics panel on the latest book by Brad Inwood (Yale University),
+          <a href="https://www.cambridge.org/core/books/platos-crito/D756A577856F4A698FC154AFDC4EA793" target="_blank" rel="noopener noreferrer"><em>Plato's Crito</em></a>,
+          in the Cambridge Studies in the Dialogues of Plato series.
+        </p>
+
+        <h2>Organizers</h2>
+        <p>Carlo DaVia, Jan Szaif, and Carey Seal (University of California, Davis)</p>
+      </div>
+    </section>
+
+    <!-- CALL FOR ABSTRACTS -->
+    <section id="call-for-abstracts" aria-labelledby="cfa-title">
+      <h2 id="cfa-title" class="section-title">Call for Abstracts</h2>
 
       <div class="card">
         <p>
-          The 20th annual meeting of the West Coast Plato Workshop will be held at the University of California, Davis, hosted by Carlo DaVia, Jan Szaif, and Carey Seal.
+          If you would like to present something on the <em>Crito</em>, please send a 500-word abstract for blind review to Carlo DaVia (<a href="mailto:cdavia@ucdavis.edu">cdavia@ucdavis.edu</a>) by <strong>October 16, 2026</strong>.
+        </p>
+
+        <p>
+          Referees will seek coverage of different parts of, and themes from, the dialogue as they rank the abstracts. Accepted papers will receive commentators.
+        </p>
+
+        <h3>Serving as a Commentator</h3>
+        <p>
+          If you would like to serve as a commentator, please notify Carlo DaVia (<a href="mailto:cdavia@ucdavis.edu">cdavia@ucdavis.edu</a>).
+        </p>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline" aria-labelledby="timeline-title">
+      <h2 id="timeline-title" class="section-title">Timeline</h2>
+
+      <div class="card">
+        <ul class="venue-list">
+          <li>
+            <span class="venue-name">October 16, 2026</span>
+            <p class="venue-desc">Deadline for submission of abstracts.</p>
+          </li>
+          <li>
+            <span class="venue-name">November 13, 2026</span>
+            <p class="venue-desc">Referee reports due.</p>
+          </li>
+          <li>
+            <span class="venue-name">November 24, 2026</span>
+            <p class="venue-desc">Authors notified.</p>
+          </li>
+          <li>
+            <span class="venue-name">March 1, 2027</span>
+            <p class="venue-desc">Completed papers (around 3,000 words) due to organizers and commentators.</p>
+          </li>
+          <li>
+            <span class="venue-name">May 14–16, 2027</span>
+            <p class="venue-desc">The workshop meets at UC Davis.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- HOW TO GET TO THE WORKSHOP -->
+    <section id="getting-there" aria-labelledby="getting-there-title">
+      <h2 id="getting-there-title" class="section-title">How to Get to the Workshop</h2>
+
+      <div class="card">
+        <h2>University of California, Davis</h2>
+        <p>
+          The workshop will be hosted by <a href="https://www.ucdavis.edu" target="_blank" rel="noopener noreferrer">UC Davis</a>, in Davis, California, at the northern edge of the Central Valley.
+        </p>
+
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps?q=University+of+California+Davis&output=embed"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="University of California, Davis campus map">
+          </iframe>
+        </div>
+
+        <h3>Getting Here by Air</h3>
+        <div class="airport-note">
+          <p><strong>Recommended:</strong> Sacramento International Airport (SMF) is just 25 minutes from Davis.</p>
+          <p><strong>Also within reach:</strong> the San Francisco Bay Area airports (SFO, OAK, SJC) are farther out but well connected to Davis.</p>
+        </div>
+
+        <h3>Lodging and Local Tips</h3>
+        <p>
+          Hotel recommendations and local tips will be posted here closer to the meeting.
+        </p>
+      </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section id="questions" aria-labelledby="questions-title">
+      <h2 id="questions-title" class="section-title">Questions</h2>
+
+      <div class="card">
+        <p>
+          We hope to see many of you next year in Davis. For further questions, please contact Carlo DaVia (<a href="mailto:cdavia@ucdavis.edu">cdavia@ucdavis.edu</a>), Jan Szaif (<a href="mailto:jmszaif@ucdavis.edu">jmszaif@ucdavis.edu</a>), or Carey Seal (<a href="mailto:cseal@ucdavis.edu">cseal@ucdavis.edu</a>).
         </p>
         <p>
-          Details about the focal text for the meeting and the submission guidelines will be shared here in early fall. We hope to see you in Davis.
+          Our thanks to everyone who joined us at Chapman University for the 2026 workshop and three good days with Books VIII and IX of the <em>Republic</em>. You can find that program, and every meeting before it, on the <a href="previous-meetings.html">previous meetings</a> page.
         </p>
       </div>
     </section>

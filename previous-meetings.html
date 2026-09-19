@@ -120,6 +120,28 @@
       padding: 0;
     }
 
+    /* group photo inside a meeting's details */
+    .meeting-details figure {
+      margin: 0.75rem 0 0.25rem;
+    }
+
+    .meeting-photo {
+      width: 100%;
+      max-width: 640px;
+      display: block;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .meeting-photo-caption {
+      color: #555;
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-top: 0.4rem;
+      max-width: 640px;
+    }
+
     /* Interactive meeting map */
     .meeting-map {
       width: 100%;
@@ -215,6 +237,12 @@
           <li>Wenjin Liu (Duke University), "Empeiria in Plato's Republic" — Commentator: Jack Condie (The New School for Social Research)</li>
           <li>Eric Solis (University of Alabama), "The Tyrant's Regret" — Commentator: Madeline Brenchley (Boston College)</li>
         </ul>
+
+        <h3>Participants</h3>
+        <figure>
+          <img src="images/participants-2026-cropped.jpg" alt="Participants of the 2026 West Coast Plato Workshop gathered at Chapman University" class="meeting-photo" />
+          <figcaption class="meeting-photo-caption">Participants of the 2026 West Coast Plato Workshop at Chapman University in Orange, California.</figcaption>
+        </figure>
       </div>
     </div>
     
@@ -822,10 +850,18 @@
     (function () {
       var map = L.map('meeting-map', { scrollWheelZoom: false });
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        subdomains: 'abcd',
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      // Esri's light gray canvas: a quiet basemap that keeps the campus dots
+      // readable. Free and keyless, unlike CARTO's basemaps, which began
+      // stamping "API KEY REQUIRED" across their tiles. Labels ship as a
+      // separate transparent overlay, so the two layers go on together.
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16,
+        attribution: 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>'
+      }).addTo(map);
+
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16,
+        pane: 'overlayPane'
       }).addTo(map);
 
       var bounds = [];
